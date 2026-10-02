@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bf5dmpwmpasg8"]
+
+[ext_resource type="Script" uid="uid://py4iyi6pqqgi" path="res://Effect/spaceship_effect_list.gd" id="1_c055x"]
+
+[node name="SpaceshipEffectList" type="Node" unique_id=792386290]
+script = ExtResource("1_c055x")

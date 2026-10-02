@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BaseEffect" format=3 uid="uid://dafm3kjalu2fa"]
+
+[ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://Effect/Effects/BaseEffect.gd" id="1_fw5en"]
+
+[resource]
+script = ExtResource("1_fw5en")
+effect_name = "dead"
+metadata/_custom_type_script = "uid://coej6ak3esl1j"

@@ -14,6 +14,11 @@ config/name="Airlock"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EffectSystem="*uid://bf5dmpwmpasg8"
+EventManager="*uid://dgvmr4gocu573"
+
 [display]
 
 window/stretch/mode="canvas_items"
