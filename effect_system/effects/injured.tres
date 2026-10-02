@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="BaseEffect" format=3 uid="uid://b4d5pknlsu80y"]
 
-[ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://effect_system/effects_/base_effect.gd" id="1_n87uj"]
+[ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://effect_system/effects/base_effect.gd" id="1_uquag"]
 
 [resource]
-script = ExtResource("1_n87uj")
+script = ExtResource("1_uquag")
 effect_name = "injured"
 duration = 20
 metadata/_custom_type_script = "uid://coej6ak3esl1j"

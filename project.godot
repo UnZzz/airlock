@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="Airlock"
+run/main_scene="uid://upb8pft0huuv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EffectSystem="*uid://bf5dmpwmpasg8"
-EventManager="*uid://dgvmr4gocu573"
+Inventory="*uid://07847x4prchj"
+Timeline="*uid://pkovtpnhvjvb"
+EventManager="*uid://cif6natjfgl13"
 
 [display]
 

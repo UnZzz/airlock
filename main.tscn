@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://upb8pft0huuv"]
+
+[ext_resource type="Script" uid="uid://e1pv4i2554jv" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node" unique_id=1695913495]
+script = ExtResource("1_ig7tw")
+
+[node name="Button" type="Button" parent="." unique_id=99374989]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEXT DAY"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

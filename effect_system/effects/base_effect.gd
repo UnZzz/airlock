@@ -1,5 +1,4 @@
 class_name BaseEffect
-
 extends Resource
 
 @export
