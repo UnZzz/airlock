@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://pkovtpnhvjvb"]
 
-[ext_resource type="Script" uid="uid://bl5bpgxwj43xh" path="res://Timeline/timeline.gd" id="1_00v4t"]
+[ext_resource type="Script" uid="uid://bl5bpgxwj43xh" path="res://timeline/timeline.gd" id="1_00v4t"]
 
 [node name="Timeline" type="Node" unique_id=383708614]
 script = ExtResource("1_00v4t")
