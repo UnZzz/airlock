@@ -4,7 +4,7 @@ signal finished
 signal _advanced
 signal _picked(index: int)
 
-const DIALOGUE_PATH : String = "res://story/dialogue_en.json"
+const DIALOGUE_PATH : String = "res://story/dialogue_%s.json"
 
 @export var text_color : Color = Color(0.9, 0.88, 0.85)
 @export var option_color : Color = Color(0.6, 0.58, 0.56)
@@ -35,7 +35,9 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	visible = false
 	modulate.a = 0.0
-	dialogues = _load_json(DIALOGUE_PATH)
+	dialogues = _load_json(DIALOGUE_PATH % Journal.language)
+	if dialogues.is_empty():
+		dialogues = _load_json(DIALOGUE_PATH % "en")
 	_build()
 
 

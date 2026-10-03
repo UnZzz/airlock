@@ -117,6 +117,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
+[node name="LanguageButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+
 [node name="QuitButton" type="Button" parent="Menu"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2

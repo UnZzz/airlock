@@ -315,7 +315,7 @@ func _describe_member(member: CrewMember) -> String:
 	if effect == null:
 		lines.append(Journal.text("ui_health_healthy"))
 	else:
-		lines.append(Journal.text("ui_injury_countdown", {"state": effect.display_name, "days": EffectSystem.get_remaining(member.member_id, effect.effect_name)}))
+		lines.append(Journal.text("ui_injury_countdown", {"state": Journal.effect_name(effect), "days": EffectSystem.get_remaining(member.member_id, effect.effect_name)}))
 	if Crew.is_sick(member.member_id):
 		lines.append(Journal.text("ui_sick"))
 	if member.days_without_food > 0:

@@ -87,5 +87,6 @@
 	"ending_captain_injury": "[TBD] You didn't survive your injuries.",
 	"ending_mutiny": "[TBD] {criminal} leads a mutiny.",
 	"event_sick": "[TBD] {name} got sick.",
-	"journal_exiled_debt": "[TBD] {name} left on the Firebreath ship to work off our debt."
+	"journal_exiled_debt": "[TBD] {name} left on the Firebreath ship to work off our debt.",
+	"ui_language": "Language: English"
 }

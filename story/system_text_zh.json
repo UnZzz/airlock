@@ -87,5 +87,16 @@
 	"ending_captain_injury": "[占位] 你没能撑过伤势。",
 	"ending_mutiny": "[占位] {criminal} 发动了叛变。",
 	"event_sick": "[占位] {name}生病了。",
-	"journal_exiled_debt": "[占位] {name}跟着Firebreath的飞船走了，去替我们还债。"
+	"journal_exiled_debt": "[占位] {name}跟着Firebreath的飞船走了，去替我们还债。",
+	"ui_language": "语言：中文",
+	"member_name_captain": "船长",
+	"member_short_captain": "船长",
+	"member_pronoun_elias": "他",
+	"member_pronoun_helena": "她",
+	"member_pronoun_mara": "她",
+	"member_pronoun_mason": "他",
+	"effect_name_sick": "生病",
+	"effect_name_injured": "受伤",
+	"effect_name_critical": "重伤",
+	"effect_name_dead": "死亡"
 }

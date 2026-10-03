@@ -37,7 +37,9 @@ func _ready() -> void:
 func reset() -> void:
 	members.clear()
 	for template in member_templates:
-		members.append(template.duplicate() as CrewMember)
+		var member : CrewMember = template.duplicate() as CrewMember
+		Journal.localize_member(member)
+		members.append(member)
 	crew_changed.emit()
 
 

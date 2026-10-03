@@ -9,6 +9,7 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var sky : Node2D = $Background/Sky
 @onready var title_label : Label = $Menu/TitleLabel
 @onready var start_button : Button = $Menu/StartButton
+@onready var language_button : Button = $Menu/LanguageButton
 @onready var quit_button : Button = $Menu/QuitButton
 @onready var fade : ColorRect = $Fade
 
@@ -16,10 +17,9 @@ var leaving : bool = false
 
 
 func _ready() -> void:
-	title_label.text = Journal.text("start_title")
-	start_button.text = Journal.text("ui_start_game")
-	quit_button.text = Journal.text("ui_quit")
+	_refresh_text()
 	start_button.pressed.connect(_on_start)
+	language_button.pressed.connect(_on_language)
 	quit_button.pressed.connect(_on_quit)
 	quit_button.visible = not OS.has_feature("web")
 	resized.connect(_fit_background)
@@ -28,6 +28,18 @@ func _ready() -> void:
 	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
 	start_button.grab_focus()
 	Music.play_playlist()
+
+
+func _refresh_text() -> void:
+	title_label.text = Journal.text("start_title")
+	start_button.text = Journal.text("ui_start_game")
+	language_button.text = Journal.text("ui_language")
+	quit_button.text = Journal.text("ui_quit")
+
+
+func _on_language() -> void:
+	Journal.set_language(Journal.next_language())
+	_refresh_text()
 
 
 func _fit_background() -> void:

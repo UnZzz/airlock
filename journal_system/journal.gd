@@ -1,9 +1,12 @@
 extends Node
 
 signal entry_added(day: int, text: String)
+signal language_changed(language: String)
 
-const STORY_PATH : String = "res://story/story_en.json"
-const SYSTEM_TEXT_PATH : String = "res://story/system_text_en.json"
+const STORY_PATH : String = "res://story/story_%s.json"
+const SYSTEM_TEXT_PATH : String = "res://story/system_text_%s.json"
+const SETTINGS_PATH : String = "user://settings.cfg"
+const LANGUAGES : Array[String] = ["en", "zh"]
 const NO_EVENT : String = "none"
 const RANDOM_EVENT : String = "random"
 
@@ -11,11 +14,62 @@ var story : Dictionary = {}
 var system_text : Dictionary = {}
 var pending_entries : Dictionary = {}
 var flags : Dictionary = {}
+var language : String = "en"
 
 
 func _ready() -> void:
-	story = _load_json(STORY_PATH)
-	system_text = _load_json(SYSTEM_TEXT_PATH)
+	var settings : ConfigFile = ConfigFile.new()
+	if settings.load(SETTINGS_PATH) == OK:
+		language = String(settings.get_value("general", "language", language))
+	if not LANGUAGES.has(language):
+		language = LANGUAGES[0]
+	_load_texts()
+
+
+func set_language(value: String) -> void:
+	if not LANGUAGES.has(value) or value == language:
+		return
+	language = value
+	_load_texts()
+	var settings : ConfigFile = ConfigFile.new()
+	settings.load(SETTINGS_PATH)
+	settings.set_value("general", "language", language)
+	settings.save(SETTINGS_PATH)
+	language_changed.emit(language)
+
+
+func next_language() -> String:
+	return LANGUAGES[(LANGUAGES.find(language) + 1) % LANGUAGES.size()]
+
+
+func localize_member(member: CrewMember) -> void:
+	member.display_name = String(system_text.get("member_name_" + member.member_id, member.display_name))
+	member.short_name = String(system_text.get("member_short_" + member.member_id, member.short_name))
+	member.pronoun = String(system_text.get("member_pronoun_" + member.member_id, member.pronoun))
+
+
+func effect_name(effect: BaseEffect) -> String:
+	return String(system_text.get("effect_name_" + effect.effect_name, effect.display_name))
+
+
+func _load_texts() -> void:
+	story = _load_localized(STORY_PATH)
+	system_text = _load_localized(SYSTEM_TEXT_PATH)
+
+
+func _load_localized(path: String) -> Dictionary:
+	var result : Dictionary = _load_json(path % LANGUAGES[0])
+	if language != LANGUAGES[0]:
+		_merge_into(result, _load_json(path % language))
+	return result
+
+
+func _merge_into(target: Dictionary, source: Dictionary) -> void:
+	for key in source:
+		if target.get(key) is Dictionary and source[key] is Dictionary:
+			_merge_into(target[key], source[key])
+		else:
+			target[key] = source[key]
 
 
 func reset() -> void:
