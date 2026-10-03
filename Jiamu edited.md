@@ -722,11 +722,15 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 **注意**
 - 默认英文；按钮显示的是当前语言
 - `story_zh.json` 只有第 1–4 天，缺第 5–28 天和 4 个 `departure_*` 事件，中文模式下这些会显示英文
-- 没有 `dialogue_zh.json`，中文模式下角色对话是英文
 - 事件 `.tres` 里的 `[TBD]` 文字是写死的英文，没有做切换
 
 **测试**
 - Godot headless：切 zh / en，开始界面按钮、系统文字、船长名、代词、状态名、第 1 天 / 第 10 天日志标题都正确；切换结果写入 settings.cfg
+
+**补充：对话中文版**
+- 新增 `story/dialogue_zh.json`：五个角色（Mason / Elias / Dr. Voss / Mara / Josan）的对话按英文版翻成中文，结构和英文版一一对应。用词按 `glossary_en.md` 和 `story_zh.json`（Food、干粮、冷库、舱门、堆肥箱、漱口水；人名不翻）
+- `story/dialogue_en.json`：去掉所有 `[TBD]` 前缀，内容没改
+- 测试：Godot headless 下 zh / en 各加载一次对话，读到的是对应语言
 
 ## 修复：受伤 + 生病时物资分配面板被撑宽
 
