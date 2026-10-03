@@ -119,7 +119,9 @@ func _resolve_paragraphs(source: Array) -> Array[String]:
 	for item in source:
 		if item is Dictionary:
 			if _matches(item.get("if", {})):
-				result.append(_fill_paragraph(item))
+				var filled : String = _fill_paragraph(item)
+				if filled != "":
+					result.append(filled)
 		else:
 			result.append(String(item))
 	return result
@@ -127,20 +129,68 @@ func _resolve_paragraphs(source: Array) -> Array[String]:
 
 func _matches(conditions: Dictionary) -> bool:
 	for key in conditions:
-		if get_flag(key) != String(conditions[key]):
-			return false
+		var target_val : String = String(conditions[key])
+		if key == "if_on_board":
+			var id : String = target_val
+			if id == "doctor":
+				id = "helena"
+			if not Crew.is_on_board(id):
+				return false
+		elif key == "if_not_on_board":
+			var id : String = target_val
+			if id == "doctor":
+				id = "helena"
+			if Crew.is_on_board(id):
+				return false
+		elif key.ends_with("_status"):
+			var id : String = key.replace("_status", "")
+			if id == "doctor":
+				id = "helena"
+			var member : CrewMember = Crew.get_member(id)
+			if target_val == "alive":
+				if member == null or not member.is_on_board():
+					return false
+			elif target_val == "exiled":
+				if member == null or member.status != CrewMember.Status.EXILED:
+					return false
+			elif target_val == "dead":
+				if member != null and member.is_on_board():
+					return false
+		else:
+			if get_flag(key) != target_val:
+				return false
 	return true
 
 
 func _fill_paragraph(item: Dictionary) -> String:
 	var content : String = String(item.get("text", ""))
 	var member_flag : String = String(item.get("member", ""))
-	if member_flag == "":
+	var args : Dictionary = {}
+	if member_flag == "any_passenger":
+		var passengers : Array[CrewMember] = Crew.passengers_on_board()
+		if passengers.is_empty():
+			return ""
+		var member : CrewMember = passengers[0]
+		args = member_args(member)
+	elif member_flag != "":
+		var member : CrewMember = Crew.get_member(get_flag(member_flag))
+		if member != null:
+			args = member_args(member)
+	
+	if content.contains("{random_passenger}"):
+		var passengers : Array[CrewMember] = Crew.passengers_on_board()
+		if not passengers.is_empty():
+			args["random_passenger"] = passengers.pick_random().display_name
+		else:
+			args["random_passenger"] = "Someone"
+			
+	if content.contains("{exiled_name}"):
+		var name : String = get_flag("last_airlock_target_name")
+		args["exiled_name"] = name if name != "" else "Daniel Price"
+		
+	if args.is_empty():
 		return content
-	var member : CrewMember = Crew.get_member(get_flag(member_flag))
-	if member == null:
-		return content
-	return content.format({"name": member.short_name, "ta": member.pronoun})
+	return content.format(args)
 
 
 func _to_string_array(source: Array) -> Array[String]:

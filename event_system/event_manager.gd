@@ -55,7 +55,7 @@ func find_event(event_id: String) -> BaseEvent:
 
 func pick_event_for_day(day: int) -> BaseEvent:
 	var fixed_id : String = Journal.get_fixed_event(day)
-	if fixed_id == Journal.NO_EVENT:
+	if fixed_id == Journal.NO_EVENT or fixed_id == "airlock" or fixed_id == "none" or fixed_id == "ending":
 		return null
 	if fixed_id != "" and fixed_id != Journal.RANDOM_EVENT:
 		var fixed : BaseEvent = find_event(fixed_id)

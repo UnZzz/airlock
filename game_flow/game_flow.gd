@@ -117,7 +117,28 @@ func _set_ending(id: String) -> void:
 
 func _set_phase(new_phase: Phase) -> void:
 	phase = new_phase
+	if phase == Phase.JOURNAL:
+		_check_day_story_effects()
 	phase_changed.emit(phase)
+
+
+func _check_day_story_effects() -> void:
+	var day : int = Timeline.current_day
+	if day == 6:
+		if Journal.get_flag("day6_injure_elias") != "true":
+			Journal.set_flag("day6_injure_elias", "true")
+			if Crew.is_on_board("elias"):
+				Crew.injure("elias")
+	elif day == 12:
+		if not Crew.is_on_board("helena") and Journal.get_flag("day12_poison") != "true":
+			Journal.set_flag("day12_poison", "true")
+			for member in Crew.on_board():
+				if randf() < 0.5:
+					Crew.injure(member.member_id)
+	elif day == 16:
+		if Journal.get_flag("day16_spider_food") != "true":
+			Journal.set_flag("day16_spider_food", "true")
+			Inventory.apply_change(5, 0)
 
 
 func _next_day_entry(key: String, args: Dictionary) -> void:
@@ -132,8 +153,8 @@ func _on_member_died(member: CrewMember, cause: String) -> void:
 
 
 func _on_member_exiled(member: CrewMember) -> void:
-	var key : String = "journal_exiled" if member.exile_cause == "airlock" else "journal_exiled_" + member.exile_cause
-	_next_day_entry(key, {"name": member.display_name})
+	if member.exile_cause != "airlock":
+		_next_day_entry("journal_exiled_" + member.exile_cause, {"name": member.display_name})
 
 
 func _on_intimidate_unlocked(criminal: CrewMember) -> void:

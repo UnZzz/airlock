@@ -53,9 +53,15 @@ func resolve(target_id: String) -> void:
 	var target : CrewMember = Crew.get_member(target_id)
 	if target == null:
 		result_text = Journal.text("airlock_result_nobody")
+		Journal.set_flag("day%d_exile" % Timeline.current_day, "no")
+		Journal.set_flag("last_airlock_target", "")
+		Journal.set_flag("last_airlock_target_name", "")
 	else:
 		Crew.exile(target_id)
 		result_text = Journal.text("airlock_result_exile", {"name": target.display_name})
+		Journal.set_flag("day%d_exile" % Timeline.current_day, "yes")
+		Journal.set_flag("last_airlock_target", target_id)
+		Journal.set_flag("last_airlock_target_name", target.display_name)
 	airlock_resolved.emit(target)
 
 

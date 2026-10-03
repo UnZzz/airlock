@@ -664,3 +664,40 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **测试**
 - 无 Josan → 上船 → 被赶走：Elias / Helena / Mara 位置在两套之间正确切换，Josan 显示 / 隐藏正确；点击 Josan 能打开对话
+
+---
+
+## 第八轮：完整接入第 01–28 天日志与流放剧情（2026-10-03）
+
+把完整的 28 天航行日志、物资分配提示、流放对白及每日角色判定完整接入游戏，修护之前损坏的 JSON 语法，并将日志逻辑与底层系统全面打通。
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `story/story_en.json` | 修复此前文件底部两个独立 JSON 根对象导致的解析失败；完整合并录入第 01 到第 28 天全部日志条目、物资分配引导语与事件标记；录入 Elias、Mara、Dr. Voss、Mason 的离开对白（`departure_*`）；按《固定译名表》规范化文本（hatch → airlock、Centauri → Centaurus 等） |
+| `journal_system/journal.gd` | 增强条件检查 `_matches()`：支持 `if_on_board`、`if_not_on_board`、角色状态（`alive` / `dead` / `exiled`）、Airlock 流放标记（`day7_exile`、`day14_exile` 等）；增强段落插值 `_fill_paragraph()`：支持 `{random_passenger}`（在场乘客随机填入）、`{exiled_name}`（被流放者姓名替换）、`any_passenger`（Mara 不在时代替听到储物间异响） |
+| `airlock_system/airlock.gd` | 解决流放时记录流放状态标记：`day{N}_exile`（`yes` / `no`）、`last_airlock_target` 以及 `last_airlock_target_name`，供后续日志分支判定 |
+| `event_system/event_manager.gd` | `pick_event_for_day` 对固定标记为 `none`、`airlock`、`ending` 的日子直接返回 `null`，不再报缺事件资源警告 |
+| `timeline_manager/timeline.gd` | 总天数 `total_days` 设定为 28，`is_airlock_day` 增加 `day < total_days` 判断（第 28 天不触发 Airlock，当晚结算后直接进入 Tahiti 结局） |
+| `game_flow/game_flow.gd` | 接入日志文案附带的剧情机制：第 6 天 Mason 暴乱导致 Elias 轻伤；第 12 天若 Dr. Voss 不在船上触发食物中毒几率致伤；第 16 天击杀蜘蛛获得食物（Food +5）；Airlock 流放不再追加多余的 `[TBD]` 占位提示 |
+
+---
+
+## Josan 微醺粒子（2026-10-03）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `character_system/TipsyParticles.tscn` | 微醺泡泡：空心小圆圈（中间透明、边缘亮），颜色在粉红 / 琥珀 / 淡粉之间，慢慢往上飘、带一点左右晃（turbulence），淡入淡出，16 个、寿命 2.6 秒，开场预热 2 秒（一出现就有泡泡） |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `character_system/character_portrait.gd` | 新增 `idle_particles`（任意粒子场景，角色显示时一直播放）和 `idle_particles_anchor`（按角色框比例的位置） |
+| `character_system/CrewStage.tscn` | Josan 节点挂上 `TipsyParticles.tscn`，位置 (0.62, 0.22)，大概在他脸那里 |
+
+**测试**
+- Josan 上船后截图：脸周围有粉色 / 琥珀色泡泡往上飘
