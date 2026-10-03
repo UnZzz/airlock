@@ -2,6 +2,7 @@ extends Control
 
 const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
 const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
+const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn")
 
 @export var scene_fade_time : float = 0.6
 
@@ -220,7 +221,13 @@ func _show_airlock() -> void:
 
 
 func _on_airlock_choice(target_id: String) -> void:
+	if Airlock.is_resolved:
+		return
+	var target : CrewMember = Crew.get_member(target_id)
+	var was_on_board : bool = target != null and target.is_on_board()
 	GameFlow.resolve_airlock(target_id)
+	if was_on_board and target.status == CrewMember.Status.EXILED:
+		_set_scene(EXILE_SCENE)
 	_show_airlock()
 
 
