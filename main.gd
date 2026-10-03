@@ -1,12 +1,19 @@
 extends Control
 
-@onready var day_label : Label = $Margin/Layout/Sidebar/DayLabel
-@onready var resource_label : Label = $Margin/Layout/Sidebar/ResourceLabel
-@onready var crew_list : VBoxContainer = $Margin/Layout/Sidebar/CrewScroll/CrewList
-@onready var title_label : Label = $Margin/Layout/Content/TitleLabel
-@onready var body_text : RichTextLabel = $Margin/Layout/Content/BodyText
-@onready var option_list : VBoxContainer = $Margin/Layout/Content/OptionList
+const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
+const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
 
+@export var scene_fade_time : float = 0.6
+
+@onready var background : Control = $Background
+@onready var day_label : Label = $Margin/Layout/SidebarPanel/Sidebar/DayLabel
+@onready var resource_label : Label = $Margin/Layout/SidebarPanel/Sidebar/ResourceLabel
+@onready var crew_list : VBoxContainer = $Margin/Layout/SidebarPanel/Sidebar/CrewScroll/CrewList
+@onready var title_label : Label = $Margin/Layout/ContentPanel/Content/TitleLabel
+@onready var body_text : RichTextLabel = $Margin/Layout/ContentPanel/Content/BodyText
+@onready var option_list : VBoxContainer = $Margin/Layout/ContentPanel/Content/OptionList
+
+var current_scene : PackedScene = null
 var fed_selection : Dictionary = {}
 var cost_label : Label = null
 var confirm_button : Button = null
@@ -24,6 +31,7 @@ func _ready() -> void:
 
 func _on_phase_changed(phase: int) -> void:
 	_refresh_sidebar()
+	_set_scene(AIRLOCK_SCENE if phase == GameFlow.Phase.AIRLOCK else DAY_SCENE)
 	match phase:
 		GameFlow.Phase.OPENING:
 			_show_opening()
@@ -38,6 +46,28 @@ func _on_phase_changed(phase: int) -> void:
 			_show_airlock()
 		GameFlow.Phase.ENDING:
 			_show_ending()
+
+
+func _set_scene(scene: PackedScene) -> void:
+	if scene == current_scene:
+		return
+	var first : bool = current_scene == null
+	current_scene = scene
+	var old_scenes : Array[Node] = background.get_children()
+	var new_scene : CanvasItem = scene.instantiate()
+	background.add_child(new_scene)
+	if first or scene_fade_time <= 0.0:
+		for old in old_scenes:
+			old.queue_free()
+		return
+	new_scene.modulate.a = 0.0
+	var tween : Tween = create_tween()
+	tween.tween_property(new_scene, "modulate:a", 1.0, scene_fade_time)
+	tween.tween_callback(func():
+		for old in old_scenes:
+			if is_instance_valid(old):
+				old.queue_free()
+	)
 
 
 func _show_opening() -> void:

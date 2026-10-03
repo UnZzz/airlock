@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b4rx37qqinb77"]
+
+[ext_resource type="Texture2D" uid="uid://bogcf13jb0l6a" path="res://scene_system/backgrounds/cabin_airlock.webp" id="1_tpxbx"]
+
+[node name="CabinAirlock" type="TextureRect" unique_id=226794997]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_tpxbx")
+expand_mode = 1
+stretch_mode = 6

@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://e1pv4i2554jv" path="res://main.gd" id="1_ig7tw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.07, 0.08, 0.11, 0.72)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="Main" type="Control" unique_id=1695913495]
 layout_mode = 3
 anchors_preset = 15
@@ -10,6 +21,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ig7tw")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -27,46 +47,51 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Sidebar" type="VBoxContainer" parent="Margin/Layout"]
+[node name="SidebarPanel" type="PanelContainer" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Sidebar" type="VBoxContainer" parent="Margin/Layout/SidebarPanel"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="DayLabel" type="Label" parent="Margin/Layout/Sidebar"]
+[node name="DayLabel" type="Label" parent="Margin/Layout/SidebarPanel/Sidebar"]
 layout_mode = 2
 
-[node name="ResourceLabel" type="Label" parent="Margin/Layout/Sidebar"]
+[node name="ResourceLabel" type="Label" parent="Margin/Layout/SidebarPanel/Sidebar"]
 layout_mode = 2
 
-[node name="Separator" type="HSeparator" parent="Margin/Layout/Sidebar"]
+[node name="Separator" type="HSeparator" parent="Margin/Layout/SidebarPanel/Sidebar"]
 layout_mode = 2
 
-[node name="CrewScroll" type="ScrollContainer" parent="Margin/Layout/Sidebar"]
+[node name="CrewScroll" type="ScrollContainer" parent="Margin/Layout/SidebarPanel/Sidebar"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="CrewList" type="VBoxContainer" parent="Margin/Layout/Sidebar/CrewScroll"]
+[node name="CrewList" type="VBoxContainer" parent="Margin/Layout/SidebarPanel/Sidebar/CrewScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="Divider" type="VSeparator" parent="Margin/Layout"]
-layout_mode = 2
-
-[node name="Content" type="VBoxContainer" parent="Margin/Layout"]
+[node name="ContentPanel" type="PanelContainer" parent="Margin/Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Content" type="VBoxContainer" parent="Margin/Layout/ContentPanel"]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="Margin/Layout/Content"]
+[node name="TitleLabel" type="Label" parent="Margin/Layout/ContentPanel/Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 
-[node name="BodyText" type="RichTextLabel" parent="Margin/Layout/Content"]
+[node name="BodyText" type="RichTextLabel" parent="Margin/Layout/ContentPanel/Content"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OptionList" type="VBoxContainer" parent="Margin/Layout/Content"]
+[node name="OptionList" type="VBoxContainer" parent="Margin/Layout/ContentPanel/Content"]
 layout_mode = 2
 theme_override_constants/separation = 8

@@ -176,3 +176,38 @@
 - 没吃晚餐的人不会被麻醉
 - 没有固定事件的日子按 60% 概率抽随机事件
 - 第 2 天日志正文没有替你写，仍然显示占位
+
+---
+
+## 十一、第三轮：添加两个场景（背景图）
+
+**你定的方案**
+- 图 1（亮的房间）是白天场景：开场、日志、物资分配、事件、结局都用它
+- 图 2（暗的、有光柱）是 Airlock 场景：只在 Airlock 那一幕用，包括选择和结果
+- 背景铺满全屏，左栏和右边的文字、按钮放在半透明深色面板上，布局基本不变
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `scene_system/backgrounds/cabin_day.webp` | 图 1，1955×1100，就是你发在聊天里的那张 |
+| `scene_system/backgrounds/cabin_airlock.webp` | 图 2，1955×1100 |
+| `scene_system/backgrounds/*.webp.import` | Godot 自动生成 |
+| `scene_system/CabinDay.tscn` | 白天场景：一个铺满全屏的 `TextureRect`，按比例裁切填满窗口，不挡鼠标 |
+| `scene_system/CabinAirlock.tscn` | Airlock 场景，结构同上 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `main.tscn` | 最底层加了 `Background` 节点，用来放场景；左栏外面套了 `SidebarPanel`，右边内容外面套了 `ContentPanel`，两个都是半透明深色圆角面板；删掉了中间那条竖分隔线 `Divider`，因为两块面板已经分开了 |
+| `main.gd` | 节点路径跟着改；每次切换阶段时，Airlock 阶段换成 `CabinAirlock`，其他阶段换成 `CabinDay`；切换时淡入 0.6 秒（`scene_fade_time`，可以在 Inspector 里调，设成 0 就是直接切） |
+
+**可以调的地方**
+- 面板透明度：`main.tscn` 里 `StyleBoxFlat_panel` 的 `bg_color`，现在是 `Color(0.07, 0.08, 0.11, 0.72)`，最后一个数越小越透明
+- 聊天里收到的图是 webp 压缩过的。如果有原图，用同名文件直接覆盖就行；换成 png 的话，要在两个场景里重新选一下贴图
+
+**测试**
+- 无界面运行没有脚本错误
+- 自动点击跑了 50 局，都正常走到结局：存活 20 局、船长饿死 27 局、叛变 3 局
+- 有窗口运行并截图确认：开场和第 1 天物资分配是白天场景；第 7 天 Airlock 的选择和结果是 Airlock 场景；第 8 天日志切回白天场景

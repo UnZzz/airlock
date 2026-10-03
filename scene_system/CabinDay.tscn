@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ogl3eqy16jqa"]
+
+[ext_resource type="Texture2D" uid="uid://cuyy66ubljac3" path="res://scene_system/backgrounds/cabin_day.webp" id="1_2hias"]
+
+[node name="CabinDay" type="TextureRect" unique_id=1415100316]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_2hias")
+expand_mode = 1
+stretch_mode = 6
