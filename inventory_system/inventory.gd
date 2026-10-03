@@ -3,7 +3,7 @@ extends Node
 signal inventory_changed
 
 @export
-var food_count = 10
+var food_count = 30
 @export
 var bottle_of_mouthwash_count = 10
 

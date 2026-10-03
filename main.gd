@@ -192,13 +192,13 @@ func _show_page(title: String, paragraphs: Array) -> void:
 func _make_button(text: String, callback: Callable) -> Button:
 	var button : Button = Button.new()
 	button.text = text
-	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	button.pressed.connect(callback)
 	return button
 
 
 func _add_button(text: String, callback: Callable) -> Button:
 	var button : Button = _make_button(text, callback)
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	option_list.add_child(button)
 	return button
 

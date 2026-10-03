@@ -121,8 +121,8 @@ func _available_demands(worker: CrewMember) -> Array[Dictionary]:
 		return demands
 	demands.append({"type": "skip_task", "text": Journal.text("worker_demand_skip_task", args)})
 	if not worker.knows_airlock_secret:
-		demands.append({"type": "spare_airlock", "text": Journal.text("worker_demand_spare_airlock", args)})
 		if Crew.exiled_count() > 0:
+			demands.append({"type": "spare_airlock", "text": Journal.text("worker_demand_spare_airlock", args)})
 			demands.append({"type": "secret", "text": Journal.text("worker_demand_secret", args)})
 	else:
 		var targets : Array[CrewMember] = []

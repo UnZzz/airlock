@@ -49,7 +49,7 @@
 	"worker_demand_food": "[占位] {worker}：“给我 1 份 Food，我就去。”",
 	"worker_demand_mouthwash": "[占位] {worker}：“给我 1 瓶漱口水，我就去。”",
 	"worker_demand_skip_task": "[占位] {worker}：“可以。但下一次危险任务，别再派我。”",
-	"worker_demand_spare_airlock": "[占位] {worker}：“可以。但下一次 Airlock，别选我。”",
+	"worker_demand_spare_airlock": "[占位] {worker}：“我不管之前那些人是怎么不见的。下一个，别是我。”",
 	"worker_demand_secret": "[占位] {worker}：“告诉我一个你最不想坦白的秘密。”",
 	"worker_demand_exile_target": "[占位] {worker}：“下一次 Airlock，把 {target} 流放。”",
 	"worker_refuses_promise": "[占位] {worker}：“你答应过这次不派我的。”他拒绝了。",

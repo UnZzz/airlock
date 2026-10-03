@@ -5,7 +5,7 @@ extends Node
 ##   Music.play_ambience()  # seamless space-machinery loop for special scenes (e.g. the opening)
 ##   Music.stop()
 
-const DEFAULT_FADE_TIME = 2.0
+const DEFAULT_FADE_TIME = 3.0
 
 @onready var _playlist: AudioStreamPlayer = $Playlist
 @onready var _ambience: AudioStreamPlayer = $Ambience
@@ -40,6 +40,12 @@ func _switch_to(target: AudioStreamPlayer, fade_time: float) -> void:
 
 
 func _fade_in(player: AudioStreamPlayer, fade_time: float) -> void:
+	if player == _playlist and not player.playing:
+		# atmosphere.mp3 has a 3 s fade-in baked in (for the piano -> atmosphere loop), so don't fade twice.
+		_kill_tween(player)
+		player.volume_linear = _full_volume[player]
+		player.play()
+		return
 	if not player.playing:
 		player.volume_linear = 0.0
 		player.play()
@@ -57,7 +63,12 @@ func _fade_out(player: AudioStreamPlayer, fade_time: float) -> void:
 
 
 func _new_tween(player: AudioStreamPlayer) -> Tween:
-	if _tweens.has(player):
-		_tweens[player].kill()
+	_kill_tween(player)
 	_tweens[player] = create_tween()
 	return _tweens[player]
+
+
+func _kill_tween(player: AudioStreamPlayer) -> void:
+	if _tweens.has(player):
+		_tweens[player].kill()
+		_tweens.erase(player)
