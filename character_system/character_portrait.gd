@@ -4,6 +4,7 @@ extends TextureRect
 signal clicked(member_id: String)
 
 const HIGHLIGHT_SHADER : Shader = preload("res://character_system/highlight.gdshader")
+const SICK_PARTICLES : PackedScene = preload("res://character_system/SickParticles.tscn")
 const GROUP : StringName = &"character_portrait"
 const DIM_GROUP : StringName = &"dimmable"
 
@@ -17,6 +18,8 @@ static var _alpha_masks : Dictionary = {}
 @export var injured_texture : Texture2D
 @export var critical_texture : Texture2D
 @export var dead_modulate : Color = Color(0.35, 0.35, 0.35, 0.6)
+@export var sick_tint : Color = Color(0.6565805, 0.85915035, 0.6579475, 1)
+@export var sick_particles_anchor : Vector2 = Vector2(0.5, 0.35)
 @export_range(0.0, 1.0) var hover_strength : float = 0.3
 @export_range(0.0, 1.0) var dim_strength : float = 0.5
 @export var rise_time : float = 0.15
@@ -28,6 +31,7 @@ var _tween : Tween = null
 var _amount : float = 0.0
 var _name_label : Label = null
 var _name_tween : Tween = null
+var _sick_particles : GPUParticles2D = null
 
 
 func _ready() -> void:
@@ -37,6 +41,11 @@ func _ready() -> void:
 	mat.shader = HIGHLIGHT_SHADER
 	material = mat
 	_build_name_label()
+	_sick_particles = SICK_PARTICLES.instantiate()
+	_sick_particles.emitting = false
+	add_child(_sick_particles)
+	resized.connect(_place_sick_particles)
+	_place_sick_particles()
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	Crew.crew_changed.connect(_refresh)
@@ -56,6 +65,10 @@ func _refresh() -> void:
 		return
 	visible = true
 	modulate = dead_modulate if member.status == CrewMember.Status.DEAD else Color.WHITE
+	var sick : bool = Crew.is_sick(member_id)
+	self_modulate = sick_tint if sick else Color.WHITE
+	if _sick_particles.emitting != sick:
+		_sick_particles.emitting = sick
 	_name_label.text = member.short_name if member.short_name != "" else member.display_name
 	match Crew.get_health(member_id):
 		CrewMember.Health.CRITICAL:
@@ -64,6 +77,10 @@ func _refresh() -> void:
 			texture = injured_texture
 		_:
 			texture = healthy_texture
+
+
+func _place_sick_particles() -> void:
+	_sick_particles.position = size * sick_particles_anchor
 
 
 func _build_name_label() -> void:

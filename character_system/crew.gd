@@ -13,6 +13,8 @@ var injured_effect : BaseEffect
 @export
 var critical_effect : BaseEffect
 @export
+var sick_effect : BaseEffect
+@export
 var max_loyalty : int = 3
 @export
 var starvation_limit : int = 3
@@ -100,6 +102,24 @@ func get_injury_effect(member_id: String) -> BaseEffect:
 		CrewMember.Health.INJURED:
 			return injured_effect
 	return null
+
+
+func is_sick(member_id: String) -> bool:
+	return sick_effect != null and EffectSystem.has_effect(member_id, sick_effect.effect_name)
+
+
+func make_sick(member_id: String) -> void:
+	if not is_on_board(member_id) or is_sick(member_id):
+		return
+	EffectSystem.add_effect(member_id, sick_effect)
+	crew_changed.emit()
+
+
+func cure_sickness(member_id: String) -> void:
+	if not is_sick(member_id):
+		return
+	EffectSystem.remove_effect(member_id, sick_effect.effect_name)
+	crew_changed.emit()
 
 
 func injure(member_id: String) -> void:

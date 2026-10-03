@@ -9,9 +9,11 @@
 [ext_resource type="Resource" path="res://character_system/members/mara.tres" id="7_mara"]
 [ext_resource type="Resource" uid="uid://b4d5pknlsu80y" path="res://effect_system/effects/injured.tres" id="8_injured"]
 [ext_resource type="Resource" path="res://effect_system/effects/critical.tres" id="9_critical"]
+[ext_resource type="Resource" path="res://effect_system/effects/sick.tres" id="10_sick"]
 
 [node name="Crew" type="Node"]
 script = ExtResource("1_crew")
 member_templates = Array[ExtResource("2_member")]([ExtResource("3_captain"), ExtResource("4_mason"), ExtResource("5_elias"), ExtResource("6_helena"), ExtResource("7_mara")])
 injured_effect = ExtResource("8_injured")
 critical_effect = ExtResource("9_critical")
+sick_effect = ExtResource("10_sick")
