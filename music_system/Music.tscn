@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dsfne327hn007"]
+
+[ext_resource type="AudioStream" uid="uid://dkcownmjeopv0" path="res://music_system/tracks/atmosphere.mp3" id="1_bglq4"]
+[ext_resource type="AudioStream" uid="uid://bnhn7n08b5oih" path="res://music_system/tracks/piano.mp3" id="2_qjle0"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_qvmi3"]
+fade_time = 2.0
+stream_count = 2
+stream_0 = ExtResource("1_bglq4")
+stream_1 = ExtResource("2_qjle0")
+
+[node name="Music" type="AudioStreamPlayer" unique_id=1542802101]
+process_mode = 3
+stream = SubResource("AudioStreamPlaylist_qvmi3")
+autoplay = true

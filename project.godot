@@ -21,6 +21,7 @@ EffectSystem="*uid://bf5dmpwmpasg8"
 Inventory="*uid://07847x4prchj"
 Timeline="*uid://pkovtpnhvjvb"
 EventManager="*uid://cif6natjfgl13"
+Music="*uid://dsfne327hn007"
 
 [display]
 
