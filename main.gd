@@ -125,8 +125,8 @@ func _show_allocation() -> void:
 	_update_allocation_cost()
 
 
-func _build_allocation_row(member: CrewMember) -> HBoxContainer:
-	var row : HBoxContainer = HBoxContainer.new()
+func _build_allocation_row(member: CrewMember) -> HFlowContainer:
+	var row : HFlowContainer = HFlowContainer.new()
 	var box : CheckBox = CheckBox.new()
 	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	if Crew.refuses_meal(member):

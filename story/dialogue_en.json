@@ -1,101 +1,101 @@
 {
 	"mason": {
 		"lines": [
-			"[TBD] Captain! Come to hear a song? I know three. Well, two and a half.",
-			"[TBD] Don't look at me like that. No guard, no cell. A free man can sing if he wants to."
+			"Captain! Come to hear a song? I know three. Well, two and a half.",
+			"Don't look at me like that. No guard, no cell. A free man can sing if he wants to."
 		],
 		"options": [
 			{
-				"text": "[TBD] Keep it down. People are trying to sleep.",
-				"reply": ["[TBD] Sleep? On this wreck? Nobody's sleeping, Captain. They're just lying still and counting the Food."]
+				"text": "Keep it down. People are trying to sleep.",
+				"reply": ["Sleep? On this wreck? Nobody's sleeping, Captain. They're just lying still and counting the Food."]
 			},
 			{
-				"text": "[TBD] What were you locked up for?",
-				"reply": ["[TBD] Ha. Ask me again when we're down to the last ration bar. Then you'll really want to know."]
+				"text": "What were you locked up for?",
+				"reply": ["Ha. Ask me again when we're down to the last ration bar. Then you'll really want to know."]
 			},
 			{
-				"text": "[TBD] Never mind.",
-				"reply": ["[TBD] Suit yourself. The half-song's the best one anyway."]
+				"text": "Never mind.",
+				"reply": ["Suit yourself. The half-song's the best one anyway."]
 			}
 		]
 	},
 	"elias": {
 		"lines": [
-			"[TBD] Captain. Everything's holding. For now.",
-			"[TBD] The freezer airlock's sealed tight. I checked it twice this morning. Three times, maybe."
+			"Captain. Everything's holding. For now.",
+			"The freezer airlock's sealed tight. I checked it twice this morning. Three times, maybe."
 		],
 		"options": [
 			{
-				"text": "[TBD] You saved us when you sealed it.",
-				"reply": ["[TBD] Daniel was still on the other side. Don't call it saving."]
+				"text": "You saved us when you sealed it.",
+				"reply": ["Daniel was still on the other side. Don't call it saving."]
 			},
 			{
-				"text": "[TBD] Get some rest.",
-				"reply": ["[TBD] If I close my eyes I hear the fire. Give me something to fix instead."]
+				"text": "Get some rest.",
+				"reply": ["If I close my eyes I hear the fire. Give me something to fix instead."]
 			},
 			{
-				"text": "[TBD] Carry on.",
-				"reply": ["[TBD] Yes, Captain."]
+				"text": "Carry on.",
+				"reply": ["Yes, Captain."]
 			}
 		]
 	},
 	"helena": {
 		"lines": [
-			"[TBD] It's Dr. Voss. I saw you hesitate.",
-			"[TBD] If you're here about the compost bin, my answer hasn't changed."
+			"It's Dr. Voss. I saw you hesitate.",
+			"If you're here about the compost bin, my answer hasn't changed."
 		],
 		"options": [
 			{
-				"text": "[TBD] We may not have a choice about the food.",
-				"reply": ["[TBD] There is always a choice. It's usually between dying slowly and dying slightly less slowly."]
+				"text": "We may not have a choice about the food.",
+				"reply": ["There is always a choice. It's usually between dying slowly and dying slightly less slowly."]
 			},
 			{
-				"text": "[TBD] How is everyone holding up?",
-				"reply": ["[TBD] Physically? Fine. Mentally, Mason is singing and Elias stopped blinking. Draw your own conclusions."]
+				"text": "How is everyone holding up?",
+				"reply": ["Physically? Fine. Mentally, Mason is singing and Elias stopped blinking. Draw your own conclusions."]
 			},
 			{
-				"text": "[TBD] Sorry to bother you, Dr. Voss.",
-				"reply": ["[TBD] Better. You're learning."]
+				"text": "Sorry to bother you, Dr. Voss.",
+				"reply": ["Better. You're learning."]
 			}
 		]
 	},
 	"mara": {
 		"lines": [
-			"[TBD] Oh! Captain. I was just sorting what's left.",
-			"[TBD] It looks worse than it is. Mostly. I can stretch it, I promise. Not a single crumb wasted."
+			"Oh! Captain. I was just sorting what's left.",
+			"It looks worse than it is. Mostly. I can stretch it, I promise. Not a single crumb wasted."
 		],
 		"options": [
 			{
-				"text": "[TBD] How long can the Food last?",
-				"reply": ["[TBD] Depends how many mouths there are to feed. I'd rather not do that math out loud."]
+				"text": "How long can the Food last?",
+				"reply": ["Depends how many mouths there are to feed. I'd rather not do that math out loud."]
 			},
 			{
-				"text": "[TBD] Is the compost really safe?",
-				"reply": ["[TBD] Safe enough, if it's cooked hot. Please don't tell Dr. Voss I said that."]
+				"text": "Is the compost really safe?",
+				"reply": ["Safe enough, if it's cooked hot. Please don't tell Dr. Voss I said that."]
 			},
 			{
-				"text": "[TBD] Thanks, Mara.",
-				"reply": ["[TBD] Thank me when there's still dinner on Day 30."]
+				"text": "Thanks, Mara.",
+				"reply": ["Thank me when there's still dinner on Day 30."]
 			}
 		]
 	},
 	"josan": {
 		"lines": [
-			"[TBD] Hey, Captain. Pull up some floor. It's the comfiest floor on the ship.",
-			"[TBD] Don't worry about me. I don't need much. Just a little something to rinse with now and then."
+			"Hey, Captain. Pull up some floor. It's the comfiest floor on the ship.",
+			"Don't worry about me. I don't need much. Just a little something to rinse with now and then."
 		],
 		"options": [
 			{
-				"text": "[TBD] Where did you even come from?",
-				"reply": ["[TBD] Out there. Drifting. You know how it is. Then I heard your airlock was friendly."]
+				"text": "Where did you even come from?",
+				"reply": ["Out there. Drifting. You know how it is. Then I heard your airlock was friendly."]
 			},
 			{
-				"text": "[TBD] Are you going to help out around here?",
-				"reply": ["[TBD] Help? I'm keeping morale up. Look at me. Do I look worried? That's leadership."]
+				"text": "Are you going to help out around here?",
+				"reply": ["Help? I'm keeping morale up. Look at me. Do I look worried? That's leadership."]
 			},
 			{
-				"text": "[TBD] Enjoy your stay.",
-				"reply": ["[TBD] Oh, I will. Cheers."]
+				"text": "Enjoy your stay.",
+				"reply": ["Oh, I will. Cheers."]
 			}
 		]
 	}
