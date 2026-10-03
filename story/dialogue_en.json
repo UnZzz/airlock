@@ -1,0 +1,82 @@
+{
+	"mason": {
+		"lines": [
+			"[TBD] Captain! Come to hear a song? I know three. Well, two and a half.",
+			"[TBD] Don't look at me like that. No guard, no cell. A free man can sing if he wants to."
+		],
+		"options": [
+			{
+				"text": "[TBD] Keep it down. People are trying to sleep.",
+				"reply": ["[TBD] Sleep? On this wreck? Nobody's sleeping, Captain. They're just lying still and counting the Food."]
+			},
+			{
+				"text": "[TBD] What were you locked up for?",
+				"reply": ["[TBD] Ha. Ask me again when we're down to the last ration bar. Then you'll really want to know."]
+			},
+			{
+				"text": "[TBD] Never mind.",
+				"reply": ["[TBD] Suit yourself. The half-song's the best one anyway."]
+			}
+		]
+	},
+	"elias": {
+		"lines": [
+			"[TBD] Captain. Everything's holding. For now.",
+			"[TBD] The freezer airlock's sealed tight. I checked it twice this morning. Three times, maybe."
+		],
+		"options": [
+			{
+				"text": "[TBD] You saved us when you sealed it.",
+				"reply": ["[TBD] Daniel was still on the other side. Don't call it saving."]
+			},
+			{
+				"text": "[TBD] Get some rest.",
+				"reply": ["[TBD] If I close my eyes I hear the fire. Give me something to fix instead."]
+			},
+			{
+				"text": "[TBD] Carry on.",
+				"reply": ["[TBD] Yes, Captain."]
+			}
+		]
+	},
+	"helena": {
+		"lines": [
+			"[TBD] It's Dr. Voss. I saw you hesitate.",
+			"[TBD] If you're here about the compost bin, my answer hasn't changed."
+		],
+		"options": [
+			{
+				"text": "[TBD] We may not have a choice about the food.",
+				"reply": ["[TBD] There is always a choice. It's usually between dying slowly and dying slightly less slowly."]
+			},
+			{
+				"text": "[TBD] How is everyone holding up?",
+				"reply": ["[TBD] Physically? Fine. Mentally, Mason is singing and Elias stopped blinking. Draw your own conclusions."]
+			},
+			{
+				"text": "[TBD] Sorry to bother you, Dr. Voss.",
+				"reply": ["[TBD] Better. You're learning."]
+			}
+		]
+	},
+	"mara": {
+		"lines": [
+			"[TBD] Oh! Captain. I was just sorting what's left.",
+			"[TBD] It looks worse than it is. Mostly. I can stretch it, I promise. Not a single crumb wasted."
+		],
+		"options": [
+			{
+				"text": "[TBD] How long can the Food last?",
+				"reply": ["[TBD] Depends how many mouths there are to feed. I'd rather not do that math out loud."]
+			},
+			{
+				"text": "[TBD] Is the compost really safe?",
+				"reply": ["[TBD] Safe enough, if it's cooked hot. Please don't tell Dr. Voss I said that."]
+			},
+			{
+				"text": "[TBD] Thanks, Mara.",
+				"reply": ["[TBD] Thank me when there's still dinner on Day 30."]
+			}
+		]
+	}
+}

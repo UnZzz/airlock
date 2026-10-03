@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://e1pv4i2554jv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" path="res://character_system/CrewStage.tscn" id="2_stage"]
+[ext_resource type="PackedScene" path="res://dialogue_system/Dialogue.tscn" id="3_dialogue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 16.0
@@ -110,3 +111,6 @@ offset_top = 24.0
 offset_right = -24.0
 offset_bottom = 60.0
 grow_horizontal = 0
+
+[node name="Dialogue" parent="." instance=ExtResource("3_dialogue")]
+layout_mode = 1

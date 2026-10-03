@@ -34,3 +34,6 @@
 | 营养剂 | nutrient packs | |
 | 干粮 | rations / ration bar | |
 | 占位标记 [占位] | [TBD] | |
+| Firebreath Ltd.（漱口水公司） | Firebreath Ltd. | Dragonbreath |
+| Tahiti（宜居星球） | Tahiti | |
+| 半人马座 | Centaurus | |

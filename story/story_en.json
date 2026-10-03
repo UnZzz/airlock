@@ -4,7 +4,7 @@
 		"paragraphs": [
 			"Time to wake up, Captain.",
 			"The fire destroyed most of our food stores, along with most of the passengers' faith.",
-			"All we have left is the little food the galley had stocked, a crate of mouthwash Dragonbreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
+			"All we have left is the little food the galley had stocked, a crate of mouthwash Firebreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
 			"And you.",
 			"Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
 			"Calm them. Feed them. Keep everyone steady.",
@@ -35,7 +35,7 @@
 				"They still call me Captain, but I can't shake the feeling that one of them is going to drive something sharp through my throat while I sleep.",
 				"Mara looks a little defeated, because she feels her cooking isn't getting the showcase it deserves. Mind you, she used to toss artichoke leaves straight into the trash.",
 				"Mason is still singing those damned songs on repeat. If we make it back alive, I'm hiring him a vocal coach, so the next people stuck with him won't have to suffer like this.",
-				"We discussed what this pile of mouthwash might be good for besides fresh breath. First of all, since it's mouthwash, it must contain sugar and alcohol. So we could treat it as an industrial mojito with a lethal dose of mint: stay drunk and keep your teeth pearly white at the same time. Or we could use it as disinfectant. The passengers argued endlessly over those two options. But we did agree on one thing: whatever Dragonbreath is paying us isn't worth risking our lives to hand this cargo back to them intact.",
+				"We discussed what this pile of mouthwash might be good for besides fresh breath. First of all, since it's mouthwash, it must contain sugar and alcohol. So we could treat it as an industrial mojito with a lethal dose of mint: stay drunk and keep your teeth pearly white at the same time. Or we could use it as disinfectant. The passengers argued endlessly over those two options. But we did agree on one thing: whatever Firebreath is paying us isn't worth risking our lives to hand this cargo back to them intact.",
 				"They haven't shown an ounce of the solidarity you'd hope for in a crisis, but at least I'm still alive. Maybe I should reward them with a little food?"
 			],
 			"event": "fire_check"
@@ -53,7 +53,7 @@
 					"if": {
 						"day2_fire": "worker"
 					},
-					"text": "No, no, what am I doing, hoping something actually goes wrong? As long as everyone stays alive, he can have whatever he wants. The mouthwash, the whole ship, whatever."
+					"text": "No, no, what am I doing, hoping something actually goes wrong? As long as everyone stays alive, if he wants the mouthwash or this whole ship, he can have it."
 				},
 				{
 					"if": {
@@ -66,7 +66,7 @@
 					"if": {
 						"day2_fire": "nothing"
 					},
-					"text": "Better to risk the oxygen system failing and all of us suffocating than to let a single crew member get hurt. What a wise captain I am, right?"
+					"text": "Better to risk the oxygen system failing and all of us suffocating than to let a single crew member get hurt. What a merciful captain I am, right?"
 				},
 				"Mara is desperate to get her hands on some French T55 flour, a few Périgord truffles, and a big slab of A5 Nagasaki fillet, just to show us her beef Wellington. Elias and Mason kept asking her what to drink with it. They'd never heard of a single one of the names she gave them, but just knowing they stood for the very finest alcohol got them all worked up.",
 				"\"Lucky for us we can't get any of those ingredients. Otherwise, after all this time, all that butter would give us 'atherosclerosis' and we'd drop dead.\"",
@@ -80,10 +80,17 @@
 		"4": {
 			"journal_title": "Wreck Log: Day 04",
 			"journal": [
-				"Good news: according to the navigation system, the nearest habitable planet is only 26 days away!",
-				"More good news! We have more than enough fuel to get there!",
-				"Bad news: we don't have enough food. By the time we reach that mysterious utopia, we'll be a pile of very confident skeletons."
-			]
+				"Good news: according to the navigation system, the nearest habitable planet, Tahiti, is only 26 days away!",
+				"More good news! We have more than enough fuel to reach it!",
+				"Bad news: we don't have enough food. Before we reach that mysterious utopia, we'll have turned into five very confident skeletons.",
+				"A third piece of good news: they'll be able to identify the dead by the clothes we're wearing.",
+				"Mason has been explaining why he should count as a \"legal citizen.\" His criminal record shows he went to a protected nature-reserve planet in Centaurus several times to poach a kind of giant snail, and repeatedly contacted an interstellar trader suspected of smuggling. But he insists it was all just \"self-defense.\"",
+				"\"A snail the size of a mountain! The smallest tooth on its radula could slice you clean in half!\"",
+				"Everyone nodded along, pretending to buy it. Only Elias said flat out that he's a bastard who'll weasel his way out of anything. Thankfully neither of them had been drinking the mouthwash, so they still had a shred of sense.",
+				"Mara is hungry. She says these lousy leaves don't count as real food."
+			],
+			"allocation_text": "So, who gets stuck finishing off these awful leaves tonight?",
+			"event": "random"
 		}
 	}
 }

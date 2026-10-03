@@ -15,6 +15,7 @@ const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn"
 @onready var title_label : Label = $Margin/Layout/ContentPanel/Content/TitleLabel
 @onready var body_text : RichTextLabel = $Margin/Layout/ContentPanel/Content/BodyText
 @onready var option_list : VBoxContainer = $Margin/Layout/ContentPanel/Content/OptionList
+@onready var dialogue : Control = $Dialogue
 
 var current_scene : PackedScene = null
 var fed_selection : Dictionary = {}
@@ -24,6 +25,8 @@ var confirm_button : Button = null
 
 func _ready() -> void:
 	panel_toggle_button.pressed.connect(_toggle_panels)
+	for portrait in get_tree().get_nodes_in_group(&"character_portrait"):
+		portrait.clicked.connect(func(_member_id): dialogue.talk(portrait))
 	_update_panel_toggle_text()
 	GameFlow.phase_changed.connect(_on_phase_changed)
 	Inventory.inventory_changed.connect(_refresh_sidebar)
