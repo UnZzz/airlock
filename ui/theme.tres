@@ -1,57 +1,11 @@
-[gd_resource type="Theme" format=3]
+[gd_resource type="Theme" format=3 uid="uid://cajeklnsgbetn"]
 
-[ext_resource type="FontFile" path="res://ui/PixelFont.ttf" id="1_font"]
-[ext_resource type="Script" path="res://ui/sketch_box.gd" id="2_sketch"]
-
-[sub_resource type="StyleBox" id="StyleBox_panel"]
-content_margin_left = 22.0
-content_margin_top = 20.0
-content_margin_right = 22.0
-content_margin_bottom = 20.0
-script = ExtResource("2_sketch")
-tape = true
-
-[sub_resource type="StyleBox" id="StyleBox_button"]
-content_margin_left = 14.0
-content_margin_top = 6.0
-content_margin_right = 14.0
-content_margin_bottom = 6.0
-script = ExtResource("2_sketch")
-fill_color = Color(0.2, 0.22, 0.27, 0.92)
-line_color = Color(0.86, 0.85, 0.79, 0.8)
-line_width = 2.0
-wobble = 1.0
-overshoot = 4.0
-step = 24.0
-
-[sub_resource type="StyleBox" id="StyleBox_button_hover"]
-content_margin_left = 14.0
-content_margin_top = 6.0
-content_margin_right = 14.0
-content_margin_bottom = 6.0
-script = ExtResource("2_sketch")
-fill_color = Color(0.33, 0.42, 0.4, 0.95)
-line_color = Color(0.93, 0.92, 0.86, 1)
-line_width = 2.0
-wobble = 1.0
-overshoot = 4.0
-step = 24.0
-
-[sub_resource type="StyleBox" id="StyleBox_button_pressed"]
-content_margin_left = 14.0
-content_margin_top = 6.0
-content_margin_right = 14.0
-content_margin_bottom = 6.0
-script = ExtResource("2_sketch")
-fill_color = Color(0.42, 0.55, 0.47, 0.95)
-line_color = Color(0.93, 0.92, 0.86, 1)
-shade_color = Color(0, 0, 0, 0)
-line_width = 2.0
-wobble = 1.0
-overshoot = 4.0
-step = 24.0
+[ext_resource type="FontFile" uid="uid://blp115rf757nj" path="res://ui/PixelFont.ttf" id="1_font"]
+[ext_resource type="Script" uid="uid://odutifivlygc" path="res://ui/sketch_box.gd" id="2_sketch"]
 
 [sub_resource type="StyleBox" id="StyleBox_button_disabled"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 14.0
 content_margin_top = 6.0
 content_margin_right = 14.0
@@ -67,21 +21,77 @@ step = 24.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
+[sub_resource type="StyleBox" id="StyleBox_button_hover"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+script = ExtResource("2_sketch")
+fill_color = Color(0.33, 0.42, 0.4, 0.95)
+line_color = Color(0.93, 0.92, 0.86, 1)
+line_width = 2.0
+wobble = 1.0
+overshoot = 4.0
+step = 24.0
+
+[sub_resource type="StyleBox" id="StyleBox_button"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+script = ExtResource("2_sketch")
+fill_color = Color(0.2, 0.22, 0.27, 0.92)
+line_color = Color(0.86, 0.85, 0.79, 0.8)
+line_width = 2.0
+wobble = 1.0
+overshoot = 4.0
+step = 24.0
+
+[sub_resource type="StyleBox" id="StyleBox_button_pressed"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+script = ExtResource("2_sketch")
+fill_color = Color(0.42, 0.55, 0.47, 0.95)
+line_color = Color(0.93, 0.92, 0.86, 1)
+shade_color = Color(0, 0, 0, 0)
+line_width = 2.0
+wobble = 1.0
+overshoot = 4.0
+step = 24.0
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_separator"]
 color = Color(0.86, 0.85, 0.79, 0.35)
 thickness = 2
+
+[sub_resource type="StyleBox" id="StyleBox_panel"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 22.0
+content_margin_top = 20.0
+content_margin_right = 22.0
+content_margin_bottom = 20.0
+script = ExtResource("2_sketch")
+tape = true
 
 [resource]
 default_font = ExtResource("1_font")
 default_font_size = 20
 Button/colors/font_color = Color(0.9, 0.88, 0.83, 1)
+Button/colors/font_disabled_color = Color(0.6, 0.58, 0.56, 0.6)
 Button/colors/font_hover_color = Color(1, 1, 0.96, 1)
 Button/colors/font_pressed_color = Color(1, 1, 0.96, 1)
-Button/colors/font_disabled_color = Color(0.6, 0.58, 0.56, 0.6)
-Button/styles/normal = SubResource("StyleBox_button")
-Button/styles/hover = SubResource("StyleBox_button_hover")
-Button/styles/pressed = SubResource("StyleBox_button_pressed")
 Button/styles/disabled = SubResource("StyleBox_button_disabled")
 Button/styles/focus = SubResource("StyleBoxEmpty_focus")
+Button/styles/hover = SubResource("StyleBox_button_hover")
+Button/styles/normal = SubResource("StyleBox_button")
+Button/styles/pressed = SubResource("StyleBox_button_pressed")
 HSeparator/styles/separator = SubResource("StyleBoxLine_separator")
 PanelContainer/styles/panel = SubResource("StyleBox_panel")

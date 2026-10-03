@@ -458,3 +458,29 @@
 **测试**
 - 模拟点击 Mason：对话框打开 → 两句打完 → 出现 3 个选项 → 选第 2 个显示对应回答 → 再点关闭，背景恢复 1.0
 - 截图确认对话框、选项、头顶名字显示正常
+
+
+---
+
+## 第六轮：面板改成手绘风（2026-10-03）
+
+用户觉得圆角面板太 AI，要求参考背景画风自己做。背景是手绘、线条不规整、墙上贴着纸张/白板，窗框是米白粗线 + 深色描边，所以面板做成「贴在墙上的手绘框」。
+
+**新增的文件**
+
+| 文件 | 内容 |
+|---|---|
+| `ui/sketch_box.gd` | 自定义 StyleBox（`SketchBox`）：底色是略微歪斜的多边形；边框是三遍抖动的线（深色阴影线 + 米白主线 + 淡色虚影线），线头会超出角一点，像手画的；可选在顶边中间贴一条粉色胶带。随机种子由尺寸决定，所以不会闪 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `ui/theme.tres` | PanelContainer 默认用 SketchBox（带胶带）；Button 的 normal / hover / pressed / disabled 都换成 SketchBox（无胶带、线更细），去掉 focus 框；HSeparator 改成淡米白线 |
+| `main.tscn` | 删掉原来带 8px 圆角的 `StyleBoxFlat_panel` 和两个面板上的覆盖，让它们用主题 |
+| `dialogue_system/dialogue.gd` | 对话框从 StyleBoxFlat 换成 SketchBox（没有胶带）；`border_color` 默认值改成更实的米白 `(0.86, 0.85, 0.79, 0.85)` |
+
+**可调参数**（在 theme.tres 里点开样式就能改）：`fill_color`、`line_color`、`shade_color`、`line_width` 3、`wobble` 2.4、`overshoot` 6、`step` 36、`tape`、`tape_color`、`salt`
+
+**测试**
+- Godot 运行无新报错；录帧截图确认两个面板、Continue 按钮和胶带显示正常
