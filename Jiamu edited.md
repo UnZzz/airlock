@@ -701,3 +701,29 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **测试**
 - Josan 上船后截图：脸周围有粉色 / 琥珀色泡泡往上飘
+
+---
+
+## 开始界面语言切换（2026-10-03）
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `start/StartScreen.tscn` | Menu 里在「开始游戏」和「退出」之间加 `LanguageButton` |
+| `start/start_screen.gd` | 点语言按钮在 en / zh 之间切换，并当场刷新开始界面文字 |
+| `journal_system/journal.gd` | 新增 `language`、`set_language()`、`next_language()`、信号 `language_changed`；文本路径改成 `story_%s.json` / `system_text_%s.json`；选择存到 `user://settings.cfg`，下次启动沿用。中文里缺的 key 自动用英文补（先读 en，再用 zh 覆盖）。新增 `localize_member()`、`effect_name()` |
+| `character_system/crew.gd` | `reset()` 复制角色后调用 `Journal.localize_member()` |
+| `main.gd` | 伤病倒计时的状态名改用 `Journal.effect_name()` |
+| `dialogue_system/dialogue.gd` | 读 `dialogue_<语言>.json`，没有就用 `dialogue_en.json` |
+| `story/system_text_en.json` | 加 `ui_language`：「Language: English」 |
+| `story/system_text_zh.json` | 加 `ui_language`：「语言：中文」；角色中文名 / 代词（船长、他 / 她，取自旧版 .tres，人名保持英文）；状态名 生病 / 受伤 / 重伤 / 死亡 |
+
+**注意**
+- 默认英文；按钮显示的是当前语言
+- `story_zh.json` 只有第 1–4 天，缺第 5–28 天和 4 个 `departure_*` 事件，中文模式下这些会显示英文
+- 没有 `dialogue_zh.json`，中文模式下角色对话是英文
+- 事件 `.tres` 里的 `[TBD]` 文字是写死的英文，没有做切换
+
+**测试**
+- Godot headless：切 zh / en，开始界面按钮、系统文字、船长名、代词、状态名、第 1 天 / 第 10 天日志标题都正确；切换结果写入 settings.cfg
