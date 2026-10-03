@@ -78,5 +78,25 @@
 				"reply": ["[TBD] Thank me when there's still dinner on Day 30."]
 			}
 		]
+	},
+	"josan": {
+		"lines": [
+			"[TBD] Hey, Captain. Pull up some floor. It's the comfiest floor on the ship.",
+			"[TBD] Don't worry about me. I don't need much. Just a little something to rinse with now and then."
+		],
+		"options": [
+			{
+				"text": "[TBD] Where did you even come from?",
+				"reply": ["[TBD] Out there. Drifting. You know how it is. Then I heard your airlock was friendly."]
+			},
+			{
+				"text": "[TBD] Are you going to help out around here?",
+				"reply": ["[TBD] Help? I'm keeping morale up. Look at me. Do I look worried? That's leadership."]
+			},
+			{
+				"text": "[TBD] Enjoy your stay.",
+				"reply": ["[TBD] Oh, I will. Cheers."]
+			}
+		]
 	}
 }

@@ -25,10 +25,10 @@ loyalty_change = 1
 [resource]
 script = ExtResource("1_icjht")
 event_id = "argument"
-in_random_pool = false
 title = "[TBD] Argument"
 description = "[TBD] Mason Reed and Dr. Helena Voss are fighting over the last ration bar."
 options = Array[ExtResource("2_option")]([SubResource("Resource_opt1"), SubResource("Resource_opt2"), SubResource("Resource_opt3")])
 required_members = Array[String](["mason", "helena"])
+in_random_pool = false
 repeatable = true
 metadata/_custom_type_script = "uid://bnp15g1sas8vc"

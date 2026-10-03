@@ -2,6 +2,7 @@ extends Node
 
 signal event_started(event: BaseEvent)
 signal event_finished(event: BaseEvent)
+signal guest_changed(aboard: bool)
 
 @export
 var event_chance : float = 0.6
@@ -23,15 +24,18 @@ func reset() -> void:
 	current_event = null
 	guest_aboard = false
 	guest_join_day = 0
+	guest_changed.emit(false)
 
 
 func admit_guest() -> void:
 	guest_aboard = true
 	guest_join_day = Timeline.current_day
+	guest_changed.emit(true)
 
 
 func evict_guest() -> void:
 	guest_aboard = false
+	guest_changed.emit(false)
 
 
 func end_day() -> void:

@@ -641,3 +641,26 @@
 
 **第七轮补充三：章鱼选项都写明风险**
 - Mara / Dr. Voss / Mason 三个按钮都加上「（大概率受伤，小概率死亡）」/「(high chance of injury, small chance of death)」；Mason 原来的「三人大概率受伤……」改成同样写法。Elias 保持「（小概率受伤）」
+
+---
+
+## Josan 立绘 + 两套站位（2026-10-03）
+
+Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的，我只接逻辑。
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `event_system/event_manager.gd` | 新增信号 `guest_changed(aboard)`，在 `admit_guest` / `evict_guest` / `reset` 时发出 |
+| `character_system/character_portrait.gd` | 新增 `is_guest` / `guest_name`：访客节点只在 `EventManager.guest_aboard` 时显示，不看健康 / 生病；新增 `get_display_name()`、`can_talk()`。新增 `offsets_without_guest`（左、上、右、下）：场景里摆的位置 = 有 Josan 时的站位，没有 Josan 时换成这组值；Josan 上船 / 被赶走时 0.4 秒滑过去（`layout_move_time`）。这组值是 0 的角色不动（Mason） |
+| `character_system/CrewStage.tscn` | Josan 节点：`member_id` 改 `josan`、勾 `is_guest`、编辑器预览图换成 josan.png；Elias / Helena / Mara 填了 `offsets_without_guest` = 加 Josan 之前的位置 |
+| `dialogue_system/dialogue.gd` | 名字和能否对话改用 `get_display_name()` / `can_talk()`，访客也能对话 |
+| `story/dialogue_en.json` | 加 Josan 的占位对话（`[TBD]`，我编的） |
+
+**怎么调**
+- 有 Josan 的站位：直接在编辑器里拖
+- 没 Josan 的站位：改各角色检查器里的 `offsets_without_guest`
+
+**测试**
+- 无 Josan → 上船 → 被赶走：Elias / Helena / Mara 位置在两套之间正确切换，Josan 显示 / 隐藏正确；点击 Josan 能打开对话

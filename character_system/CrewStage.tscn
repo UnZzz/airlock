@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cm2i85fmvw6bj" path="res://character/3_1.png" id="11_3_1"]
 [ext_resource type="Texture2D" uid="uid://ridkb3y2frju" path="res://character/3_2.png" id="12_3_2"]
 [ext_resource type="Texture2D" uid="uid://smt8v8ns0iaq" path="res://character/3_3.png" id="13_3_3"]
+[ext_resource type="Texture2D" uid="uid://cwl4th6fc05uu" path="res://character/josan.png" id="14_arqrq"]
+[ext_resource type="PackedScene" path="res://character_system/TipsyParticles.tscn" id="15_tipsy"]
 
 [node name="CrewStage" type="Control" unique_id=1213416732]
 layout_mode = 3
@@ -48,9 +50,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 355.0
-offset_top = -329.0
-offset_right = 663.0
+offset_left = 214.0
+offset_top = -326.0
+offset_right = 522.0
+offset_bottom = 3.0
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("7_2_3")
@@ -58,6 +61,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("1_portrait")
 member_id = "elias"
+offsets_without_guest = Vector4(355, -329, 663, 0)
 healthy_texture = ExtResource("7_2_3")
 injured_texture = ExtResource("6_2_2")
 critical_texture = ExtResource("5_2_1")
@@ -67,10 +71,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 830.0
-offset_top = -366.0
-offset_right = 1113.0
-offset_bottom = 1.0
+offset_left = 877.0
+offset_top = -363.0
+offset_right = 1160.0
+offset_bottom = 4.0
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("10_4_3")
@@ -78,6 +82,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("1_portrait")
 member_id = "helena"
+offsets_without_guest = Vector4(830, -366, 1113, 1)
 healthy_texture = ExtResource("10_4_3")
 injured_texture = ExtResource("9_4_2")
 critical_texture = ExtResource("8_4_1")
@@ -87,10 +92,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 664.0
-offset_top = -331.0
-offset_right = 855.0
-offset_bottom = 4.0
+offset_left = 736.0
+offset_top = -329.0
+offset_right = 927.0
+offset_bottom = 6.0
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("13_3_3")
@@ -98,6 +103,29 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("1_portrait")
 member_id = "mara"
+offsets_without_guest = Vector4(664, -331, 855, 4)
 healthy_texture = ExtResource("13_3_3")
 injured_texture = ExtResource("12_3_2")
 critical_texture = ExtResource("11_3_1")
+
+[node name="Josan" type="TextureRect" parent="." unique_id=753102888]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 432.0
+offset_top = -397.0
+offset_right = 868.5834
+offset_bottom = 6.0
+grow_vertical = 0
+rotation = 0.2050151
+mouse_filter = 2
+texture = ExtResource("14_arqrq")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_portrait")
+member_id = "josan"
+is_guest = true
+idle_particles = ExtResource("15_tipsy")
+idle_particles_anchor = Vector2(0.62, 0.22)
+healthy_texture = ExtResource("14_arqrq")

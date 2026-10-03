@@ -14,6 +14,12 @@ static var _dim_tweens : Dictionary = {}
 static var _alpha_masks : Dictionary = {}
 
 @export var member_id : String = ""
+@export var is_guest : bool = false
+@export var guest_name : String = "Josan"
+@export var idle_particles : PackedScene
+@export var idle_particles_anchor : Vector2 = Vector2(0.5, 0.3)
+@export var offsets_without_guest : Vector4 = Vector4.ZERO
+@export var layout_move_time : float = 0.4
 @export var healthy_texture : Texture2D
 @export var injured_texture : Texture2D
 @export var critical_texture : Texture2D
@@ -32,6 +38,9 @@ var _amount : float = 0.0
 var _name_label : Label = null
 var _name_tween : Tween = null
 var _sick_particles : GPUParticles2D = null
+var _offsets_with_guest : Vector4 = Vector4.ZERO
+var _layout_tween : Tween = null
+var _idle_particles : GPUParticles2D = null
 
 
 func _ready() -> void:
@@ -44,11 +53,18 @@ func _ready() -> void:
 	_sick_particles = SICK_PARTICLES.instantiate()
 	_sick_particles.emitting = false
 	add_child(_sick_particles)
+	if idle_particles != null:
+		_idle_particles = idle_particles.instantiate()
+		add_child(_idle_particles)
 	resized.connect(_place_sick_particles)
 	_place_sick_particles()
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	Crew.crew_changed.connect(_refresh)
+	_offsets_with_guest = Vector4(offset_left, offset_top, offset_right, offset_bottom)
+	EventManager.guest_changed.connect(func(_aboard): _refresh())
+	EventManager.guest_changed.connect(func(_aboard): _apply_layout(layout_move_time))
+	_apply_layout(0.0)
 	EffectSystem.effect_added.connect(func(_target_id, _effect): _refresh())
 	EffectSystem.effect_removed.connect(func(_target_id, _effect): _refresh())
 	_refresh()
@@ -58,7 +74,30 @@ func get_member() -> CrewMember:
 	return Crew.get_member(member_id)
 
 
+func get_display_name() -> String:
+	if is_guest:
+		return guest_name
+	var member : CrewMember = get_member()
+	if member == null:
+		return ""
+	return member.short_name if member.short_name != "" else member.display_name
+
+
+func can_talk() -> bool:
+	if is_guest:
+		return EventManager.guest_aboard
+	var member : CrewMember = get_member()
+	return member != null and member.status == CrewMember.Status.ON_BOARD
+
+
 func _refresh() -> void:
+	if is_guest:
+		visible = EventManager.guest_aboard
+		modulate = Color.WHITE
+		self_modulate = Color.WHITE
+		texture = healthy_texture
+		_name_label.text = guest_name
+		return
 	var member : CrewMember = get_member()
 	if member == null or member.status == CrewMember.Status.EXILED:
 		visible = false
@@ -69,7 +108,7 @@ func _refresh() -> void:
 	self_modulate = sick_tint if sick else Color.WHITE
 	if _sick_particles.emitting != sick:
 		_sick_particles.emitting = sick
-	_name_label.text = member.short_name if member.short_name != "" else member.display_name
+	_name_label.text = get_display_name()
 	match Crew.get_health(member_id):
 		CrewMember.Health.CRITICAL:
 			texture = critical_texture
@@ -79,8 +118,29 @@ func _refresh() -> void:
 			texture = healthy_texture
 
 
+func _apply_layout(duration: float) -> void:
+	if is_guest or offsets_without_guest == Vector4.ZERO:
+		return
+	var target : Vector4 = _offsets_with_guest if EventManager.guest_aboard else offsets_without_guest
+	if _layout_tween != null and _layout_tween.is_running():
+		_layout_tween.kill()
+	if duration <= 0.0:
+		offset_left = target.x
+		offset_top = target.y
+		offset_right = target.z
+		offset_bottom = target.w
+		return
+	_layout_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_layout_tween.tween_property(self, "offset_left", target.x, duration)
+	_layout_tween.tween_property(self, "offset_top", target.y, duration)
+	_layout_tween.tween_property(self, "offset_right", target.z, duration)
+	_layout_tween.tween_property(self, "offset_bottom", target.w, duration)
+
+
 func _place_sick_particles() -> void:
 	_sick_particles.position = size * sick_particles_anchor
+	if _idle_particles != null:
+		_idle_particles.position = size * idle_particles_anchor
 
 
 func _build_name_label() -> void:

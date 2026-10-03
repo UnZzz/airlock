@@ -46,15 +46,14 @@ func has_dialogue(member_id: String) -> bool:
 func talk(portrait: CharacterPortrait) -> void:
 	if is_open or portrait == null:
 		return
-	var member : CrewMember = portrait.get_member()
 	var data : Dictionary = dialogues.get(portrait.member_id, {})
-	if member == null or data.is_empty() or member.status != CrewMember.Status.ON_BOARD:
+	if data.is_empty() or not portrait.can_talk():
 		return
 	is_open = true
 	CharacterPortrait.interaction_enabled = false
 	CharacterPortrait.hide_names(get_tree())
 	CharacterPortrait.focus(get_tree(), portrait, background_dim)
-	_name_tag.text = member.short_name if member.short_name != "" else member.display_name
+	_name_tag.text = portrait.get_display_name()
 	_text.text = ""
 	_clear_options()
 	visible = true
