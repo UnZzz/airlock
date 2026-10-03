@@ -6,6 +6,8 @@ const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tsc
 @export var scene_fade_time : float = 0.6
 
 @onready var background : Control = $Background
+@onready var panels : MarginContainer = $Margin
+@onready var panel_toggle_button : Button = $PanelToggleButton
 @onready var day_label : Label = $Margin/Layout/SidebarPanel/Sidebar/DayLabel
 @onready var resource_label : Label = $Margin/Layout/SidebarPanel/Sidebar/ResourceLabel
 @onready var crew_list : VBoxContainer = $Margin/Layout/SidebarPanel/Sidebar/CrewScroll/CrewList
@@ -20,6 +22,8 @@ var confirm_button : Button = null
 
 
 func _ready() -> void:
+	panel_toggle_button.pressed.connect(_toggle_panels)
+	_update_panel_toggle_text()
 	GameFlow.phase_changed.connect(_on_phase_changed)
 	Inventory.inventory_changed.connect(_refresh_sidebar)
 	Crew.crew_changed.connect(_refresh_sidebar)
@@ -27,6 +31,15 @@ func _ready() -> void:
 	EffectSystem.effect_removed.connect(func(_target_id, _effect): _refresh_sidebar())
 	Music.play_playlist()
 	GameFlow.start_game()
+
+
+func _toggle_panels() -> void:
+	panels.visible = not panels.visible
+	_update_panel_toggle_text()
+
+
+func _update_panel_toggle_text() -> void:
+	panel_toggle_button.text = Journal.text("ui_hide_panels" if panels.visible else "ui_show_panels")
 
 
 func _on_phase_changed(phase: int) -> void:

@@ -1,4 +1,6 @@
 {
+	"ui_hide_panels": "隐藏面板",
+	"ui_show_panels": "显示面板",
 	"ui_continue": "继续",
 	"ui_confirm_allocation": "确认分配",
 	"ui_feed_all": "全员进食",
