@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_qlnqk")
 effect_name = "dead"
-display_name = "死亡"
+display_name = "Dead"
 is_fatal = true
 metadata/_custom_type_script = "uid://coej6ak3esl1j"

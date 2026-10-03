@@ -5,22 +5,22 @@
 
 [sub_resource type="Resource" id="Resource_opt1"]
 script = ExtResource("2_option")
-text = "[占位] 给她 1 瓶漱口水"
-result_text = "[占位] 她从医疗舱带回了 2 份营养剂。"
+text = "[TBD] Give her 1 bottle of mouthwash"
+result_text = "[TBD] She comes back from the med bay with 2 nutrient packs."
 mouthwash_change = -1
 food_change = 2
 intimidatable = true
 
 [sub_resource type="Resource" id="Resource_opt2"]
 script = ExtResource("2_option")
-text = "[占位] 算了"
-result_text = "[占位] Helena 耸了耸肩。"
+text = "[TBD] Forget it"
+result_text = "[TBD] Helena shrugs."
 
 [resource]
 script = ExtResource("1_icjht")
 event_id = "doctor_demand"
-title = "[占位] Helena 的条件"
-description = "[占位] Dr. Helena Voss 说，只要再给她 1 瓶漱口水，她就愿意去医疗舱翻一翻还能吃的营养剂。"
+title = "[TBD] Helena's Terms"
+description = "[TBD] Dr. Helena Voss says that for 1 more bottle of mouthwash, she'll search the med bay for any nutrient packs that are still edible."
 required_members = Array[String](["helena"])
 repeatable = true
 options = Array[ExtResource("2_option")]([SubResource("Resource_opt1"), SubResource("Resource_opt2")])

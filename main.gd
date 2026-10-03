@@ -129,7 +129,7 @@ func _build_allocation_row(member: CrewMember) -> HBoxContainer:
 	else:
 		box.text = Journal.text("ui_feed_label", {"name": member.display_name})
 		if member.days_without_food > 0:
-			box.text += "（" + Journal.text("ui_hunger", {"days": member.days_without_food}) + "）"
+			box.text += Journal.text("ui_hunger_suffix", {"text": Journal.text("ui_hunger", {"days": member.days_without_food})})
 		box.button_pressed = fed_selection.get(member.member_id, false)
 		box.toggled.connect(_on_meal_toggled.bind(member.member_id))
 	row.add_child(box)

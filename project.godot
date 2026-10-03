@@ -29,6 +29,7 @@ GameFlow="*res://game_flow/GameFlow.tscn"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

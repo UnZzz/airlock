@@ -15,6 +15,8 @@
 	"ui_chef_bonus": "{chef} 在船上：用餐的 Food 消耗降低。",
 	"ui_airlock_hint": "今天是 Airlock 日：晚餐里会加入镇静剂，只有吃了晚餐的人会被麻醉。",
 	"ui_feed_label": "{name}",
+	"ui_hunger_suffix": "（{text}）",
+	"list_separator": "、",
 	"ui_hunger": "已 {days} 天未进食",
 	"ui_refuses_food": "{name}：拒绝吃今天的晚餐",
 	"ui_maintain": "漱口水维持（-{cost}）",

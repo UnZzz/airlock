@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_danger")
 event_id = "repair_leak"
-title = "[占位] 冷却管道破裂"
-description = "[占位] 储藏舱的冷却管道破了。不修的话，剩下的食物会更快变质。需要派一个人去处理。"
+title = "[TBD] Burst Coolant Pipe"
+description = "[TBD] A coolant pipe in the storage bay has burst. If nobody fixes it, the remaining food will spoil faster. Someone needs to go deal with it."
 repeatable = true
-success_text = "[占位] {name} 修好了管道。"
-abandon_text = "[占位] 没人去修。一部分食物变质了。"
+success_text = "[TBD] {name} fixed the pipe."
+abandon_text = "[TBD] Nobody fixed it. Some of the food has spoiled."
 abandon_food_change = -2

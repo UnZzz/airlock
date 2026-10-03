@@ -2,8 +2,8 @@ extends Node
 
 signal entry_added(day: int, text: String)
 
-const STORY_PATH : String = "res://story/story_zh.json"
-const SYSTEM_TEXT_PATH : String = "res://story/system_text_zh.json"
+const STORY_PATH : String = "res://story/story_en.json"
+const SYSTEM_TEXT_PATH : String = "res://story/system_text_en.json"
 const NO_EVENT : String = "none"
 const RANDOM_EVENT : String = "random"
 

@@ -74,7 +74,7 @@ func get_ending_text() -> String:
 			names.append(member.display_name)
 		if names.is_empty():
 			return Journal.text("ending_survived_alone")
-		return Journal.text("ending_survived", {"names": "、".join(names)})
+		return Journal.text("ending_survived", {"names": Journal.text("list_separator").join(names)})
 	var criminal : CrewMember = Crew.get_by_role(CrewMember.Role.CRIMINAL)
 	return Journal.text("ending_" + ending_id, {"criminal": criminal.display_name if criminal != null else ""})
 

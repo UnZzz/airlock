@@ -7,5 +7,5 @@ script = ExtResource("1_member")
 member_id = "helena"
 display_name = "Dr. Helena Voss"
 short_name = "Dr. Voss"
-pronoun = "她"
+pronoun = "she"
 role = 3

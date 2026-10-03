@@ -40,7 +40,7 @@ func get_intro_text() -> String:
 	if names.is_empty():
 		lines.append(Journal.text("airlock_nobody_sedated"))
 	else:
-		lines.append(Journal.text("airlock_sedated_list", {"names": "、".join(names)}))
+		lines.append(Journal.text("airlock_sedated_list", {"names": Journal.text("list_separator").join(names)}))
 	return "\n\n".join(lines)
 
 

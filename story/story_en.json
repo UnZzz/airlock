@@ -1,0 +1,89 @@
+{
+	"opening": {
+		"title": "Opening",
+		"paragraphs": [
+			"Time to wake up, Captain.",
+			"The fire destroyed most of our food stores, along with most of the passengers' faith.",
+			"All we have left is the little food the galley had stocked, a crate of mouthwash Dragonbreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
+			"And you.",
+			"Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
+			"Calm them. Feed them. Keep everyone steady.",
+			"Necessary sacrifices will be accepted."
+		]
+	},
+	"days": {
+		"1": {
+			"journal_title": "Wreck Log: Day 01",
+			"journal": [
+				"The cause of the fire is still under investigation. I'm inclined to call it an accident, a short circuit in the refrigeration system. But accident or sabotage, the responsibility is mine. The vegetables, the meat, and our poor security guard Daniel Price were all burned into a heap of inedible charcoal. Elias Ward sealed the hatch to the freezer section in time and the fire was contained, but that doesn't mean we survived.",
+				"We have a few vegetables and some dry rations left, and Mara Quinn dug some not-quite-so-rotten scraps out of the compost bin. Even if she promises not to waste a single crumb when she cooks so we can hold out longer, there still isn't enough food.",
+				"When the time comes, I will make a choice.",
+				"Dr. Helena Voss says that if I don't put \"Dr.\" in front of her name in this log, she will happily watch us writhe to death when we all come down with gastroenteritis. She also strongly objects to us eating anything dug out of the compost bin.",
+				"\"I have treated 312 cases of food poisoning, and half of those patients swore the food 'looked perfectly fresh.'\"",
+				"Of course, she didn't say it nearly that calmly.",
+				"Mason Reed didn't sleep all night. He kept singing the same few folk songs he picked up on his home planet, wandering lap after lap around the cabin and kicking the bottles of mouthwash all over the place. Whoever tells him to get lost and go to bed, he shakes his fist and says he's a free man now, just like everyone else, and has every right to do whatever he pleases.",
+				"\"A prisoner with no guard is a law-abiding citizen.\" That's how he put it.",
+				"Everyone had a normal, even generous, dinner yesterday, so nobody is at risk of starving just yet. But if I'm blindly overconfident in my own abilities, I could give them an extra meal and make some trouble for myself."
+			],
+			"allocation_title": "Supply Allocation",
+			"event": "none"
+		},
+		"2": {
+			"journal_title": "Wreck Log: Day 02",
+			"journal": [
+				"Slept like a baby, if you ignore the four trips to the toilet.",
+				"They still call me Captain, but I can't shake the feeling that one of them is going to drive something sharp through my throat while I sleep.",
+				"Mara looks a little defeated, because she feels her cooking isn't getting the showcase it deserves. Mind you, she used to toss artichoke leaves straight into the trash.",
+				"Mason is still singing those damned songs on repeat. If we make it back alive, I'm hiring him a vocal coach, so the next people stuck with him won't have to suffer like this.",
+				"We discussed what this pile of mouthwash might be good for besides fresh breath. First of all, since it's mouthwash, it must contain sugar and alcohol. So we could treat it as an industrial mojito with a lethal dose of mint: stay drunk and keep your teeth pearly white at the same time. Or we could use it as disinfectant. The passengers argued endlessly over those two options. But we did agree on one thing: whatever Dragonbreath is paying us isn't worth risking our lives to hand this cargo back to them intact.",
+				"They haven't shown an ounce of the solidarity you'd hope for in a crisis, but at least I'm still alive. Maybe I should reward them with a little food?"
+			],
+			"event": "fire_check"
+		},
+		"3": {
+			"journal_title": "Wreck Log: Day 03",
+			"journal": [
+				{
+					"if": {
+						"day2_fire": "worker"
+					},
+					"text": "I really regret making that deal with Elias. All he did was open the hatch, poke his head in, and say, \"Captain, the fire's out.\" I wanted him to check the wiring for faults, but he just wandered over to central control and glanced at the readings."
+				},
+				{
+					"if": {
+						"day2_fire": "worker"
+					},
+					"text": "No, no, what am I doing, hoping something actually goes wrong? As long as everyone stays alive, he can have whatever he wants. The mouthwash, the whole ship, whatever."
+				},
+				{
+					"if": {
+						"day2_fire": "other"
+					},
+					"member": "day2_fire_member",
+					"text": "{name} was very reluctant, but {ta} still took a look into the freezer. Thankfully the fire was completely out. All that was left was warm, stifling air, and {ta} came out drenched in sweat. As for the wiring, {name} said {ta} knew absolutely nothing about it. If something serious had broken, we'd just have to sit here and wait to die."
+				},
+				{
+					"if": {
+						"day2_fire": "nothing"
+					},
+					"text": "Better to risk the oxygen system failing and all of us suffocating than to let a single crew member get hurt. What a wise captain I am, right?"
+				},
+				"Mara is desperate to get her hands on some French T55 flour, a few Périgord truffles, and a big slab of A5 Nagasaki fillet, just to show us her beef Wellington. Elias and Mason kept asking her what to drink with it. They'd never heard of a single one of the names she gave them, but just knowing they stood for the very finest alcohol got them all worked up.",
+				"\"Lucky for us we can't get any of those ingredients. Otherwise, after all this time, all that butter would give us 'atherosclerosis' and we'd drop dead.\"",
+				"Dr. Voss said this while chewing on an artichoke leaf.",
+				"\"Maybe not Elias and Mason. They'll do something stupid while drunk and die in ways no normal person could ever imagine.\"",
+				"\"Maybe we'll all die, but at least we're free!\" Mason raised a bottle of mouthwash high."
+			],
+			"allocation_text": "Time to hand out supplies, Captain. (That's me.)",
+			"event": "random"
+		},
+		"4": {
+			"journal_title": "Wreck Log: Day 04",
+			"journal": [
+				"Good news: according to the navigation system, the nearest habitable planet is only 26 days away!",
+				"More good news! We have more than enough fuel to get there!",
+				"Bad news: we don't have enough food. By the time we reach that mysterious utopia, we'll be a pile of very confident skeletons."
+			]
+		}
+	}
+}

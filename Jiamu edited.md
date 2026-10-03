@@ -263,3 +263,37 @@
 - 新增文案测试 100 项，全部通过：第 2 天 7 种选法分别对应第 3 天该显示的段落，人名和他/她替换正确，扣的资源正确，没人受伤，`fire_check` 不会被随机抽到
 - 原来的逻辑测试 68 项、300 局随机模拟、界面自动点击 5 局：全部正常
 - 有窗口截图确认：第 2 天事件、Elias 谈判、第 3 天日志（Elias 分支）、第 3 天物资分配页都显示正常
+
+---
+
+## 全游戏改成英文（2026-10-03）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `story/story_en.json` | `story_zh.json` 的英文翻译，结构和条件段落完全一样 |
+| `story/system_text_en.json` | `system_text_zh.json` 的英文翻译；占位标记 `[占位]` 改成 `[TBD]` |
+
+中文的 `story_zh.json` / `system_text_zh.json` 保留没删，想切回中文只要改 `journal.gd` 顶部两个路径。
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `journal_system/journal.gd` | 读取的文案文件改成 `story_en.json` / `system_text_en.json` |
+| `main.gd` | 饥饿天数外面的全角括号「（）」改成读 `ui_hunger_suffix` |
+| `game_flow/game_flow.gd`、`airlock_system/airlock.gd` | 名单分隔符「、」改成读 `list_separator`（英文是 `, `） |
+| `story/system_text_zh.json` | 新增 `ui_hunger_suffix`「（{text}）」和 `list_separator`「、」，保证切回中文时显示不变 |
+| `character_system/members/*.tres` | 船长名字改 Captain；代词改成 he / she |
+| `effect_system/effects/*.tres` | 受伤 / 重伤 / 死亡 → Injured / Critical / Dead |
+| `event_system/events/*.tres` | 所有事件标题、描述、选项、结果文字翻成英文（这几个 .tres 是单语言的，中文原文在 git 历史里） |
+
+**翻译上的处理**
+- 第 3 天「其他人去检查」那段，英文代词只用主格 `{ta}`（he / she），句子改写成不需要 him / her 的形式
+- 日志标题「失事第01天 日志」→ `Wreck Log: Day 01`
+- 漱口水统一译作 Mouthwash，Food 保持 Food
+
+**测试**
+- 三个 JSON 能正常解析，中英 system_text 的 key 完全一致
+- Godot 无界面运行主场景 300 帧，没有脚本报错；单独加载事件 / 角色 / 状态 .tres 都正常

@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_danger")
 event_id = "salvage_cargo"
-title = "[占位] 舱外补给箱"
-description = "[占位] 货舱外挂着一个没被烧毁的补给箱。需要有人穿上宇航服出去把它拖回来。"
+title = "[TBD] Supply Crate Outside"
+description = "[TBD] An unburned supply crate is snagged on the outside of the cargo hold. Someone needs to suit up, go out, and haul it back in."
 repeatable = true
-success_text = "[占位] {name} 把补给箱拖了回来，里面有 2 份食物。"
-abandon_text = "[占位] 补给箱慢慢飘远了。"
+success_text = "[TBD] {name} hauled the crate back in. There are 2 Food inside."
+abandon_text = "[TBD] The crate slowly drifts away."
 success_food_change = 2

@@ -5,25 +5,25 @@
 
 [sub_resource type="Resource" id="Resource_food"]
 script = ExtResource("2_option")
-text = "食物"
+text = "Food"
 food_change = -1
 action = "accept"
 
 [sub_resource type="Resource" id="Resource_mouthwash"]
 script = ExtResource("2_option")
-text = "漱口水"
+text = "Mouthwash"
 mouthwash_change = -1
 action = "accept"
 
 [sub_resource type="Resource" id="Resource_refuse"]
 script = ExtResource("2_option")
-text = "该死，随他去吧（Elias不会帮你）"
+text = "Damn it, forget him (Elias won't help you)"
 action = "abandon"
 
 [resource]
 script = ExtResource("1_danger")
 event_id = "fire_check"
-description = "对了，冷库的火似乎还没有完全熄灭，我担心这是否会进一步破坏飞船的电路系统，进一步影响维生设备。也许我应该派一个人去看看？Elias在平时是负责飞船的日常维护的，但我并不确定他是否会借着自己的专业能力提出一些额外的要求。如果我让其他不熟悉飞船的人去可能会让他们触电。"
+description = "Oh, and the fire in the cold storage might not be completely out. I'm worried it could do more damage to the ship's wiring, and from there to the life support. Maybe I should send someone to take a look? Elias normally handles the ship's routine maintenance, but I'm not sure he won't use his expertise to make some extra demands. And if I send someone who doesn't know the ship, they might get electrocuted."
 in_random_pool = false
 injury_chance = 0.0
 death_chance = 0.0
@@ -34,7 +34,7 @@ send_option_texts = {
 "helena": "Dr. Voss",
 "mason": "Mason Reed"
 }
-abandon_option_text = "我们会没事的（不做处理）"
-worker_demand_text = "我就知道他会提这个要求。讨论的时候就是他一直在反复说“我们应该把它们当酒喝”的。我们应该顺着他，让他独占一整瓶的漱口水，还是试试能不能用额外的食物求他帮个忙，亦或者什么都不做，赌那场火其实已经灭了？"
+abandon_option_text = "We'll be fine (do nothing)"
+worker_demand_text = "I knew he'd ask for this. He was the one who kept saying \"we should just drink the stuff\" during the discussion. Should we humor him and let him have a whole bottle of mouthwash to himself, try bribing him with extra food instead, or do nothing and bet that the fire is already out?"
 worker_demand_options = Array[ExtResource("2_option")]([SubResource("Resource_food"), SubResource("Resource_mouthwash"), SubResource("Resource_refuse")])
 outcome_flag = "day2_fire"

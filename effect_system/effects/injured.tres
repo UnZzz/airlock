@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_uquag")
 effect_name = "injured"
-display_name = "受伤"
+display_name = "Injured"
 duration = 3
 next_effect = ExtResource("2_crit")
 metadata/_custom_type_script = "uid://coej6ak3esl1j"
