@@ -4,10 +4,9 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 
 @export var fade_in_time : float = 1.2
 @export var fade_out_time : float = 0.8
-@export var breathe_scale : float = 1.04
-@export var breathe_time : float = 9.0
 
 @onready var background : TextureRect = $Background
+@onready var sky : Node2D = $Background/Sky
 @onready var title_label : Label = $Menu/TitleLabel
 @onready var start_button : Button = $Menu/StartButton
 @onready var quit_button : Button = $Menu/QuitButton
@@ -25,7 +24,6 @@ func _ready() -> void:
 	quit_button.visible = not OS.has_feature("web")
 	resized.connect(_fit_background)
 	_fit_background()
-	_breathe()
 	fade.color.a = 1.0
 	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
 	start_button.grab_focus()
@@ -37,13 +35,7 @@ func _fit_background() -> void:
 	var fit : float = maxf(size.x / texture_size.x, size.y / texture_size.y)
 	background.size = texture_size * fit
 	background.position = Vector2((size.x - background.size.x) * 0.5, 0.0)
-	background.pivot_offset = Vector2(background.size.x * 0.5, 0.0)
-
-
-func _breathe() -> void:
-	var tween : Tween = create_tween().set_loops()
-	tween.tween_property(background, "scale", Vector2.ONE * breathe_scale, breathe_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(background, "scale", Vector2.ONE, breathe_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	sky.scale = Vector2.ONE * fit
 
 
 func _on_start() -> void:

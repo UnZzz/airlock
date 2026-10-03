@@ -3,6 +3,87 @@
 [ext_resource type="Script" path="res://start/start_screen.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://start/start.webp" id="2_bg"]
 
+[sub_resource type="Gradient" id="Gradient_star_glow"]
+offsets = PackedFloat32Array(0, 0.26732674, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.34653467, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_star"]
+gradient = SubResource("Gradient_star_glow")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_star_pulse"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_star_pulse"]
+curve = SubResource("Curve_star_pulse")
+
+[sub_resource type="Gradient" id="Gradient_star_color"]
+offsets = PackedFloat32Array(0.018604651, 0.7767442, 1)
+colors = PackedColorArray(0.83675414, 0.75165695, 0, 1, 1, 1, 1, 1, 0.7042504, 0.8908222, 0.9662325, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_star_color"]
+gradient = SubResource("Gradient_star_color")
+
+[sub_resource type="ParticleProcessMaterial" id="Mat_sky"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1100, 760, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_max = 90.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.27
+scale_max = 1.07
+scale_curve = SubResource("CurveTexture_star_pulse")
+color_initial_ramp = SubResource("GradientTexture1D_star_color")
+alpha_curve = SubResource("CurveTexture_star_pulse")
+
+[sub_resource type="ParticleProcessMaterial" id="Mat_ring"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(660, 400, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.85
+emission_ring_cone_angle = 90.0
+angle_max = 90.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.27
+scale_max = 1.07
+scale_curve = SubResource("CurveTexture_star_pulse")
+color_initial_ramp = SubResource("GradientTexture1D_star_color")
+alpha_curve = SubResource("CurveTexture_star_pulse")
+
+[sub_resource type="ParticleProcessMaterial" id="Mat_core"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(260, 170, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_max = 90.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.27
+scale_max = 1.07
+scale_curve = SubResource("CurveTexture_star_pulse")
+color_initial_ramp = SubResource("GradientTexture1D_star_color")
+alpha_curve = SubResource("CurveTexture_star_pulse")
+
 [node name="StartScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -25,8 +106,36 @@ color = Color(0, 0, 0, 1)
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 mouse_filter = 2
+texture_filter = 4
 texture = ExtResource("2_bg")
 expand_mode = 1
+
+[node name="Sky" type="Node2D" parent="Background"]
+
+[node name="SkyStars" type="GPUParticles2D" parent="Background/Sky"]
+position = Vector2(1024, 711)
+amount = 40
+texture = SubResource("GradientTexture2D_star")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("Mat_sky")
+
+[node name="RingStars" type="GPUParticles2D" parent="Background/Sky"]
+position = Vector2(1290, 610)
+rotation = -0.2
+amount = 24
+texture = SubResource("GradientTexture2D_star")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("Mat_ring")
+
+[node name="CoreStars" type="GPUParticles2D" parent="Background/Sky"]
+position = Vector2(983, 676)
+amount = 10
+texture = SubResource("GradientTexture2D_star")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("Mat_core")
 
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1

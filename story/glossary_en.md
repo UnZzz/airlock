@@ -37,3 +37,4 @@
 | Firebreath Ltd.（漱口水公司） | Firebreath Ltd. | Dragonbreath |
 | Tahiti（宜居星球） | Tahiti | |
 | 半人马座 | Centaurus | |
+| Josan（敲门的人） | Josan | Jason |

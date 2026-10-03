@@ -37,8 +37,8 @@ func evict_guest() -> void:
 func end_day() -> void:
 	if not guest_aboard or guest_drink_interval <= 0:
 		return
-	var days : int = Timeline.current_day - guest_join_day
-	if days > 0 and days % guest_drink_interval == 0:
+	var days : int = Timeline.current_day - guest_join_day + 1
+	if days % guest_drink_interval == 0:
 		Inventory.apply_change(0, -guest_drink_cost)
 
 

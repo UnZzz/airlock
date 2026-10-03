@@ -510,3 +510,111 @@
 
 **测试**
 - 让 Helena 和 Mara 生病：两人变绿、粒子在飘，Mason 不受影响；治好 Mara 后粒子停止。截图确认
+
+---
+
+## 第七轮：7 个随机事件 + 事件弹窗（`Airlock文案 (3).pdf`，2026-10-03）
+
+用户确认：8 条事件全做（含 Jason 两条）；事件用屏幕中间弹窗；旧的 5 个英文占位事件移出随机池；PDF 没写的数值我先填占位值。
+
+**文案录入**
+- `story/story_zh.json` / `story_en.json` 新增 `events` 段：木屑餐、小偷！、酒精提纯、他也算警卫吗？、我们的软体室友、居然有比他们四个还不正常的人？、我们真的受够了！、债务危机。中文按 PDF 原文，英文按译名表翻译（门 → airlock）
+- `xxx` / `他` 换成模板变量 `{name}` / `{ta}`（英文另有 `{ta_obj}` him/her）
+- PDF 里给程序看的说明（「前提：…」「（如果Mason死亡则删除）」「（不论如何选择，食物增加）」「四人和不作为选项」「选择船员则船员成为（流放）状态」等）转成了逻辑，不显示
+- 木屑餐最后一段「如果你相信Elias……」当作给玩家的提示显示出来了
+- PDF 没写的文字用 `[占位]` / `[TBD]`：受够了的「不作为」选项和赶走结果；债务危机的「抄起武器」选项、打退结果、Mara / Dr. Voss / Mason 的离开文字；Elias 离开文字后半句（PDF 里是拼音草稿 na jiu shi ta de sheng ming）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `event_system/event_popup.gd` + `EventPopup.tscn` | 事件弹窗：屏幕变暗，中间手绘框（SketchBox + 胶带），标题、正文（太长会滚动）、选项按钮。打开时角色不能点 |
+| `event_system/events/story_event.gd` | 新事件的基类：文案从 story json 的 `events` 读，按 Elias / Mara / Dr. Voss / Mason 顺序列人 |
+| `sawdust_meal_event.gd` / `.tres` | 木屑餐 |
+| `thief_event.gd` / `.tres` | 小偷！ |
+| `alcohol_distill_event.gd` / `.tres` | 酒精提纯（可重复） |
+| `mason_guard_event.gd` / `.tres` | 他也算警卫吗？（没有选项，直接给结果） |
+| `octopus.tres` | 我们的软体室友（用现有危险任务，Elias 走现有随机谈判） |
+| `jason_knock_event.gd` / `.tres` | Jason 敲门 |
+| `jason_fed_up_event.gd` / `.tres` | 我们真的受够了！ |
+| `debt_crisis_event.gd` / `.tres` | 债务危机 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `main.gd` / `main.tscn` | 事件改成弹窗显示；左侧资源栏在 Josan 在船上时多一行提示 |
+| `journal_system/journal.gd` | `event_text()` 读事件文案（段落可以写 `if_on_board` 条件）、`member_args()` 给人名和代词 |
+| `event_system/event_manager.gd` / `.tscn` | 注册 8 个新事件；Josan 在船状态（`guest_aboard`），每 2 天扣 1 漱口水（`guest_drink_interval` / `guest_drink_cost`） |
+| `event_system/events/dangerous_task_event.gd` | 文案可以从 json 读；新增 `abandon_injure_all`（放弃时所有乘客受伤） |
+| `character_system/crew.gd` / `crew_member.gd` | `heal()` 直接治好；`is_loyalty_full()`；`exile()` 可以带原因（债务危机 = `debt`）；记录累计挨饿天数 `hungry_day_count`、上次用漱口水的日子、酒精提纯是否触发过 |
+| `game_flow/game_flow.gd` | 每天结束先算 Josan 喝漱口水；被债务带走的第二天日志用 `journal_exiled_debt` |
+| `story/system_text_*.json` | 新增 `event_sick`、`journal_exiled_debt`、`ui_guest_aboard`（都是占位） |
+| `argument` / `criminal_demand` / `doctor_demand` / `repair_leak` / `salvage_cargo.tres` | `in_random_pool = false`，文件保留 |
+
+**占位数值**（都在对应 .tres 的检查器里能改）
+
+| 事件 | 值 |
+|---|---|
+| 木屑餐 | Elias 方案 +3 Food，每个乘客 30% 生病；Dr. Voss 方案 +1 Food；补偿 Elias 1 Food 或 1 漱口水；「胡闹」Mason 忠诚 +1 |
+| 小偷 | 触发：某乘客**累计** 3 天没吃饭（PDF「连续三次二级饥饿」在现有规则下做不到，连续 3 天不吃就饿死了）；武力 25% 小偷受伤；交换 -1 漱口水；放过 -2 Food；Mason 选项要忠诚满且小偷不是 Mason |
+| 酒精提纯 | 今天或昨天给这个人用过漱口水维持伤势、Dr. Voss 能看病、病人不是 Dr. Voss；每人只触发一次；-2 漱口水 |
+| 他也算警卫吗 | +2 Food；被抓的人 50% 受伤 |
+| 章鱼 | 成功 +2 Food；Elias 受伤 15%；其他人受伤 60%、死亡 10%；放弃 = 所有乘客受伤（船长不算） |
+| Jason 敲门 | 两个选项都 +2 Food；允许后从进舱那天起每 2 天 -1 漱口水 |
+| 受够了 | 派任何人都能赶走 Josan，不受伤；不作为 = 继续留着 |
+| 债务危机 | 派谁谁就变成「流放」；抄起武器 = 每个乘客 30% 受伤 |
+
+**测试**
+- 新增事件测试 122 项全部通过：每个事件的触发条件、选项、扣加资源、受伤 / 生病 / 治好 / 流放、Josan 每 2 天扣漱口水、旧事件不会再抽到、中英文 key 一致
+- 300 局随机模拟没有卡住
+- 有窗口截图：木屑餐弹窗（长文可滚动）、Elias 不满的第二页、选完后弹窗关闭进入下一步
+
+---
+
+## 开始界面（2026-10-03）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `start/StartScreen.tscn` | 开始界面：背景图 + 标题 "Airlock" + 「开始游戏」「退出」两个按钮（右下角，用现有主题的手绘按钮） |
+| `start/start_screen.gd` | 进入时从黑屏淡入（`fade_in_time` 1.2 秒）；点开始后淡出到黑（`fade_out_time` 0.8 秒）再切到 `main.tscn`；网页版隐藏退出按钮；进来就开始放歌单 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `start/start.png` → `start/start.webp` | 原文件其实是 WebP 格式只是后缀写成了 .png，Godot 导入失败，所以改了后缀，图片内容没动 |
+| `project.godot` | 主场景改成 `res://start/StartScreen.tscn` |
+| `story/system_text_zh.json`、`story/system_text_en.json` | 新增 `start_title`、`ui_start_game`、`ui_quit` |
+
+**说明**
+- 背景按屏幕铺满，顶边对齐（只裁下面），保证右上角的恐龙不会被切掉
+- `main.gd` 里原来的 `Music.play_playlist()` 没删：歌单已经在播时再调用只会保持音量，不会重头放
+
+**测试**
+- 1600×900 录帧：淡入正常、恐龙完整、按钮文字正确；模拟点击开始后淡出并进入游戏的 Opening 页面
+
+**第七轮补充（用户确认）**
+- 敲门的人统一叫 **Josan**：`story_zh.json` / `story_en.json` 事件正文里的「Jason」改成「Josan」；译名表加了 Josan（不用 Jason）
+- 小偷触发条件确定为「累计 3 天没吃饭」
+- 木屑餐提示段落、章鱼 Mason 按钮文字、`[占位]` 文案保持现状
+
+### 开始界面：星空粒子（2026-10-03）
+
+照 until-someone-passes 里星空井 `well/well.tscn` 的 `Stars` 粒子搬过来：同一张柔光圆点贴图、同样的颜色（黄 / 白 / 淡蓝随机）、同样的“先变大变亮再消失”曲线、同样的旋转，寿命 4 秒。原作是 384×216 的画面，这里按 2048 宽的背景图把粒子大小放大约 5.3 倍（`scale` 0.27–1.07）。
+
+| 节点（`StartScreen.tscn` 的 `Background/Sky` 下） | 位置 | 数量 |
+|---|---|---|
+| `SkyStars` | 整张图 | 40 |
+| `RingStars` | 沿着银河外圈那条椭圆环 | 24 |
+| `CoreStars` | 银河中心周围 | 10 |
+
+- `Sky` 跟着背景一起缩放，粒子位置都是按原图像素填的，换分辨率不会跑位
+- 加了 `preprocess` 4 秒，一进界面就满天星，不用等它慢慢冒出来
+
+**去掉了背景呼吸缩放（背景抖动的原因）**：粉笔画颗粒很细，每帧缩放一点点，颗粒就在像素之间来回跳，看起来像在抖；图片又没开 mipmap，缩小显示时会更闪。现在背景静止，动感交给星星；`start.webp.import` 打开了 mipmaps，`Background` 用 `texture_filter` = 线性 + mipmap，缩小也干净
+
+**测试**
+- 1600×900 录帧：三层星星位置正确、闪烁正常，背景不再抖，无报错
