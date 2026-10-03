@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://dsfne327hn007"]
 
-[ext_resource type="AudioStream" uid="uid://dkcownmjeopv0" path="res://music_system/tracks/atmosphere.mp3" id="1_bglq4"]
-[ext_resource type="AudioStream" uid="uid://bnhn7n08b5oih" path="res://music_system/tracks/piano.mp3" id="2_qjle0"]
+[ext_resource type="Script" uid="uid://lq67qte6eokx" path="res://music_system/music.gd" id="1_qvmi3"]
+[ext_resource type="AudioStream" uid="uid://dkcownmjeopv0" path="res://music_system/tracks/atmosphere.mp3" id="2_4y8ep"]
+[ext_resource type="AudioStream" uid="uid://bnhn7n08b5oih" path="res://music_system/tracks/piano.mp3" id="3_5qfg1"]
+[ext_resource type="AudioStream" uid="uid://bjttn1uermuoc" path="res://music_system/tracks/space_machinery.wav" id="4_8w6sn"]
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_qvmi3"]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_b7o4g"]
 fade_time = 2.0
 stream_count = 2
-stream_0 = ExtResource("1_bglq4")
-stream_1 = ExtResource("2_qjle0")
+stream_0 = ExtResource("2_4y8ep")
+stream_1 = ExtResource("3_5qfg1")
 
-[node name="Music" type="AudioStreamPlayer" unique_id=1542802101]
+[node name="Music" type="Node" unique_id=164600704]
 process_mode = 3
-stream = SubResource("AudioStreamPlaylist_qvmi3")
-autoplay = true
+script = ExtResource("1_qvmi3")
+
+[node name="Playlist" type="AudioStreamPlayer" parent="." unique_id=1291122458]
+stream = SubResource("AudioStreamPlaylist_b7o4g")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=445932169]
+stream = ExtResource("4_8w6sn")
