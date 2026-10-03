@@ -28,7 +28,7 @@ func pick_event_for_day(day: int) -> BaseEvent:
 	var fixed_id : String = Journal.get_fixed_event(day)
 	if fixed_id == Journal.NO_EVENT:
 		return null
-	if fixed_id != "":
+	if fixed_id != "" and fixed_id != Journal.RANDOM_EVENT:
 		var fixed : BaseEvent = find_event(fixed_id)
 		if fixed == null:
 			push_error("Missing fixed event: " + fixed_id)

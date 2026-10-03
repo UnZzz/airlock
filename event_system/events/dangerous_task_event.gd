@@ -19,6 +19,16 @@ var injury_chance : float = 0.2
 var death_chance : float = 0.05
 @export
 var worker_injury_chance : float = 0.05
+@export
+var send_option_texts : Dictionary = {}
+@export
+var abandon_option_text : String = ""
+@export_multiline
+var worker_demand_text : String = ""
+@export
+var worker_demand_options : Array[EventOption] = []
+@export
+var outcome_flag : String = ""
 
 var excluded_ids : Array[String] = []
 var skip_promise_active : bool = false
@@ -67,10 +77,28 @@ func choose(option: EventOption) -> void:
 func _show_assignment(text: String) -> void:
 	current_text = text
 	current_options = []
-	for member in _eligible_members():
-		current_options.append(EventOption.create(Journal.text("ui_send", {"name": member.display_name}), "send", member.member_id))
-	current_options.append(EventOption.create(Journal.text("ui_abandon_task"), "abandon"))
+	for member in _ordered_members():
+		current_options.append(EventOption.create(_send_text(member), "send", member.member_id))
+	current_options.append(EventOption.create(abandon_option_text if abandon_option_text != "" else Journal.text("ui_abandon_task"), "abandon"))
 	is_finished = false
+
+
+func _ordered_members() -> Array[CrewMember]:
+	var eligible : Array[CrewMember] = _eligible_members()
+	if send_option_texts.is_empty():
+		return eligible
+	var result : Array[CrewMember] = []
+	for member_id in send_option_texts:
+		for member in eligible:
+			if member.member_id == member_id:
+				result.append(member)
+	return result
+
+
+func _send_text(member: CrewMember) -> String:
+	if send_option_texts.has(member.member_id):
+		return String(send_option_texts[member.member_id])
+	return Journal.text("ui_send", {"name": member.display_name})
 
 
 func _eligible_members() -> Array[CrewMember]:
@@ -99,6 +127,9 @@ func _on_send(member_id: String) -> void:
 
 
 func _start_negotiation(worker: CrewMember) -> void:
+	if not worker_demand_options.is_empty():
+		_start_fixed_negotiation()
+		return
 	pending_demand = _available_demands(worker).pick_random()
 	current_text = pending_demand["text"]
 	var accept : EventOption = EventOption.create(Journal.text("ui_accept_demand"), "accept")
@@ -108,6 +139,16 @@ func _start_negotiation(worker: CrewMember) -> void:
 	if Crew.can_intimidate():
 		current_options.append(EventOption.create(Journal.text("ui_intimidate", {"text": Journal.text("ui_intimidate_demand", {"criminal": _criminal_name()})}), "intimidate"))
 	current_options.append(EventOption.create(Journal.text("ui_abandon_task"), "abandon"))
+	is_finished = false
+
+
+func _start_fixed_negotiation() -> void:
+	pending_demand = {}
+	current_text = worker_demand_text
+	current_options = []
+	current_options.append_array(worker_demand_options)
+	if Crew.can_intimidate():
+		current_options.append(EventOption.create(Journal.text("ui_intimidate", {"text": Journal.text("ui_intimidate_demand", {"criminal": _criminal_name()})}), "intimidate"))
 	is_finished = false
 
 
@@ -163,11 +204,14 @@ func _complete_task(member: CrewMember, lines: Array[String] = []) -> void:
 		died = roll < death_chance
 		injured = not died and roll < death_chance + injury_chance
 	if died:
+		_set_outcome("died", member.member_id)
 		Crew.kill(member.member_id, "task")
 		lines.append(Journal.text("task_died", {"name": member.display_name}))
 	else:
+		_set_outcome("worker" if member.role == CrewMember.Role.WORKER else "other", member.member_id)
 		Inventory.apply_change(success_food_change, success_mouthwash_change)
-		lines.append(success_text.format({"name": member.display_name}))
+		if success_text != "":
+			lines.append(success_text.format({"name": member.display_name}))
 		if injured:
 			Crew.injure(member.member_id)
 			lines.append(Journal.text("task_injured", {"name": member.display_name}))
@@ -175,8 +219,16 @@ func _complete_task(member: CrewMember, lines: Array[String] = []) -> void:
 
 
 func _abandon() -> void:
+	_set_outcome("nothing", "")
 	Inventory.apply_change(abandon_food_change, abandon_mouthwash_change)
 	_finish(abandon_text)
+
+
+func _set_outcome(outcome: String, member_id: String) -> void:
+	if outcome_flag == "":
+		return
+	Journal.set_flag(outcome_flag, outcome)
+	Journal.set_flag(outcome_flag + "_member", member_id)
 
 
 func _finish(text: String) -> void:

@@ -11,6 +11,10 @@ var member_id : String = ""
 @export
 var display_name : String = ""
 @export
+var short_name : String = ""
+@export
+var pronoun : String = ""
+@export
 var role : Role = Role.CAPTAIN
 @export
 var loyalty : int = 0

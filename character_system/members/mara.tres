@@ -6,4 +6,6 @@
 script = ExtResource("1_member")
 member_id = "mara"
 display_name = "Mara Quinn"
+short_name = "Mara"
+pronoun = "她"
 role = 4

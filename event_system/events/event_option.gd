@@ -17,8 +17,9 @@ var required_member : String = ""
 var injure_member : String = ""
 @export
 var intimidatable : bool = false
-
+@export
 var action : String = ""
+
 var target_id : String = ""
 var is_intimidation : bool = false
 

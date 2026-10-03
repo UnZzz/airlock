@@ -45,6 +45,7 @@
 	"journal_title_format": "失事第{day}天 日志",
 	"allocation_title": "物资分配",
 	"airlock_title": "Airlock",
+	"event_title": "事件",
 	"ending_title": "结局",
 	"worker_demand_food": "[占位] {worker}：“给我 1 份 Food，我就去。”",
 	"worker_demand_mouthwash": "[占位] {worker}：“给我 1 瓶漱口水，我就去。”",
@@ -71,8 +72,8 @@
 	"airlock_nobody_sedated": "[占位] 没有人吃下晚餐，没有人被麻醉。",
 	"airlock_result_exile": "[占位] {name} 被送进了 Airlock。",
 	"airlock_result_nobody": "[占位] 今晚没有人被流放。",
-	"ending_survived": "[占位] 第 30 天，补给船到了。和你一起活下来的人：{names}。",
-	"ending_survived_alone": "[占位] 第 30 天，补给船到了。船上只剩下你一个人。",
+	"ending_survived": "[占位] 第 30 天，飞船抵达了那颗宜居星球。和你一起活下来的人：{names}。",
+	"ending_survived_alone": "[占位] 第 30 天，飞船抵达了那颗宜居星球。船上只剩下你一个人。",
 	"ending_captain_starvation": "[占位] 你饿死了。",
 	"ending_captain_injury": "[占位] 你没能撑过伤势。",
 	"ending_mutiny": "[占位] {criminal} 发动了叛变。"

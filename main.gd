@@ -84,6 +84,9 @@ func _show_journal() -> void:
 
 func _show_allocation() -> void:
 	var hints : Array[String] = []
+	var allocation_text : String = Journal.get_allocation_text(Timeline.current_day)
+	if allocation_text != "":
+		hints.append(allocation_text)
 	if Timeline.is_time_to_kick_out:
 		hints.append(Journal.text("ui_airlock_hint"))
 	var chef : CrewMember = Crew.get_by_role(CrewMember.Role.CHEF)
@@ -173,7 +176,10 @@ func _show_event() -> void:
 	var event : BaseEvent = EventManager.current_event
 	if event == null:
 		return
-	_show_page(event.title, [event.current_text])
+	if event.is_finished and event.current_text.strip_edges() == "":
+		GameFlow.finish_event()
+		return
+	_show_page(event.title if event.title != "" else Journal.text("event_title"), [event.current_text])
 	if event.is_finished:
 		_add_button(Journal.text("ui_continue"), GameFlow.finish_event)
 		return

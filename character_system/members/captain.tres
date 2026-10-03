@@ -6,4 +6,5 @@
 script = ExtResource("1_member")
 member_id = "captain"
 display_name = "船长"
+short_name = "船长"
 role = 0
