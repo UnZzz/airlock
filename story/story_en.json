@@ -1,180 +1,697 @@
 {
-	"opening": {
-		"title": "Opening",
-		"paragraphs": [
-			"Time to wake up, Captain.",
-			"The fire destroyed most of our food stores, along with most of the passengers' faith.",
-			"All we have left is the little food the galley had stocked, a crate of mouthwash Firebreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
-			"And you.",
-			"Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
-			"Calm them. Feed them. Keep everyone steady.",
-			"Necessary sacrifices will be accepted."
-		]
+  "opening": {
+	"title": "Opening",
+	"paragraphs": [
+	  "Time to wake up, Captain.",
+	  "The fire destroyed most of our food stores, along with most of the passengers' faith.",
+	  "All we have left is the little food the galley had stocked, a crate of mouthwash Firebreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
+	  "And you.",
+	  "Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
+	  "Calm them. Feed them. Keep everyone steady.",
+      "Necessary sacrifices will be accepted."
+	]
+  },
+  "days": {
+	"1": {
+	  "journal_title": "Wreck Log: Day 01",
+	  "journal": [
+		"The cause of the fire is still under investigation. I'd lean toward a short circuit in the refrigeration system — accident, not sabotage. But whether it was an accident or not, it's still my responsibility. Vegetables, meat, and our poor security guard Daniel Price were all burned down to a pile of inedible char. Elias Ward sealed off the airlock to the freezer section in time, so the fire's contained — but that doesn't mean we're saved.",
+		"We have a small amount of surviving vegetables and dry rations. Mara Quinn dug some less-rotten scraps out of the compost bin. Even with her promise not to waste a single ingredient while cooking, to make it last longer, the total amount still isn't enough.",
+		"When it's necessary, I'll make the call.",
+		"Dr. Helena Voss says if I don't add \"Doctor\" before her name in this log, she'll happily watch us die of gastroenteritis. Besides that, she strongly objected to us eating the compost-bin food.",
+		"\"I've treated 312 cases of food poisoning. Half the patients insisted the food 'looked fine.'\"",
+		"Of course, her actual words were far less calm than that.",
+		"Mason Reed didn't sleep all night. He kept humming a few folk songs from his home planet, wandering the cabin in circles, kicking the bottled mouthwash everywhere. Whoever tells him to go sleep, he raises a fist and says he's a free citizen now, same as everyone else, and has the right to do whatever he wants.",
+		"\"A prisoner with no guard watching him is just a regular citizen.\" Those were his words.",
+        "Even though everyone had a normal —even generous —dinner yesterday, and there's no immediate risk of starvation, if I blindly trust my own judgment, I could give them another meal too, and make trouble for myself."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "none"
 	},
-	"days": {
-		"1": {
-			"journal_title": "Wreck Log: Day 01",
-			"journal": [
-				"The cause of the fire is still under investigation. I'm inclined to call it an accident, a short circuit in the refrigeration system. But accident or sabotage, the responsibility is mine. The vegetables, the meat, and our poor security guard Daniel Price were all burned into a heap of inedible charcoal. Elias Ward sealed the airlock to the freezer section in time and the fire was contained, but that doesn't mean we survived.",
-				"We have a few vegetables and some dry rations left, and Mara Quinn dug some not-quite-so-rotten scraps out of the compost bin. Even if she promises not to waste a single crumb when she cooks so we can hold out longer, there still isn't enough food.",
-				"When the time comes, I will make a choice.",
-				"Dr. Helena Voss says that if I don't put \"Dr.\" in front of her name in this log, she will happily watch us writhe to death when we all come down with gastroenteritis. She also strongly objects to us eating anything dug out of the compost bin.",
-				"\"I have treated 312 cases of food poisoning, and half of those patients swore the food 'looked perfectly fresh.'\"",
-				"Of course, she didn't say it nearly that calmly.",
-				"Mason Reed didn't sleep all night. He kept singing the same few folk songs he picked up on his home planet, wandering lap after lap around the cabin and kicking the bottles of mouthwash all over the place. Whoever tells him to get lost and go to bed, he shakes his fist and says he's a free man now, just like everyone else, and has every right to do whatever he pleases.",
-				"\"A prisoner with no guard is a law-abiding citizen.\" That's how he put it.",
-				"Everyone had a normal, even generous, dinner yesterday, so nobody is at risk of starving just yet. But if I'm blindly overconfident in my own abilities, I could give them an extra meal and make some trouble for myself."
-			],
-			"allocation_title": "Supply Allocation",
-			"event": "none"
-		},
-		"2": {
-			"journal_title": "Wreck Log: Day 02",
-			"journal": [
-				"Slept like a baby, if you ignore the four trips to the toilet.",
-				"They still call me Captain, but I can't shake the feeling that one of them is going to drive something sharp through my throat while I sleep.",
-				"Mara looks a little defeated, because she feels her cooking isn't getting the showcase it deserves. Mind you, she used to toss artichoke leaves straight into the trash.",
-				"Mason is still singing those damned songs on repeat. If we make it back alive, I'm hiring him a vocal coach, so the next people stuck with him won't have to suffer like this.",
-				"We discussed what this pile of mouthwash might be good for besides fresh breath. First of all, since it's mouthwash, it must contain sugar and alcohol. So we could treat it as an industrial mojito with a lethal dose of mint: stay drunk and keep your teeth pearly white at the same time. Or we could use it as disinfectant. The passengers argued endlessly over those two options. But we did agree on one thing: whatever Firebreath is paying us isn't worth risking our lives to hand this cargo back to them intact.",
-				"They haven't shown an ounce of the solidarity you'd hope for in a crisis, but at least I'm still alive. Maybe I should reward them with a little food?"
-			],
-			"event": "fire_check"
-		},
-		"3": {
-			"journal_title": "Wreck Log: Day 03",
-			"journal": [
-				{
-					"if": {
-						"day2_fire": "worker"
-					},
-					"text": "I really regret making that deal with Elias. All he did was open the airlock, poke his head in, and say, \"Captain, the fire's out.\" I wanted him to check the wiring for faults, but he just wandered over to central control and glanced at the readings."
-				},
-				{
-					"if": {
-						"day2_fire": "worker"
-					},
-					"text": "No, no, what am I doing, hoping something actually goes wrong? As long as everyone stays alive, if he wants the mouthwash or this whole ship, he can have it."
-				},
-				{
-					"if": {
-						"day2_fire": "other"
-					},
-					"member": "day2_fire_member",
-					"text": "{name} was very reluctant, but {ta} still took a look into the freezer. Thankfully the fire was completely out. All that was left was warm, stifling air, and {ta} came out drenched in sweat. As for the wiring, {name} said {ta} knew absolutely nothing about it. If something serious had broken, we'd just have to sit here and wait to die."
-				},
-				{
-					"if": {
-						"day2_fire": "nothing"
-					},
-					"text": "Better to risk the oxygen system failing and all of us suffocating than to let a single crew member get hurt. What a merciful captain I am, right?"
-				},
-				"Mara is desperate to get her hands on some French T55 flour, a few Périgord truffles, and a big slab of A5 Nagasaki fillet, just to show us her beef Wellington. Elias and Mason kept asking her what to drink with it. They'd never heard of a single one of the names she gave them, but just knowing they stood for the very finest alcohol got them all worked up.",
-				"\"Lucky for us we can't get any of those ingredients. Otherwise, after all this time, all that butter would give us 'atherosclerosis' and we'd drop dead.\"",
-				"Dr. Voss said this while chewing on an artichoke leaf.",
-				"\"Maybe not Elias and Mason. They'll do something stupid while drunk and die in ways no normal person could ever imagine.\"",
-				"\"Maybe we'll all die, but at least we're free!\" Mason raised a bottle of mouthwash high."
-			],
-			"allocation_text": "Time to hand out supplies, Captain. (That's me.)",
-			"event": "random"
-		},
-		"4": {
-			"journal_title": "Wreck Log: Day 04",
-			"journal": [
-				"Good news: according to the navigation system, the nearest habitable planet, Tahiti, is only 26 days away!",
-				"More good news! We have more than enough fuel to reach it!",
-				"Bad news: we don't have enough food. Before we reach that mysterious utopia, we'll have turned into five very confident skeletons.",
-				"A third piece of good news: they'll be able to identify the dead by the clothes we're wearing.",
-				"Mason has been explaining why he should count as a \"legal citizen.\" His criminal record shows he went to a protected nature-reserve planet in Centaurus several times to poach a kind of giant snail, and repeatedly contacted an interstellar trader suspected of smuggling. But he insists it was all just \"self-defense.\"",
-				"\"A snail the size of a mountain! The smallest tooth on its radula could slice you clean in half!\"",
-				"Everyone nodded along, pretending to buy it. Only Elias said flat out that he's a bastard who'll weasel his way out of anything. Thankfully neither of them had been drinking the mouthwash, so they still had a shred of sense.",
-				"Mara is hungry. She says these lousy leaves don't count as real food."
-			],
-			"allocation_text": "So, who gets stuck finishing off these awful leaves tonight?",
-			"event": "random"
-		}
+	"2": {
+	  "journal_title": "Wreck Log: Day 02",
+	  "journal": [
+		"Slept well, if you ignore the 4 times I woke up in the middle of the night.",
+		"Even though they still call me Captain, I keep feeling like one of them will stab me through the throat with something sharp while I sleep.",
+		"Mara seems a little frustrated —she feels her cooking skills aren't being properly showcased. You should know, before all this, she used to just throw artichoke leaves straight in the trash.",
+		"Mason is still humming those same damn songs on repeat. If we make it back alive, I'm absolutely getting him a singing coach, if only to spare whoever's stuck with him next time.",
+		"We discussed what else this crate of mouthwash could be used for besides freshening breath. First, since it's mouthwash, it must contain sugar and alcohol. So we could treat it as a sort of industrial mojito laced with a lethal dose of mint, and become alcoholics while keeping our teeth white. Or we could use it to disinfect wounds. The passengers argued endlessly over the two options. But we at least reached one consensus: whatever Firebreath is paying us isn't worth risking our lives to deliver this shipment intact.",
+        "Even though they showed zero teamwork in the face of hardship, at least I'm still alive. Maybe I should give them some food as a reward?"
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "fire_check"
 	},
-	"events": {
-		"sawdust_meal": {
-			"title": "Sawdust Supper",
-			"description": [
-				"Elias came up with a novel kind of food: sawdust! Why not? It grows out of the ground and gets watered by the rain like any other part of a plant, so why can't we eat it? He says that when the workers breaking ground in those remote star systems run out of food, they mix a little flour with the dust they saw off the scaffolding. Our miserable digestive systems can't process cellulose at all, so it would just move into our guts and stay there for a while. And if your stomach is always full, you never need to eat, right?",
-				"Dr. Voss pointed out that this is an utterly absurd idea. It's not only irresponsible to our health, it's a grave insult to her as a doctor of medicine. I won't write down her long list of evidence and case studies. Honestly, the real reason is that I didn't remember any of it. Anyway, she suggested using a chemical to break the sawdust down into smaller molecules the human body can digest. It won't turn into a perfectly healthy cookie, but it should at least lower the chance of getting sick.",
-				{
-					"if_on_board": "mason",
-					"text": "Mason swears he'd rather starve than chew on a tree"
-				},
-				"If you trust Elias, he'll add to your Food stores, but the crew may get sick. If you go with Dr. Voss, who knows far more about health, your Food stores will go up a little, with no risk of anyone getting sick."
-			],
-			"option_elias": "Elias Ward",
-			"option_voss": "Dr. Voss",
-			"option_nonsense": "This is ridiculous! (Mason would want you to do this)",
-			"complaint": "Elias doesn't get why, at a time like this, you're still going along with some other idiot's nonsense. He and his fellow workers got through hard times exactly this way, and he doesn't see any of them coming down with cancer or heart disease. If you're going to turn down the wisdom of the working class, the least you can do is give him the compensation he's owed.",
-			"complaint_food": "Food",
-			"complaint_mouthwash": "Mouthwash",
-			"complaint_give_in": "Damn it, let him have his way (go with Elias's plan)"
+	"3": {
+	  "journal_title": "Wreck Log: Day 03",
+	  "journal": [
+		{
+		  "if": { "day2_fire": "worker" },
+		  "text": "I really regret making that deal with Elias. He just opened the airlock, peeked inside, and said, \"Captain, the fire's out.\" I wanted him to check the electrical system too, but he just glanced at the data on the control panel."
 		},
-		"thief": {
-			"title": "Thief!",
-			"description": "{name} stole a big portion of food and got caught red-handed trying to hide it. I don't think we can blame {ta_obj}. Anyone this hungry would do the same. But the one thing we can't accept is that {ta} refuses to hand the food over! Should we use our fists to persuade {ta_obj} to share it with everyone, trade {ta_obj} a bottle of mouthwash for it, or just let {ta_obj} have a good meal?",
-			"option_force": "Persuade by force (small chance someone gets hurt)",
-			"option_trade": "Trade mouthwash for it (lose Mouthwash)",
-			"option_release": "Let {ta_obj} go (lose Food)",
-			"option_mason": "Have Mason deal with it (nothing happens)"
+		{
+		  "if": { "day2_fire": "worker" },
+		  "text": "No, no —why did I even expect anything to actually get checked. As long as everyone's alive, whether it's mouthwash or the whole ship, just give it to him."
 		},
-		"alcohol_distill": {
-			"title": "Distilled Alcohol",
-			"description": "Dr. Voss caught me trying to treat {name}'s wound. She \"tactfully\" pointed out that I hadn't separated the sugar out of the mouthwash, which will make the wound fester so it never fully heals. The only real fix is to admit she's the most educated person on this ship, and give her two bottles of mouthwash so she can distill alcohol pure enough for the job.",
-			"option_accept": "Fine, Dr. Voss, I admit you're much smarter than me (Mouthwash -2, back to Healthy)",
-			"option_refuse": "Forget it. The captain is always the smartest person on the ship. (nothing happens)",
-			"option_mason": "Tell Mason someone called his captain an idiot (Mouthwash -2, back to Healthy, and you don't have to admit anything to Dr. Voss)"
+		{
+		  "if": { "day2_fire": "other" },
+		  "member": "day2_fire_member",
+		  "text": "Though {name} was reluctant, {ta} still took a look into the cold storage. Luckily the fire was completely out, only the warm air left {ta_obj} sweating. As for the electrical systems, {name} said {ta} knows nothing about it —if something seriously malfunctions, we'll just have to wait to die."
 		},
-		"mason_guard": {
-			"title": "Does He Count as a Guard?",
-			"description": "We're clearly a mess. Just last night, Mason found out that selfish {name} had been secretly keeping a portion of food the whole time, with no intention of sharing it. Nice work, Mason. I just hope next time he uses his fists a little less and his brain a little more."
+		{
+		  "if": { "day2_fire": "nothing" },
+		  "text": "Better to risk the oxygen system failing and everyone suffocating than let any crew member get hurt. What a merciful captain I am, aren't I?"
 		},
-		"octopus": {
-			"title": "Our Squishy Roommate",
-			"description": "We heard strange noises coming from the air vent. When we pried the wire mesh open, we found a giant octopus! We need a brave soul to drive out this uninvited guest, or turn it into our dinner. The only problem is that this stretch of vent leads into cold storage, so if we don't want our crew electrocuted, maybe we should send someone who knows the ship.",
-			"send_options": {
-				"elias": "Elias Ward (small chance of injury)",
-				"mara": "Mara Quinn (high chance of injury, small chance of death)",
-				"helena": "Dr. Voss (high chance of injury, small chance of death)",
-				"mason": "Mason Reed (high chance of injury, small chance of death)"
-			},
-			"abandon_option": "We'll be fine (everyone gets injured)"
+		"Mara really wants some French T55 flour, a few P茅rigord black truffles, and a big cut of Nagasaki A5 fillet to show off her beef Wellington. Elias and Mason kept asking what wine would pair with it. They'd never heard of any of those names before, but the mere idea of them representing the pinnacle of alcohol got them excited anyway.",
+		"\"Lucky for us we can't get any of these ingredients, or we'd all develop 'atherosclerosis' from all that butter and drop dead.\" —Dr. Voss, chewing on an artichoke leaf.",
+		"\"Elias and Mason probably wouldn't. They'd just do something stupid while drunk and die in some way normal people wouldn't expect.\"",
+        "\"Maybe we'll all die, but at least we'll be free!\" Mason held up a bottle of mouthwash triumphantly."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "allocation_text": "Time to allocate resources, Captain. (That's me.)",
+	  "event": "random"
+	},
+	"4": {
+	  "journal_title": "Wreck Log: Day 04",
+	  "journal": [
+		"Good news: navigation shows the nearest habitable planet, Tahiti, is only 26 days away!",
+		"Second piece of good news: our fuel is more than enough to get there!",
+		"Bad news: we're running out of food. Before we reach that mysterious utopia, we'll have turned into five very confident skeletons first.",
+		"Third piece of good news: at least they can identify the bodies by the clothes we're wearing.",
+		"Mason is explaining why he should be classified as a \"law-abiding citizen.\" Even though his criminal record shows multiple poaching incidents of a giant snail on a nature reserve planet in Centaurus, plus repeated contact with a suspected smuggler. He insists it was all \"in self-defense.\"",
+		"\"A snail the size of a mountain —the smallest tooth on its radula could cut you in half!\"",
+		"Everyone nodded along performatively —only Elias flat-out called him a sophist and an ass. Luckily neither of them had touched the mouthwash, so there was still some sanity in the room.",
+        "Mara's hungry. She thinks these rotten leaves don't count as real food."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "allocation_text": "So, whose turn is it to choke down these disgusting leaves tonight?",
+	  "event": "random"
+	},
+	"5": {
+	  "journal_title": "Wreck Log: Day 05",
+	  "journal": [
+		"No! We really don't have enough food. I have no idea what twisted mood I was in yesterday writing all that \"good news.\" God, I hate myself —every word from yesterday reads like it's mocking me now.",
+		"Mason tried to seize more resources by force. Luckily there are four of us, so he lost —for now.",
+		"Elias says if I can't guarantee he gets home alive, he'll rewire the oxygen supply so we all suffocate together, just like the people in Mars Colony 215.",
+		"Dr. Voss keeps repeating, over and over, how little food we have left, as if she thinks I won't believe her unless she recalculates it in front of me each time. Every time I try to say \"I know, now be quiet,\" she pulls out that damn diploma again.",
+		"\"Sorry, did I misunderstand, or are you choosing to ignore the advice of a senior physician who graduated from Helios University School of Medicine with an MD and a Master's in clinical toxicology, and completed six years of emergency medicine training?\"",
+		"I told her I have no solution for the current situation. Unless her Helios University also taught her some mystical spell for making a living person vanish into thin air.",
+        "Given the situation, we have to conserve food as much as possible. But who knows what I'm actually thinking."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"6": {
+	  "journal_title": "Wreck Log: Day 06",
+	  "journal": [
+		"Well, the worst has happened. Mason snuck out and opened the airlock in the middle of the night, trying to throw us out one by one to keep the rotten leaves to himself! Luckily Mara's a light sleeper, and also has the good habit of screaming when startled. We managed to tie him up. A criminal is a criminal, after all —even with poor Daniel gone, someone else will always be watching him. To preserve our \"precious friendship,\" I'll only keep him tied up for one day as punishment. By the way, Elias took a hard punch to the head from Mason and isn't feeling great right now.",
+		"But Mason —and everyone else's —concerns were valid. We can't just count down the days watching the food dwindle and wait to starve.",
+		"I've said it before: when it's necessary, I'll make the call.",
+		"I guess Helios never taught Dr. Voss to keep an eye on her personal belongings —especially medication that could lead to serious consequences. While everyone was busy dealing with Mason, I stole a whole bottle of sedatives from her medical kit! Long live Helios!",
+		"Thanks to my masterful negotiation skills, and the panic Mason caused, Mara agreed to help me slip sedatives into tomorrow's dinner. Her only condition: don't pick her. Of course, to avoid suspicion, she'll eat the same meal as everyone else.",
+		"Once they pass out, I'll have enough time to open the airlock and send one of them out for some fresh air.",
+		"I promised Mara I wouldn't send her out. But a promise is just a promise, in the end.",
+        "Maybe I should give the poor soul about to leave us a good, full meal first."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"7": {
+	  "journal_title": "Wreck Log: Day 07",
+	  "journal": [
+		"Hope I've made up my mind. Look at sweet Mara, Captain —she lowered herself to cook with ingredients she once turned her nose up at, just to fill our stomachs. And Dr. Voss! Even though she's the second most annoying person on this ship, she's never stingy with her excellent medical skills when we're hurt. And Elias —all it takes is a $4.88 bottle of mouthwash and he'll solve a malfunction serious enough to kill you. And then there's Mason, who...",
+		"Anyway, I can't let a moment of softness bury the four heroes who've worked so hard to keep us all alive.",
+        "And of course, there's you —or me, the brilliant Captain. A single commercial airliner can't possibly satisfy all my ambitions, right?"
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "airlock"
+	},
+	"8": {
+	  "journal_title": "Wreck Log: Day 08",
+	  "journal": [
+		{
+		  "if": { "day7_exile": "yes", "last_airlock_target": "elias" },
+		  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
 		},
-		"jason_knock": {
-			"title": "Someone Even Stranger Than These Four?",
-			"description": [
-				"Something is knocking on our airlock. Maybe we're just hearing things. Maybe it's the ghosts of the people we threw out the airlock, come back for us. Or maybe it's some supernatural creature that doesn't need oxygen and can move freely through the vacuum. Thank goodness, it can communicate, and it even speaks English! Later we figured out that he's just an ordinary human who happens not to need oxygen and can move freely through the vacuum. His name is Josan, and he desperately needs alcohol. He brought us a little food as a show of good faith and asked us to let him in.",
-				"Should we?"
-			],
-			"option_allow": "Let him in (Josan comes aboard)",
-			"option_deny": "Turn him away (nothing happens)"
+		{
+		  "if": { "day7_exile": "yes", "last_airlock_target": "mara" },
+		  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
 		},
-		"jason_fed_up": {
-			"title": "We've Had Enough!",
-			"description": "All right, this is beyond ridiculous. In all the days Josan has been here, he hasn't lifted a finger. All he does is drink our mouthwash. Elias points out that this is naked exploitation and oppression. That hard-won batch of mouthwash cost us the whole crew's reputation, plus the compensation Firebreath is about to come after us for. Mara keeps worrying that he'll get drunk, open the airlock and throw us out one by one. In short, everyone agrees that letting Josan in was a complete and utterly absurd mistake. Do you want to send someone to ruthlessly kick him out and salvage what little reputation you have left, or let him keep wasting all our mouthwash?",
-			"option_elias": "Elias Ward",
-			"option_mara": "Mara Quinn",
-			"option_helena": "Dr. Voss",
-			"option_mason": "Mason Reed",
-			"option_nothing": "[TBD] Let him stay",
-			"result_evict": "[TBD] {name} threw Josan off the ship."
+		{
+		  "if": { "day7_exile": "yes", "last_airlock_target": "helena" },
+		  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
 		},
-		"debt_crisis": {
-			"title": "Debt Crisis",
-			"description": "I picked up a signal from another ship. They turned out to be Firebreath people. But those selfish bastards have no intention of rescuing us. They came to find out why that crate of mouthwash never arrived. I told them there had been a fire on board, our food had burned, and we were about to starve. All they kept asking was how we plan to pay for a crate of mouthwash worth less than a hundred dollars in total. We have nothing, and their solution is for us to send one crew member to work for them. They promise to send that crew member home once the debt is paid off. Who should we send to contribute a little muscle to our finances? Or do we grab our weapons and drive off these bastards who'd leave us to die?",
-			"option_elias": "Elias Ward",
-			"option_mara": "Mara Quinn",
-			"option_helena": "Dr. Voss",
-			"option_mason": "Mason Reed",
-			"option_fight": "[TBD] Grab our weapons and drive them off",
-			"leave_elias": "The truth is, I've always offered Elias extremely generous terms, [TBD]",
-			"leave_mara": "[TBD] Mara left with the Firebreath crew.",
-			"leave_helena": "[TBD] Dr. Voss left with the Firebreath crew.",
-			"leave_mason": "[TBD] Mason left with the Firebreath crew.",
-			"fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
+		{
+		  "if": { "day7_exile": "yes", "last_airlock_target": "mason" },
+		  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+		},
+		{
+		  "if": { "day7_exile": "yes" },
+		  "text": "Sad? We should be celebrating that our odds of survival just went up!"
+		},
+		{
+		  "if": { "day7_exile": "yes", "if_on_board": "elias" },
+		  "text": "Elias Ward has already drunk two bottles of mouthwash —not sure if it's grief or relief."
+		},
+		{
+		  "if": { "day7_exile": "yes", "if_on_board": "mara" },
+		  "text": "Mara Quinn secretly gave me a look, which I think means both \"you owe me\" and \"thank you\" at once."
+		},
+		{
+		  "if": { "day7_exile": "yes", "if_on_board": "helena" },
+		  "text": "Dr. Voss prescribed medicine to everyone, because apparently everyone has a splitting headache. To avoid suspicion, I held my head and groaned a little too."
+		},
+		{
+		  "if": { "day7_exile": "yes", "if_on_board": "mason" },
+		  "text": "Mason Reed is celebrating {exiled_name}'s departure, and his method of choice is still singing his awful songs."
+		},
+		{
+		  "if": { "day7_exile": "no" },
+		  "text": "Maybe I just have that main-character kind of confidence."
+		},
+		{
+		  "if": { "day7_exile": "no", "if_on_board": "elias" },
+		  "text": "Elias Ward is tinkering with the instrument panel under the guise of maintenance."
+		},
+		{
+		  "if": { "day7_exile": "no", "if_on_board": "mara" },
+		  "text": "Mara Quinn gave me a questioning look; I told her not to worry, I have full confidence I can get her safely to land."
+		},
+		{
+		  "if": { "day7_exile": "no", "if_on_board": "helena" },
+		  "text": "Dr. Voss spent an hour explaining the difference between a doctorate and a master's degree to us, because we'd mistakenly recorded her medical doctorate as a master's degree."
+		},
+		{
+		  "if": { "day7_exile": "no", "if_on_board": "mason" },
+		  "text": "We untied Mason Reed, and he promised he would absolutely never try to throw us out of the airlock again."
+		},
+        "Everyone's still hungry."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"9": {
+	  "journal_title": "Wreck Log: Day 09",
+	  "journal": [
+		"The meaning of life is to spend every day pondering pointless but profound-sounding philosophical questions, to escape the reality that we're all going to starve to death!",
+		"I really wish I were some clueless-but-proud \"philosopher who has glimpsed the secrets of the universe,\" instead of a captain who's skilled at space navigation but knows exactly how badly he's about to screw everything up.",
+		"Okay, maybe I should talk to Dr. Voss less.",
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss has been unusually quiet today —I'm almost not used to it."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias Ward is fixing the broken lamp in my quarters."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Let's sing the praises of Mara Quinn's heroic feat —she used vinegar and open flame to soften unchewable fiber, and spices to mask the smell of rot!"
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason Reed is complaining, wanting to play Russian roulette. Luckily Daniel's gun got buried in that pile of ash that used to feed all of us, never to be found again."
+		},
+        "Really, only by staying alive can one properly obsess over the true meaning of life."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"10": {
+	  "journal_title": "Wreck Log: Day 10",
+	  "journal": [
+		"As a matter of fact, we're not going to starve. That only happens in 19th-century stories, or disaster movies that ran out of ideas.",
+		"And if someone really does starve, it's only because they didn't have a competent leader.",
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara says she heard a strange noise in the storage room —maybe one of those terrifying alien creatures from old sci-fi films, or maybe a big rat rich in fat and protein, or maybe just another case of her poor sleep causing auditory hallucinations."
+		},
+		{
+		  "if": { "if_not_on_board": "mara" },
+		  "member": "any_passenger",
+		  "text": "{name} says {ta} heard a strange noise in the storage room —maybe one of those terrifying alien creatures from old sci-fi films, or maybe a big rat rich in fat and protein, or maybe just another case of {ta_pos} poor sleep causing auditory hallucinations."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias Ward lost his wrench, and insists on blaming one of us for it."
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Besides medicine, Dr. Voss says she also dabbles in physics, especially astrophysics, from time to time. God knows how these two fields ended up stacked in one person's head. But I checked —she wasn't lying!"
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason Reed accidentally opened a bottle of mouthwash, and accidentally poured the whole thing down his throat."
+		},
+        "As the captain, I can't just let them go hungry every day, can I?"
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"11": {
+	  "journal_title": "Wreck Log: Day 11",
+	  "journal": [
+		"A boring day...",
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias is just slumped over the dining table, waiting for a meal that may never come."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara is waiting for you to allocate resources, so she can decide the portions."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "We officially added \"Mason Reed is forbidden from drinking mouthwash\" to the Concord-214 Emergency Governance Code. This will be our first law. Even he's quieted down since."
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss says this atmosphere is a symptom of what she calls \"Drift Depression.\""
+		},
+        "But I know this much: starvation will finish us off long before depression gets the chance."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"12": {
+	  "journal_title": "Wreck Log: Day 12",
+	  "journal": [
+		{
+		  "if": { "if_not_on_board": "helena" },
+		  "text": "We dug a thick pink syrupy medicine out of Dr. Voss's medical kit. Mara tasted it and said it tastes like raspberry. Whatever it actually is, at least it tastes good. It helped us briefly forget we're drifting in a giant mass of unbreathable vacuum.\n\nTerrible news! Awful news! I think it's because of the rotten vegetables —by afternoon our stomachs are aching badly. I wish space radiation would turn me into a stomach-less cnidarian! Hope this doesn't leave lasting damage."
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss gave us a greasy, bitter yellow concoction. Everyone felt sick after drinking it. The awful feeling helped us briefly forget we're drifting in a giant mass of unbreathable vacuum. By afternoon, she made us drink it again. I asked why she didn't drink it herself, and she said:\n\n\"I'm not drinking that disgusting thing.\""
+		},
+        "Other than that, nothing too terrible happened."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"13": {
+	  "journal_title": "Wreck Log: Day 13",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara found me, looking pretty nervous. When I asked what she wanted to say, she kept stammering, dancing around the point.\n\n\"How many —how many portions should I make today?\"\n\nI asked if we were running low on food; she nodded.\n\n\"I mean... uh... say you had a kitten and a puppy, but only one portion of food —who would you feed?\"\n\nI told her I prefer cats, so I'd probably feed the kitten. She shook her head quickly.\n\n\"No, no, I don't actually want you to answer that. I mean...\" She twisted a strand of hair around her finger, pulling at it.\n\n\"Like... you could split it between them, but they might both starve. Or you give it all to just one of them...\"\n\nI watched her lower her head in shame.\n\nMara is willing to help me slip sedatives into tomorrow's dinner again. Same condition: don't pick her.\n\nAt least today's food is safe."
+		},
+		{
+		  "if": { "if_not_on_board": "mara" },
+		  "text": "If only Mara were still here. Maybe I could sweet-talk her into slipping something into tomorrow's dinner again, to keep the headcount of this gluttonous crowd under control. But who am I kidding —I'm a promise-breaking bastard."
 		}
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"14": {
+	  "journal_title": "Wreck Log: Day 14",
+	  "journal": [
+		"Today's definitely worth celebrating. We're halfway through! We made some colorful balloons out of plastic wrap and hung them all over the ship. Poor Daniel —he'll never get the chance to feel this kind of hope creeping closer, being dead and all.",
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias told me if I want my people to work for me, I need to give them proper respect: an 8-hour workday, three days off, and most importantly, a steady supply of alcohol.\n\nI told him most people with any professional ethics don't drink while working, or while everyone might die any minute. He replied:\n\n\"Go check out Firebreath's loading dock then. I worked there five years, and almost every week someone crushed their fingers drunk. But the foreman still brought us beer every day —exactly because he cared about his workers!\"\n\nIf I ever get the chance to actually visit that place he mentioned, that'd be nice."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "I'm really worried Mason might get the idea again one day to throw us all out.\n\nElias's proposed 4-day workweek is still pending approval from the upper chamber.\n\nDr. Voss really has saved our lives several times, but she always thinks she's smarter than everyone else.\n\nIf Mara's willing to help me exile others, maybe she'd help someone else do the same to me?\n\nAnyway, let's eat first."
+		},
+		{
+		  "if": { "if_not_on_board": "mara" },
+		  "text": "I need to practice my cooking. If I could make something decent myself, maybe I'd get the chance to slip something into the food too."
+		}
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "airlock"
+	},
+	"15": {
+	  "journal_title": "Wreck Log: Day 15",
+	  "journal": [
+		{
+		  "if": { "day14_exile": "yes", "last_airlock_target": "elias" },
+		  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
+		},
+		{
+		  "if": { "day14_exile": "yes", "last_airlock_target": "mara" },
+		  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
+		},
+		{
+		  "if": { "day14_exile": "yes", "last_airlock_target": "helena" },
+		  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
+		},
+		{
+		  "if": { "day14_exile": "yes", "last_airlock_target": "mason" },
+		  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+		},
+		{
+		  "if": { "day14_exile": "yes" },
+		  "text": "{random_passenger} insists we set out five full place settings, meaning whoever's cooking has to wash a few extra plates. Thankfully our water's still holding up —otherwise we'd be stuck washing dishes with sand like those desert documentaries. Oh wait, we don't even have sand. Maybe that pile of ash in the cold storage can serve a similar purpose?"
+		},
+		{
+		  "if": { "day14_exile": "no" },
+		  "text": "A moment of softness might doom the entire crew. After all this hunger, all this arguing, if we still end up dead in the end, it would feel like such a waste. Though, come to think of it, sunk cost shouldn't factor into new decisions. Either way, since I made this choice, I must have had the resolve to save everyone."
+		},
+        "Put the pen down, Captain —the crew's hungry."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"16": {
+	  "journal_title": "Wreck Log: Day 16",
+	  "journal": [
+		"I don't know why there's a spider on this ship —Elias was supposed to check for this kind of thing before departure. And it's a big one, about a meter wide, should've been easy to spot. They all got so scared they climbed onto the table, not leaving a single spot for their own captain. Thankfully it didn't seem aggressive —it didn't even have time to bare its fangs when I stabbed it with a knife.",
+		"If they don't mind eating some unconventional meat, our food crisis might be somewhat alleviated.",
+        "I stabbed it to a pulp, though, so it probably won't keep long."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "none"
+	},
+	"17": {
+	  "journal_title": "Wreck Log: Day 17",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss said that as a kid, her dream was actually to become a professor of astrophysics. Later, she decided \"Dr. Voss\" sounded cooler than \"Prof. Voss.\""
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara used crushed dry rations as a flour substitute, spider meat instead of beef, and various vegetable scraps disguised as some kind of green truffle paste, to make us her so-called \"drift edition\" beef Wellington. Honestly, it wasn't bad."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "We gave Elias more tasks, on the grounds that no one else could handle this maintenance work."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "We can now recite Mason's handful of songs by heart."
+		},
+        "As always, hunger remains our common enemy."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"18": {
+	  "journal_title": "Wreck Log: Day 18",
+	  "journal": [
+		"Honestly, I don't think that weird medicine actually cured our \"Drift Depression.\" Whenever there's no trouble, and no giant alien spider, we start overthinking. We sit in a circle, looking at each other, trading unspoken pain through our eyes. We don't even need to talk to guess what's on each other's minds.",
+		"To quote Blaise Pascal: \"All the unhappiness of men arises from one single fact, that they cannot stay quietly in their own chamber.\"",
+		"Turns out swapping \"room\" for \"a drifting spaceship\" doesn't really change much.",
+        "Actually, all the unhappiness of men arises from one single fact: they grow hungrier with each passing day."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"19": {
+	  "journal_title": "Wreck Log: Day 19",
+	  "journal": [
+		"Life is as long as suffering is long. Because every day you're alive, you spend worrying about dying.",
+		"But staying alive is still a good thing, isn't it? We like being alive, so naturally we should also like suffering. To celebrate still being alive, I've decided to declare this day Interstellar Suffering Day! Though our calendar system is broken —we'll figure out how to back-calculate the actual date once we land.",
+		"Everyone gets mouthwash drinking privileges today —Daniel included. We poured a little on the pile of ash that used to be him mixed with frozen food, hoping he'd like it.",
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias toasted to you."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason called this an absolutely shameful waste."
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Voss insisted on only using it to gargle."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Today's the day I learned Mara doesn't like mint."
+		}
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"20": {
+	  "journal_title": "Wreck Log: Day 20",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara gave me another wink today —it's become something of a tradition at this point. We both know exactly what it means. My only worry is that if she keeps disappearing with me, the rest of the crew might start getting suspicious. But if every suspicious crew member ends up gone too, does that mean we stop being suspected?\n\nMara is willing to help me slip sedatives into tomorrow's dinner again. If I'm feeling generous, I don't have to pick her."
+		},
+		{
+		  "if": { "if_not_on_board": "mara" },
+		  "text": "They've finally recognized my cooking skills. I've taken over as the head chef of Concord-214! Which means I can add anything I want to their food now.\n\nIn exchange for a bit of culinary pleasure, the crew has granted me the power to throw them out the airlock and suffocate them. I'll slip sedatives into tomorrow's dinner.\n\nCan't send that person off on an empty stomach."
+		}
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"21": {
+	  "journal_title": "Wreck Log: Day 21",
+	  "journal": [
+		"Maybe they're starting to figure something out. After all, passing out every seven days isn't exactly normal.",
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara eats her food quietly."
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss wants to check the ship's CO2 levels —all normal."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias decides to cut back on the mouthwash."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason thinks this is a curse brought on by our discrimination against \"a free man.\""
+		},
+        "At least you're still safe, Captain."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "airlock"
+	},
+	"22": {
+	  "journal_title": "Wreck Log: Day 22",
+	  "journal": [
+		{
+		  "if": { "day21_exile": "yes" },
+		  "text": "At least they got to celebrate \"Interstellar Suffering Day\" with us, right.\n\nThe crew senses something's off. They speculate it's the ghost of the giant spider you killed a while back, back for revenge.\n\nThere probably won't be another food crisis anytime soon."
+		},
+		{
+		  "if": { "day21_exile": "no" },
+		  "text": "No, I can't abandon my crew. It would make me look like a jerk in my own eyes.\n\nWe always want to please the version of ourselves living in our own heads. Because we're all insecure, fragile creatures. Unlike spiders or octopuses, who can be satisfied by pure killing instinct.\n\nBut what we really want to please more is our own digestive system —same as every other carbon-based lifeform."
+		}
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"23": {
+	  "journal_title": "Wreck Log: Day 23",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "A famous free man once said: \"Screw carbs, screw the rotten leaves, it's basically slop! I'll do whatever I want, and right now I'm going to eat this table, because I can!\""
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "A famous foodie once said: \"I believe you're just starving mad. No one's ever rated my cooking like that before.\""
+		},
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "A senior physician who graduated from Helios University School of Medicine with an MD and a Master's in clinical toxicology, and completed six years of emergency medicine training once said: \"Psychology isn't my specialty, but Mason definitely isn't the only one who's starving mad.\""
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "A wordy person once said: \"If you don't feed your people, they'll starve. If you don't give your people three days off, they'll work themselves to death.\""
+		},
+        "A famous philosopher, Teresa Panza, once said: \"Hunger is the best sauce in the world.\""
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"24": {
+	  "journal_title": "Wreck Log: Day 24",
+	  "journal": [
+		"Tahiti, Tahiti, Tahiti!",
+		"Everyone keeps chanting that name. In case you forgot, that's our destination —the planet that, in our minds, must be lush and green, flower-covered, full of people who see us as heroes and warriors.",
+		"We'll make the front page of the Interstellar Daily.",
+		"I don't know about the others, but at least I — the brilliant Captain who calmly handled the fire, allocated resources wisely, and cared for every single crew member —",
+		"A hundred years from now, actors of every skin tone, age, and gender will be trying, again and again, to imitate my decisive leadership on screen!",
+		"Six days left —just six —and we'll reach that beautiful green planet.",
+		"Apparently it has a tropical climate. Before I achieve fame and fortune, maybe we can grow some fruit there.",
+        "I don't know why, but I suddenly really want a mango."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"25": {
+	  "journal_title": "Wreck Log: Day 25",
+	  "journal": [
+		"Maybe I should declare the day we arrive at Tahiti \"Interstellar Mango Day.\" Or call it something else —doesn't matter, as long as it's important enough and closely tied to people's lives. That way they'll remember the holiday, and by extension, remember me.",
+		"And I won't just be running an airliner anymore.",
+		"Actually, plenty of things are more important than mangoes. Vegetables, the fridge, Daniel. And of course, mouthwash. Everyone needs mouthwash, unless they want a mouth full of black cavities.",
+		"Right, let's call it Mouthwash Day.",
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss says there's already a holiday kind of like that, related to oral health. A lot of people brush, floss, and of course use mouthwash on that day."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason thinks we should just call it Interstellar Drink Whatever Day. Mouthwash and alcohol aren't that different anyway."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "In the interest of democracy, Mara suggests adding a \"non-mint\" prefix to the mouthwash holiday."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias says the mouthwash should represent everyone who's worked hard on this ship, not just me."
+		},
+        "Only a few days left. If food allows, maybe I should let them eat their fill? After all, they'll soon be done with this awful food forever."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"26": {
+	  "journal_title": "Wreck Log: Day 26",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "helena" },
+		  "text": "Dr. Voss said that once we land, she'd like me to help connect her with a position as a ship's standing medical officer. Her reasoning: \"I need some normal flight experience to help heal from the trauma of this disaster.\" Given that she's genuinely saved our lives multiple times, I should agree. Whether her new colleagues can handle her absurdly long title isn't really my problem."
+		},
+		{
+		  "if": { "if_on_board": "elias" },
+		  "text": "Elias and I are tallying up his wages for these past days —an astronomical sum! I swear most of the work wasn't even something I asked him to do, he just did it on his own. But since we're close to the end of the drift, no point stirring up more trouble now. I agreed to pay him, but once we land, how it's calculated is up to me."
+		},
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "Mara says once we reach Tahiti, she absolutely must make us a proper beef Wellington. I told her Tahiti is thousands of light-years from Earth, there's no way she'll find any ingredient from Earth, let alone one from a specific country."
+		},
+		{
+		  "if": { "if_on_board": "mason" },
+		  "text": "Mason keeps apologizing to us, says he shouldn't have sung those awful songs every day, wrecking our furniture. He just hopes that once we reach Tahiti, we won't involve the police. Where exactly he plans to flee to, he doesn't know —but at least he'll hold on to this hard-won freedom."
+		},
+        "The future looks promising."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "random"
+	},
+	"27": {
+	  "journal_title": "Wreck Log: Day 27",
+	  "journal": [
+		{
+		  "if": { "if_on_board": "mara" },
+		  "text": "I don't know why, even at this point, she's still asking whether to drug the food. We surely don't need to worry about these last three days of food running out. But since she asked, maybe there's a point to it after all? Anyway, she says she'll still slip sedatives into tomorrow night's dinner. But whether to actually open the airlock —that decision is mine."
+		},
+		{
+		  "if": { "if_not_on_board": "mara" },
+		  "text": "Just to be safe, I'll still add sedatives to tomorrow's food myself. Only three days left —no one wants anything to go wrong this close to the end. This is the sin my profession has handed me. For my own survival, for the crew's survival. I'll slip sedatives into tomorrow's dinner."
+		},
+        "To our future."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "event": "none"
+	},
+	"28": {
+	  "journal_title": "Wreck Log: Day 28",
+	  "journal": [
+        "Things are better than we expected. Barring any surprises, we'll reach Tahiti tomorrow. Which also means our Interstellar Mouthwash Day will arrive a day earlier than planned. We're throwing another party —a more formal one once we land. Beef Wellington will absolutely be the main course, along with real balloons that actually float, and a big cake with six candles on it —one for each of us, whether alive or not. The living will be on TV. The dead will live on in our hearts."
+	  ],
+	  "allocation_title": "Supply Allocation",
+	  "allocation_text": "Prerequisite for all of this: nobody dies tonight.",
+	  "event": "ending"
 	}
+  },
+  "events": {
+	"sawdust_meal": {
+	  "title": "Sawdust Supper",
+	  "description": [
+		"Elias came up with a novel kind of food: sawdust! Why not? It grows out of the ground and gets watered by the rain like any other part of a plant, so why can't we eat it? He says that when the workers breaking ground in those remote star systems run out of food, they mix a little flour with the dust they saw off the scaffolding. Our miserable digestive systems can't process cellulose at all, so it would just move into our guts and stay there for a while. And if your stomach is always full, you never need to eat, right?",
+		"Dr. Voss pointed out that this is an utterly absurd idea. It's not only irresponsible to our health, it's a grave insult to her as a doctor of medicine. I won't write down her long list of evidence and case studies. Honestly, the real reason is that I didn't remember any of it. Anyway, she suggested using a chemical to break the sawdust down into smaller molecules the human body can digest. It won't turn into a perfectly healthy cookie, but it should at least lower the chance of getting sick.",
+		{
+		  "if_on_board": "mason",
+		  "text": "Mason swears he'd rather starve than chew on a tree"
+		},
+        "If you trust Elias, he'll add to your Food stores, but the crew may get sick. If you go with Dr. Voss, who knows far more about health, your Food stores will go up a little, with no risk of anyone getting sick."
+	  ],
+	  "option_elias": "Elias Ward",
+	  "option_voss": "Dr. Voss",
+	  "option_nonsense": "This is ridiculous! (Mason would want you to do this)",
+	  "complaint": "Elias doesn't get why, at a time like this, you're still going along with some other idiot's nonsense. He and his fellow workers got through hard times exactly this way, and he doesn't see any of them coming down with cancer or heart disease. If you're going to turn down the wisdom of the working class, the least you can do is give him the compensation he's owed.",
+	  "complaint_food": "Food",
+	  "complaint_mouthwash": "Mouthwash",
+	  "complaint_give_in": "Damn it, let him have his way (go with Elias's plan)"
+	},
+	"thief": {
+	  "title": "Thief!",
+	  "description": "{name} stole a big portion of food and got caught red-handed trying to hide it. I don't think we can blame {ta_obj}. Anyone this hungry would do the same. But the one thing we can't accept is that {ta} refuses to hand the food over! Should we use our fists to persuade {ta_obj} to share it with everyone, trade {ta_obj} a bottle of mouthwash for it, or just let {ta_obj} have a good meal?",
+	  "option_force": "Persuade by force (small chance someone gets hurt)",
+	  "option_trade": "Trade mouthwash for it (lose Mouthwash)",
+	  "option_release": "Let {ta_obj} go (lose Food)",
+	  "option_mason": "Have Mason deal with it (nothing happens)"
+	},
+	"alcohol_distill": {
+	  "title": "Distilled Alcohol",
+	  "description": "Dr. Voss caught me trying to treat {name}'s wound. She \"tactfully\" pointed out that I hadn't separated the sugar out of the mouthwash, which will make the wound fester so it never fully heals. The only real fix is to admit she's the most educated person on this ship, and give her two bottles of mouthwash so she can distill alcohol pure enough for the job.",
+	  "option_accept": "Fine, Dr. Voss, I admit you're much smarter than me (Mouthwash -2, back to Healthy)",
+	  "option_refuse": "Forget it. The captain is always the smartest person on the ship. (nothing happens)",
+	  "option_mason": "Tell Mason someone called his captain an idiot (Mouthwash -2, back to Healthy, and you don't have to admit anything to Dr. Voss)"
+	},
+	"mason_guard": {
+	  "title": "Does He Count as a Guard?",
+	  "description": "We're clearly a mess. Just last night, Mason found out that selfish {name} had been secretly keeping a portion of food the whole time, with no intention of sharing it. Nice work, Mason. I just hope next time he uses his fists a little less and his brain a little more."
+	},
+	"octopus": {
+	  "title": "Our Squishy Roommate",
+	  "description": "We heard strange noises coming from the air vent. When we pried the wire mesh open, we found a giant octopus! We need a brave soul to drive out this uninvited guest, or turn it into our dinner. The only problem is that this stretch of vent leads into cold storage, so if we don't want our crew electrocuted, maybe we should send someone who knows the ship.",
+	  "send_options": {
+		"elias": "Elias Ward (small chance of injury)",
+		"mara": "Mara Quinn (high chance of injury, small chance of death)",
+		"helena": "Dr. Voss (high chance of injury, small chance of death)",
+		"mason": "Mason Reed (high chance of injury, small chance of death)"
+	  },
+	  "abandon_option": "We'll be fine (everyone gets injured)"
+	},
+	"jason_knock": {
+	  "title": "Someone Even Stranger Than These Four?",
+	  "description": [
+		"Something is knocking on our airlock. Maybe we're just hearing things. Maybe it's the ghosts of the people we threw out the airlock, come back for us. Or maybe it's some supernatural creature that doesn't need oxygen and can move freely through the vacuum. Thank goodness, it can communicate, and it even speaks English! Later we figured out that he's just an ordinary human who happens not to need oxygen and can move freely through the vacuum. His name is Josan, and he desperately needs alcohol. He brought us a little food as a show of good faith and asked us to let him in.",
+        "Should we?"
+	  ],
+	  "option_allow": "Let him in (Josan comes aboard)",
+	  "option_deny": "Turn him away (nothing happens)"
+	},
+	"jason_fed_up": {
+	  "title": "We've Had Enough!",
+	  "description": "All right, this is beyond ridiculous. In all the days Josan has been here, he hasn't lifted a finger. All he does is drink our mouthwash. Elias points out that this is naked exploitation and oppression. That hard-won batch of mouthwash cost us the whole crew's reputation, plus the compensation Firebreath is about to come after us for. Mara keeps worrying that he'll get drunk, open the airlock and throw us out one by one. In short, everyone agrees that letting Josan in was a complete and utterly absurd mistake. Do you want to send someone to ruthlessly kick him out and salvage what little reputation you have left, or let him keep wasting all our mouthwash?",
+	  "option_elias": "Elias Ward",
+	  "option_mara": "Mara Quinn",
+	  "option_helena": "Dr. Voss",
+	  "option_mason": "Mason Reed",
+	  "option_nothing": "[TBD] Let him stay",
+	  "result_evict": "[TBD] {name} threw Josan off the ship."
+	},
+	"debt_crisis": {
+	  "title": "Debt Crisis",
+	  "description": "I picked up a signal from another ship. They turned out to be Firebreath people. But those selfish bastards have no intention of rescuing us. They came to find out why that crate of mouthwash never arrived. I told them there had been a fire on board, our food had burned, and we were about to starve. All they kept asking was how we plan to pay for a crate of mouthwash worth less than a hundred dollars in total. We have nothing, and their solution is for us to send one crew member to work for them. They promise to send that crew member home once the debt is paid off. Who should we send to contribute a little muscle to our finances? Or do we grab our weapons and drive off these bastards who'd leave us to die?",
+	  "option_elias": "Elias Ward",
+	  "option_mara": "Mara Quinn",
+	  "option_helena": "Dr. Voss",
+	  "option_mason": "Mason Reed",
+	  "option_fight": "[TBD] Grab our weapons and drive them off",
+	  "leave_elias": "The truth is, I've always offered Elias extremely generous terms, [TBD]",
+	  "leave_mara": "[TBD] Mara left with the Firebreath crew.",
+	  "leave_helena": "[TBD] Dr. Voss left with the Firebreath crew.",
+	  "leave_mason": "[TBD] Mason left with the Firebreath crew.",
+	  "fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
+	},
+	"departure_elias": {
+	  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
+	},
+	"departure_mara": {
+	  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
+	},
+	"departure_doctor": {
+	  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
+	},
+	"departure_mason": {
+	  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+	}
+  }
 }

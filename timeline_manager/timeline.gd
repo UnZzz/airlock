@@ -1,11 +1,11 @@
 extends Node
 
 @export
-var total_days = 30
+var total_days = 28
 @export
 var airlock_interval = 7
 var current_day = 1
-var remaining_days = 30
+var remaining_days = 28
 var is_time_to_kick_out = false
 
 signal on_next_day
@@ -30,7 +30,7 @@ func to_next_day():
 
 
 func is_airlock_day(day: int) -> bool:
-	return day % airlock_interval == 0
+	return day % airlock_interval == 0 and day < total_days
 
 
 func get_next_airlock_day() -> int:
