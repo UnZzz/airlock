@@ -1,15 +1,14 @@
 extends Control
 
-const ROLE_COLORS : Dictionary = {
-	CrewMember.Role.CAPTAIN: Color(0.36, 0.52, 0.78),
-	CrewMember.Role.CRIMINAL: Color(0.72, 0.30, 0.28),
-	CrewMember.Role.WORKER: Color(0.80, 0.62, 0.26),
-	CrewMember.Role.DOCTOR: Color(0.40, 0.70, 0.56),
-	CrewMember.Role.CHEF: Color(0.62, 0.46, 0.74),
-}
+const PORTRAIT_PATH : String = "res://character/%s_%d.png"
 
-@export var head_size : float = 56.0
-@export var body_size : Vector2 = Vector2(84, 150)
+@export var portrait_ids : Dictionary = {
+	"mason": "1",
+	"elias": "2",
+	"mara": "3",
+	"helena": "4",
+}
+@export var portrait_scale : float = 0.26
 @export var dead_modulate : Color = Color(0.35, 0.35, 0.35, 0.6)
 
 @onready var row : HBoxContainer = $Row
@@ -17,6 +16,8 @@ const ROLE_COLORS : Dictionary = {
 
 func _ready() -> void:
 	Crew.crew_changed.connect(_rebuild)
+	EffectSystem.effect_added.connect(func(_target_id, _effect): _rebuild())
+	EffectSystem.effect_removed.connect(func(_target_id, _effect): _rebuild())
 	_rebuild()
 
 
@@ -27,42 +28,34 @@ func _rebuild() -> void:
 	for member in Crew.members:
 		if member.status == CrewMember.Status.EXILED:
 			continue
-		var figure : Control = _build_figure(member)
+		var texture : Texture2D = _get_portrait(member)
+		if texture == null:
+			continue
+		var portrait : TextureRect = TextureRect.new()
+		portrait.name = member.member_id
+		portrait.texture = texture
+		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		portrait.custom_minimum_size = texture.get_size() * portrait_scale
+		portrait.size_flags_vertical = Control.SIZE_SHRINK_END
+		portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if member.status == CrewMember.Status.DEAD:
-			figure.modulate = dead_modulate
-		row.add_child(figure)
+			portrait.modulate = dead_modulate
+		row.add_child(portrait)
 
 
-func _build_figure(member: CrewMember) -> VBoxContainer:
-	var color : Color = ROLE_COLORS.get(member.role, Color.GRAY)
-	var figure : VBoxContainer = VBoxContainer.new()
-	figure.name = member.member_id
-	figure.alignment = BoxContainer.ALIGNMENT_END
-	figure.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	figure.add_theme_constant_override("separation", 6)
-	var head : Panel = _make_block(Vector2(head_size, head_size), color.lightened(0.15), int(head_size / 2.0))
-	head.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	figure.add_child(head)
-	var body : Panel = _make_block(body_size, color, 18)
-	body.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	figure.add_child(body)
-	var label : Label = Label.new()
-	label.text = member.short_name if member.short_name != "" else member.display_name
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_color_override("font_outline_color", Color.BLACK)
-	label.add_theme_constant_override("outline_size", 6)
-	figure.add_child(label)
-	return figure
-
-
-func _make_block(block_size: Vector2, color: Color, radius: int) -> Panel:
-	var block : Panel = Panel.new()
-	block.custom_minimum_size = block_size
-	block.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var style : StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = color
-	style.set_corner_radius_all(radius)
-	style.border_color = color.darkened(0.45)
-	style.set_border_width_all(3)
-	block.add_theme_stylebox_override("panel", style)
-	return block
+func _get_portrait(member: CrewMember) -> Texture2D:
+	var id : String = portrait_ids.get(member.member_id, "")
+	if id == "":
+		return null
+	var variants : Array[int] = [3, 2]
+	match Crew.get_health(member.member_id):
+		CrewMember.Health.CRITICAL:
+			variants = [1, 2]
+		CrewMember.Health.INJURED:
+			variants = [2]
+	for variant in variants:
+		var path : String = PORTRAIT_PATH % [id, variant]
+		if ResourceLoader.exists(path):
+			return load(path)
+	return null
