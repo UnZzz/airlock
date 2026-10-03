@@ -10,7 +10,7 @@ const DIALOGUE_PATH : String = "res://story/dialogue_en.json"
 @export var option_color : Color = Color(0.6, 0.58, 0.56)
 @export var option_lit_color : Color = Color.WHITE
 @export var box_color : Color = Color(0.03, 0.03, 0.04, 0.88)
-@export var border_color : Color = Color(0.9, 0.88, 0.85, 0.4)
+@export var border_color : Color = Color(0.86, 0.85, 0.79, 0.85)
 @export var background_dim : float = 0.55
 @export var margin : float = 20.0
 @export var box_height : float = 190.0
@@ -175,10 +175,10 @@ func _build() -> void:
 	_box.offset_bottom = -margin
 	_box.offset_top = -margin - box_height
 	_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var style : StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = box_color
-	style.border_color = border_color
-	style.set_border_width_all(2)
+	var style : SketchBox = SketchBox.new()
+	style.fill_color = box_color
+	style.line_color = border_color
+	style.salt = 7
 	style.content_margin_left = 28.0
 	style.content_margin_right = 28.0
 	style.content_margin_top = 18.0

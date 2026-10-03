@@ -4,17 +4,6 @@
 [ext_resource type="PackedScene" path="res://character_system/CrewStage.tscn" id="2_stage"]
 [ext_resource type="PackedScene" path="res://dialogue_system/Dialogue.tscn" id="3_dialogue"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_right = 16.0
-content_margin_bottom = 16.0
-bg_color = Color(0.07, 0.08, 0.11, 0.72)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [node name="Main" type="Control" unique_id=1695913495]
 layout_mode = 3
 anchors_preset = 15
@@ -54,7 +43,6 @@ theme_override_constants/separation = 24
 
 [node name="SidebarPanel" type="PanelContainer" parent="Margin/Layout"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Sidebar" type="VBoxContainer" parent="Margin/Layout/SidebarPanel"]
 custom_minimum_size = Vector2(300, 0)
@@ -83,7 +71,6 @@ theme_override_constants/separation = 12
 [node name="ContentPanel" type="PanelContainer" parent="Margin/Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Content" type="VBoxContainer" parent="Margin/Layout/ContentPanel"]
 layout_mode = 2
