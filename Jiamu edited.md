@@ -371,3 +371,39 @@
 
 **测试**
 - Godot 无界面运行无新报错；录帧截图确认四个角色显示健康立绘
+
+**固定译名（2026-10-03 追加）**
+- 新增 `story/glossary_en.md`：中英固定译名表，以后所有英文文案都按它翻译。漂浮一律用 drift（不用 float），Airlock 一律写 `Airlock`（大写、不翻译）
+- 按表核对现有英文：`system_text_en.json` 里三处 knocked out / drugged 统一成 sedated / unconscious；没有出现 float，Airlock 写法本来就统一
+- 点题：英文里的门统一改成 airlock。`story_en.json` 第 1 天「关闭了连通冷冻区的舱门」、第 3 天「打开闸门」的 hatch → airlock；`criminal_demand.tres` 占位选项「关进储物间」改成 storage airlock，结果文字 closet door → airlock。译名表加了一条：飞船上的门 → airlock（小写），不用 door / hatch / gate
+
+---
+
+## 角色悬停变暗 + 像素字体（2026-10-03，参考 house-rules）
+
+从 house-rules 只复制、没改它任何文件。
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `ui/PixelFont.ttf` | 从 house-rules `Shared/PixelFont.ttf` 原样复制 |
+| `ui/theme.tres` | 全局主题：默认字体 PixelFont，默认字号 20（占位值，可在检查器改） |
+| `character_system/highlight.gdshader` | 照 house-rules `highlight.gdshader` 写的亮度着色器（乘亮度、上限 0.99，不会过曝） |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `character_system/character_portrait.gd` | 加悬停效果，逻辑照 house-rules `clickable_item.gd`：悬停的角色变亮 30%，其他角色变暗 50%，背景变暗 50%；变暗 0.15 秒、恢复 0.35 秒，Sine 缓动。只有不透明像素算悬停，透明边角不算，所以角色框重叠也不会误触 |
+| `main.tscn` | `Background` 节点加入 `dimmable` 组（跟 house-rules 一样，组里的节点悬停时会变暗） |
+| `project.godot` | `gui/theme/custom` 指向 `ui/theme.tres`，全游戏换像素字体 |
+
+**参数**（每个角色节点的检查器里都能调）：`hover_strength` 0.3、`dim_strength` 0.5、`rise_time` 0.15、`fall_time` 0.35
+
+**已知限制**
+- 面板显示时会挡住鼠标，只有角色露出来的部分（或点 Hide Panels 后）才能触发悬停
+
+**测试**
+- 模拟鼠标移到 Mason 上：背景 modulate 变成 0.5，Mason 亮度 +0.3，其他人 -0.5；移开后都恢复 1.0
+- 截图确认像素字体和变暗效果正常

@@ -18,8 +18,8 @@ loyalty_change = -1
 
 [sub_resource type="Resource" id="Resource_opt3"]
 script = ExtResource("2_option")
-text = "[TBD] Lock him in the storage closet for the night"
-result_text = "[TBD] Mason pounds on the closet door all night long."
+text = "[TBD] Lock him in the storage airlock for the night"
+result_text = "[TBD] Mason pounds on the airlock all night long."
 loyalty_change = -1
 
 [resource]

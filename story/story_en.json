@@ -15,7 +15,7 @@
 		"1": {
 			"journal_title": "Wreck Log: Day 01",
 			"journal": [
-				"The cause of the fire is still under investigation. I'm inclined to call it an accident, a short circuit in the refrigeration system. But accident or sabotage, the responsibility is mine. The vegetables, the meat, and our poor security guard Daniel Price were all burned into a heap of inedible charcoal. Elias Ward sealed the hatch to the freezer section in time and the fire was contained, but that doesn't mean we survived.",
+				"The cause of the fire is still under investigation. I'm inclined to call it an accident, a short circuit in the refrigeration system. But accident or sabotage, the responsibility is mine. The vegetables, the meat, and our poor security guard Daniel Price were all burned into a heap of inedible charcoal. Elias Ward sealed the airlock to the freezer section in time and the fire was contained, but that doesn't mean we survived.",
 				"We have a few vegetables and some dry rations left, and Mara Quinn dug some not-quite-so-rotten scraps out of the compost bin. Even if she promises not to waste a single crumb when she cooks so we can hold out longer, there still isn't enough food.",
 				"When the time comes, I will make a choice.",
 				"Dr. Helena Voss says that if I don't put \"Dr.\" in front of her name in this log, she will happily watch us writhe to death when we all come down with gastroenteritis. She also strongly objects to us eating anything dug out of the compost bin.",
@@ -47,7 +47,7 @@
 					"if": {
 						"day2_fire": "worker"
 					},
-					"text": "I really regret making that deal with Elias. All he did was open the hatch, poke his head in, and say, \"Captain, the fire's out.\" I wanted him to check the wiring for faults, but he just wandered over to central control and glanced at the readings."
+					"text": "I really regret making that deal with Elias. All he did was open the airlock, poke his head in, and say, \"Captain, the fire's out.\" I wanted him to check the wiring for faults, but he just wandered over to central control and glanced at the readings."
 				},
 				{
 					"if": {
