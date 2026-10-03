@@ -614,3 +614,30 @@
 
 **测试**
 - 1600×900 录帧：星星位置正确、闪烁正常，背景不再抖，无报错
+
+**第七轮补充二：Josan 的效果对玩家保密**
+- 「允许」选项去掉效果说明：「允许（Josan入舱，每两天减少1漱口水）」→「允许（Josan入舱）」，英文同步
+- 左侧资源栏不再显示 Josan 在船上的提示，删掉 `main.gd` 里那一行和 `ui_guest_aboard` 文本
+- 扣漱口水的逻辑不变（每 2 天 -1），只是不告诉玩家，玩家只能从漱口水数量变少发现
+
+### 修复：生病无法治愈（2026-10-03）
+
+之前生病只能靠代码里的 `cure_sickness` 去掉，游戏里没有任何入口，角色一旦生病就一直病着。
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `character_system/crew.gd` | 新增可调参数 `sickness_cure_cost`（默认 1）；新增 `can_cure_sickness`、`cure_sickness_with_mouthwash`（扣漱口水并治好） |
+| `main.gd` | 分配晚餐界面里，生病的角色那一行多一个「漱口水治病（-1）」按钮，漱口水不够时按钮变灰；左侧角色栏生病时显示「生病」 |
+| `story/system_text_zh.json`、`story/system_text_en.json` | 新增 `ui_cure_sickness`、`ui_sick` |
+
+**说明 / 假设**
+- 治病花 1 瓶漱口水，不需要医生在船上（数值可在 Crew 的 Inspector 里改）
+- 生病和受伤互相独立，又病又伤时两个按钮都会出现
+
+**测试**
+- Godot headless 启动与脚本检查无报错
+
+**第七轮补充三：章鱼选项都写明风险**
+- Mara / Dr. Voss / Mason 三个按钮都加上「（大概率受伤，小概率死亡）」/「(high chance of injury, small chance of death)」；Mason 原来的「三人大概率受伤……」改成同样写法。Elias 保持「（小概率受伤）」

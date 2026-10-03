@@ -24,10 +24,12 @@
 	"ui_refuses_food": "{name}: refuses to eat tonight's dinner",
 	"ui_maintain": "Mouthwash upkeep (-{cost})",
 	"ui_treat": "Doctor's treatment (-{cost})",
+	"ui_cure_sickness": "Mouthwash cure (-{cost})",
 	"ui_injury_countdown": "{state}, worsens in {days} day(s)",
 	"ui_status_exiled": "Exiled",
 	"ui_status_dead": "Dead",
 	"ui_health_healthy": "Healthy",
+	"ui_sick": "Sick",
 	"ui_loyalty": "Loyalty {value}/{max}",
 	"ui_intimidate_ready": "Intimidation ready",
 	"ui_knows_secret": "Knows the truth about the Airlock",
@@ -85,6 +87,5 @@
 	"ending_captain_injury": "[TBD] You didn't survive your injuries.",
 	"ending_mutiny": "[TBD] {criminal} leads a mutiny.",
 	"event_sick": "[TBD] {name} got sick.",
-	"journal_exiled_debt": "[TBD] {name} left on the Firebreath ship to work off our debt.",
-	"ui_guest_aboard": "[TBD] Josan is aboard (-1 Mouthwash every 2 days)"
+	"journal_exiled_debt": "[TBD] {name} left on the Firebreath ship to work off our debt."
 }

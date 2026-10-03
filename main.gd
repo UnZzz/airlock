@@ -148,6 +148,10 @@ func _build_allocation_row(member: CrewMember) -> HBoxContainer:
 			var treat : Button = _make_button(Journal.text("ui_treat", {"cost": Crew.treatment_cost}), _on_treat.bind(member.member_id))
 			treat.disabled = not Crew.can_treat(member.member_id)
 			row.add_child(treat)
+	if Crew.is_sick(member.member_id):
+		var cure : Button = _make_button(Journal.text("ui_cure_sickness", {"cost": Crew.sickness_cure_cost}), _on_cure_sickness.bind(member.member_id))
+		cure.disabled = not Crew.can_cure_sickness(member.member_id)
+		row.add_child(cure)
 	return row
 
 
@@ -170,6 +174,11 @@ func _on_maintain(member_id: String) -> void:
 
 func _on_treat(member_id: String) -> void:
 	Crew.treat(member_id)
+	_show_allocation()
+
+
+func _on_cure_sickness(member_id: String) -> void:
+	Crew.cure_sickness_with_mouthwash(member_id)
 	_show_allocation()
 
 
@@ -282,8 +291,6 @@ func _refresh_sidebar() -> void:
 		day_lines.append(Journal.text("ui_next_airlock", {"day": Timeline.get_next_airlock_day()}))
 	day_label.text = "\n".join(day_lines)
 	resource_label.text = Journal.text("ui_resources", {"food": Inventory.food_count, "mouthwash": Inventory.bottle_of_mouthwash_count})
-	if EventManager.guest_aboard:
-		resource_label.text += "\n" + Journal.text("ui_guest_aboard")
 	for child in crew_list.get_children():
 		crew_list.remove_child(child)
 		child.queue_free()
@@ -309,6 +316,8 @@ func _describe_member(member: CrewMember) -> String:
 		lines.append(Journal.text("ui_health_healthy"))
 	else:
 		lines.append(Journal.text("ui_injury_countdown", {"state": effect.display_name, "days": EffectSystem.get_remaining(member.member_id, effect.effect_name)}))
+	if Crew.is_sick(member.member_id):
+		lines.append(Journal.text("ui_sick"))
 	if member.days_without_food > 0:
 		lines.append(Journal.text("ui_hunger", {"days": member.days_without_food}))
 	if member.role == CrewMember.Role.CRIMINAL:

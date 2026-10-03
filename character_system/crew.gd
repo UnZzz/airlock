@@ -24,6 +24,8 @@ var chef_food_multiplier : float = 0.75
 var maintenance_cost : int = 1
 @export
 var treatment_cost : int = 2
+@export
+var sickness_cure_cost : int = 1
 
 var members : Array[CrewMember] = []
 
@@ -120,6 +122,18 @@ func cure_sickness(member_id: String) -> void:
 		return
 	EffectSystem.remove_effect(member_id, sick_effect.effect_name)
 	crew_changed.emit()
+
+
+func can_cure_sickness(member_id: String) -> bool:
+	return is_sick(member_id) and Inventory.can_afford(0, sickness_cure_cost)
+
+
+func cure_sickness_with_mouthwash(member_id: String) -> bool:
+	if not can_cure_sickness(member_id):
+		return false
+	Inventory.spend(0, sickness_cure_cost)
+	cure_sickness(member_id)
+	return true
 
 
 func injure(member_id: String) -> void:

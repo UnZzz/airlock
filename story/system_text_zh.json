@@ -24,10 +24,12 @@
 	"ui_refuses_food": "{name}：拒绝吃今天的晚餐",
 	"ui_maintain": "漱口水维持（-{cost}）",
 	"ui_treat": "医生治疗（-{cost}）",
+	"ui_cure_sickness": "漱口水治病（-{cost}）",
 	"ui_injury_countdown": "{state}，{days} 天后恶化",
 	"ui_status_exiled": "已流放",
 	"ui_status_dead": "已死亡",
 	"ui_health_healthy": "健康",
+	"ui_sick": "生病",
 	"ui_loyalty": "忠诚 {value}/{max}",
 	"ui_intimidate_ready": "威慑可用",
 	"ui_knows_secret": "知道 Airlock 真相",
@@ -85,6 +87,5 @@
 	"ending_captain_injury": "[占位] 你没能撑过伤势。",
 	"ending_mutiny": "[占位] {criminal} 发动了叛变。",
 	"event_sick": "[占位] {name}生病了。",
-	"journal_exiled_debt": "[占位] {name}跟着Firebreath的飞船走了，去替我们还债。",
-	"ui_guest_aboard": "[占位] Josan在船上（每2天 -1 漱口水）"
+	"journal_exiled_debt": "[占位] {name}跟着Firebreath的飞船走了，去替我们还债。"
 }
