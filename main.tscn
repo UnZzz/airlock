@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://upb8pft0huuv"]
 
 [ext_resource type="Script" uid="uid://e1pv4i2554jv" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" path="res://character_system/CrewStage.tscn" id="2_stage"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 16.0
@@ -30,6 +31,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="CrewStage" parent="." instance=ExtResource("2_stage")]
+layout_mode = 1
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1

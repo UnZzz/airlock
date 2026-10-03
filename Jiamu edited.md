@@ -297,3 +297,29 @@
 **测试**
 - 三个 JSON 能正常解析，中英 system_text 的 key 完全一致
 - Godot 无界面运行主场景 300 帧，没有脚本报错；单独加载事件 / 角色 / 状态 .tres 都正常
+
+---
+
+## 五个角色占位（2026-10-03）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `character_system/CrewStage.tscn` | 角色站位层，底部居中一排 |
+| `character_system/crew_stage.gd` | 按 `Crew.members` 生成占位小人：圆头 + 圆角身体 + 名字（用 `short_name`），每个职业一个颜色 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `main.tscn` | 在 `Background` 和 `Margin` 之间加了 `CrewStage` 实例，所以角色在背景之上、面板之下，点 Hide Panels 能完整看到 |
+
+**行为 / 占位值**
+- 监听 `Crew.crew_changed` 自动刷新：被驱逐的角色从画面消失，死亡的角色变灰半透明
+- 颜色：船长蓝、Mason 红、Elias 黄、Helena 绿、Mara 紫；头 56px，身体 84×150，间距 56，都可以在 `crew_stage.gd` 的导出变量里调
+- 没有新增任何文案
+
+**测试**
+- Godot 无界面运行无新报错（退出时的 ObjectDB 泄漏警告改动前就有）
+- 录帧截图确认五个占位小人显示在底部
