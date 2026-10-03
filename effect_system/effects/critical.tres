@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseEffect" format=3]
+
+[ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://effect_system/effects/base_effect.gd" id="1_uquag"]
+[ext_resource type="Resource" uid="uid://dafm3kjalu2fa" path="res://effect_system/effects/dead.tres" id="2_dead"]
+
+[resource]
+script = ExtResource("1_uquag")
+effect_name = "critical"
+display_name = "重伤"
+duration = 2
+next_effect = ExtResource("2_dead")
+metadata/_custom_type_script = "uid://coej6ak3esl1j"

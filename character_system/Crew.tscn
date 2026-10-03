@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://character_system/crew.gd" id="1_crew"]
+[ext_resource type="Script" path="res://character_system/crew_member.gd" id="2_member"]
+[ext_resource type="Resource" path="res://character_system/members/captain.tres" id="3_captain"]
+[ext_resource type="Resource" path="res://character_system/members/mason.tres" id="4_mason"]
+[ext_resource type="Resource" path="res://character_system/members/elias.tres" id="5_elias"]
+[ext_resource type="Resource" path="res://character_system/members/helena.tres" id="6_helena"]
+[ext_resource type="Resource" path="res://character_system/members/mara.tres" id="7_mara"]
+[ext_resource type="Resource" uid="uid://b4d5pknlsu80y" path="res://effect_system/effects/injured.tres" id="8_injured"]
+[ext_resource type="Resource" path="res://effect_system/effects/critical.tres" id="9_critical"]
+
+[node name="Crew" type="Node"]
+script = ExtResource("1_crew")
+member_templates = Array[ExtResource("2_member")]([ExtResource("3_captain"), ExtResource("4_mason"), ExtResource("5_elias"), ExtResource("6_helena"), ExtResource("7_mara")])
+injured_effect = ExtResource("8_injured")
+critical_effect = ExtResource("9_critical")

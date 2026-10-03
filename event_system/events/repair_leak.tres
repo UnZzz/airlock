@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
+
+[resource]
+script = ExtResource("1_danger")
+event_id = "repair_leak"
+title = "[占位] 冷却管道破裂"
+description = "[占位] 储藏舱的冷却管道破了。不修的话，剩下的食物会更快变质。需要派一个人去处理。"
+repeatable = true
+success_text = "[占位] {name} 修好了管道。"
+abandon_text = "[占位] 没人去修。一部分食物变质了。"
+abandon_food_change = -2

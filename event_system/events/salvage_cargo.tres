@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
+
+[resource]
+script = ExtResource("1_danger")
+event_id = "salvage_cargo"
+title = "[占位] 舱外补给箱"
+description = "[占位] 货舱外挂着一个没被烧毁的补给箱。需要有人穿上宇航服出去把它拖回来。"
+repeatable = true
+success_text = "[占位] {name} 把补给箱拖了回来，里面有 2 份食物。"
+abandon_text = "[占位] 补给箱慢慢飘远了。"
+success_food_change = 2

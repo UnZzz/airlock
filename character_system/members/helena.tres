@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CrewMember" format=3]
+
+[ext_resource type="Script" path="res://character_system/crew_member.gd" id="1_member"]
+
+[resource]
+script = ExtResource("1_member")
+member_id = "helena"
+display_name = "Dr. Helena Voss"
+role = 3
