@@ -22,6 +22,10 @@ Inventory="*uid://07847x4prchj"
 Timeline="*uid://pkovtpnhvjvb"
 EventManager="*uid://cif6natjfgl13"
 Music="*uid://dsfne327hn007"
+Journal="*res://journal_system/Journal.tscn"
+Crew="*res://character_system/Crew.tscn"
+Airlock="*res://airlock_system/Airlock.tscn"
+GameFlow="*res://game_flow/GameFlow.tscn"
 
 [display]
 

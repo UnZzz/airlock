@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://bjttn1uermuoc" path="res://music_system/tracks/space_machinery.wav" id="4_8w6sn"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_b7o4g"]
-fade_time = 2.0
 stream_count = 2
 stream_0 = ExtResource("2_4y8ep")
 stream_1 = ExtResource("3_5qfg1")

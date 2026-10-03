@@ -43,13 +43,16 @@ func _fade_in(player: AudioStreamPlayer, fade_time: float) -> void:
 	if not player.playing:
 		player.volume_linear = 0.0
 		player.play()
+	# Sine in/out curves give an equal-power crossfade, so loudness doesn't dip mid-switch.
 	var tween = _new_tween(player)
-	tween.tween_property(player, "volume_linear", _full_volume[player], fade_time)
+	tween.tween_property(player, "volume_linear", _full_volume[player], fade_time) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
 func _fade_out(player: AudioStreamPlayer, fade_time: float) -> void:
 	var tween = _new_tween(player)
-	tween.tween_property(player, "volume_linear", 0.0, fade_time)
+	tween.tween_property(player, "volume_linear", 0.0, fade_time) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(player.stop)
 
 
