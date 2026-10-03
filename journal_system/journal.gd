@@ -65,6 +65,44 @@ func get_fixed_event(day: int) -> String:
 	return String(_day_data(day).get("event", ""))
 
 
+func has_event_text(event_id: String) -> bool:
+	return story.get("events", {}).has(event_id)
+
+
+func event_value(event_id: String, key: String) -> Variant:
+	return story.get("events", {}).get(event_id, {}).get(key, "")
+
+
+func event_text(event_id: String, key: String, args: Dictionary = {}) -> String:
+	var value : Variant = event_value(event_id, key)
+	if not value is Array:
+		return String(value).format(args)
+	var parts : Array[String] = []
+	for item in value:
+		if item is Dictionary:
+			var member_id : String = String(item.get("if_on_board", ""))
+			if member_id != "" and not Crew.is_on_board(member_id):
+				continue
+			parts.append(String(item.get("text", "")).format(args))
+		else:
+			parts.append(String(item).format(args))
+	return "\n\n".join(parts)
+
+
+func member_args(member: CrewMember) -> Dictionary:
+	if member == null:
+		return {}
+	var objects : Dictionary = {"he": "him", "she": "her"}
+	var possessives : Dictionary = {"he": "his", "she": "her"}
+	return {
+		"name": member.short_name,
+		"full_name": member.display_name,
+		"ta": member.pronoun,
+		"ta_obj": String(objects.get(member.pronoun, member.pronoun)),
+		"ta_pos": String(possessives.get(member.pronoun, member.pronoun)),
+	}
+
+
 func add_entry(day: int, entry: String) -> void:
 	if not pending_entries.has(day):
 		pending_entries[day] = []

@@ -92,6 +92,7 @@ func _after_event() -> void:
 func _end_day() -> void:
 	if _check_ending():
 		return
+	EventManager.end_day()
 	Crew.end_day()
 	EffectSystem.tick()
 	if _check_ending():
@@ -131,7 +132,8 @@ func _on_member_died(member: CrewMember, cause: String) -> void:
 
 
 func _on_member_exiled(member: CrewMember) -> void:
-	_next_day_entry("journal_exiled", {"name": member.display_name})
+	var key : String = "journal_exiled" if member.exile_cause == "airlock" else "journal_exiled_" + member.exile_cause
+	_next_day_entry(key, {"name": member.display_name})
 
 
 func _on_intimidate_unlocked(criminal: CrewMember) -> void:

@@ -1,4 +1,7 @@
 {
+	"start_title": "Airlock",
+	"ui_start_game": "开始游戏",
+	"ui_quit": "退出",
 	"ui_hide_panels": "隐藏面板",
 	"ui_show_panels": "显示面板",
 	"ui_continue": "继续",
@@ -80,5 +83,8 @@
 	"ending_survived_alone": "[占位] 第 30 天，飞船抵达了那颗宜居星球。船上只剩下你一个人。",
 	"ending_captain_starvation": "[占位] 你饿死了。",
 	"ending_captain_injury": "[占位] 你没能撑过伤势。",
-	"ending_mutiny": "[占位] {criminal} 发动了叛变。"
+	"ending_mutiny": "[占位] {criminal} 发动了叛变。",
+	"event_sick": "[占位] {name}生病了。",
+	"journal_exiled_debt": "[占位] {name}跟着Firebreath的飞船走了，去替我们还债。",
+	"ui_guest_aboard": "[占位] Josan在船上（每2天 -1 漱口水）"
 }

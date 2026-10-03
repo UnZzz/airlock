@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SawdustMealEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/sawdust_meal_event.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+event_id = "sawdust_meal"
+required_members = Array[String](["elias", "helena"])

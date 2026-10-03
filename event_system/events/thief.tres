@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ThiefEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/thief_event.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+event_id = "thief"

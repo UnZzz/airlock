@@ -1,4 +1,7 @@
 {
+	"start_title": "Airlock",
+	"ui_start_game": "Start Game",
+	"ui_quit": "Quit",
 	"ui_hide_panels": "Hide Panels",
 	"ui_show_panels": "Show Panels",
 	"ui_continue": "Continue",
@@ -80,5 +83,8 @@
 	"ending_survived_alone": "[TBD] On Day 30, the ship reaches the habitable planet. You are the only one left on board.",
 	"ending_captain_starvation": "[TBD] You starved to death.",
 	"ending_captain_injury": "[TBD] You didn't survive your injuries.",
-	"ending_mutiny": "[TBD] {criminal} leads a mutiny."
+	"ending_mutiny": "[TBD] {criminal} leads a mutiny.",
+	"event_sick": "[TBD] {name} got sick.",
+	"journal_exiled_debt": "[TBD] {name} left on the Firebreath ship to work off our debt.",
+	"ui_guest_aboard": "[TBD] Josan is aboard (-1 Mouthwash every 2 days)"
 }

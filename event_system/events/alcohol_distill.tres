@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AlcoholDistillEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/alcohol_distill_event.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+event_id = "alcohol_distill"
+repeatable = true

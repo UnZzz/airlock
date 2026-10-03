@@ -8,7 +8,15 @@
 [ext_resource type="Resource" path="res://event_system/events/repair_leak.tres" id="6_repair"]
 [ext_resource type="Resource" path="res://event_system/events/salvage_cargo.tres" id="7_salvage"]
 [ext_resource type="Resource" path="res://event_system/events/fire_check.tres" id="8_fire"]
+[ext_resource type="Resource" path="res://event_system/events/sawdust_meal.tres" id="9_sawdust_meal"]
+[ext_resource type="Resource" path="res://event_system/events/thief.tres" id="10_thief"]
+[ext_resource type="Resource" path="res://event_system/events/alcohol_distill.tres" id="11_alcohol_distill"]
+[ext_resource type="Resource" path="res://event_system/events/mason_guard.tres" id="12_mason_guard"]
+[ext_resource type="Resource" path="res://event_system/events/octopus.tres" id="13_octopus"]
+[ext_resource type="Resource" path="res://event_system/events/jason_knock.tres" id="14_jason_knock"]
+[ext_resource type="Resource" path="res://event_system/events/jason_fed_up.tres" id="15_jason_fed_up"]
+[ext_resource type="Resource" path="res://event_system/events/debt_crisis.tres" id="16_debt_crisis"]
 
 [node name="EventManager" type="Node" unique_id=641408936]
 script = ExtResource("1_q2u81")
-events = Array[ExtResource("2_base")]([ExtResource("3_argument"), ExtResource("4_criminal"), ExtResource("5_doctor"), ExtResource("6_repair"), ExtResource("7_salvage"), ExtResource("8_fire")])
+events = Array[ExtResource("2_base")]([ExtResource("3_argument"), ExtResource("4_criminal"), ExtResource("5_doctor"), ExtResource("6_repair"), ExtResource("7_salvage"), ExtResource("8_fire"), ExtResource("9_sawdust_meal"), ExtResource("10_thief"), ExtResource("11_alcohol_distill"), ExtResource("12_mason_guard"), ExtResource("13_octopus"), ExtResource("14_jason_knock"), ExtResource("15_jason_fed_up"), ExtResource("16_debt_crisis")])

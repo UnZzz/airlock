@@ -7,14 +7,39 @@ signal event_finished(event: BaseEvent)
 var event_chance : float = 0.6
 @export
 var events : Array[BaseEvent] = []
+@export
+var guest_drink_interval : int = 2
+@export
+var guest_drink_cost : int = 1
 
 var used_event_ids : Array[String] = []
 var current_event : BaseEvent = null
+var guest_aboard : bool = false
+var guest_join_day : int = 0
 
 
 func reset() -> void:
 	used_event_ids.clear()
 	current_event = null
+	guest_aboard = false
+	guest_join_day = 0
+
+
+func admit_guest() -> void:
+	guest_aboard = true
+	guest_join_day = Timeline.current_day
+
+
+func evict_guest() -> void:
+	guest_aboard = false
+
+
+func end_day() -> void:
+	if not guest_aboard or guest_drink_interval <= 0:
+		return
+	var days : int = Timeline.current_day - guest_join_day
+	if days > 0 and days % guest_drink_interval == 0:
+		Inventory.apply_change(0, -guest_drink_cost)
 
 
 func find_event(event_id: String) -> BaseEvent:

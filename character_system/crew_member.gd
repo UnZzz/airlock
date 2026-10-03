@@ -29,6 +29,10 @@ var knows_airlock_secret : bool = false
 var current_promise : Promise = Promise.NONE
 var requested_exile_target : String = ""
 var refuses_next_task : bool = false
+var exile_cause : String = ""
+var hungry_day_count : int = 0
+var last_mouthwash_day : int = -100
+var distill_triggered : bool = false
 
 
 func is_on_board() -> bool:

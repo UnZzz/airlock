@@ -16,6 +16,7 @@ const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn"
 @onready var body_text : RichTextLabel = $Margin/Layout/ContentPanel/Content/BodyText
 @onready var option_list : VBoxContainer = $Margin/Layout/ContentPanel/Content/OptionList
 @onready var dialogue : Control = $Dialogue
+@onready var event_popup : EventPopup = $EventPopup
 
 var current_scene : PackedScene = null
 var fed_selection : Dictionary = {}
@@ -47,6 +48,8 @@ func _update_panel_toggle_text() -> void:
 
 
 func _on_phase_changed(phase: int) -> void:
+	if phase != GameFlow.Phase.EVENT:
+		event_popup.close()
 	_refresh_sidebar()
 	_set_scene(AIRLOCK_SCENE if phase == GameFlow.Phase.AIRLOCK else DAY_SCENE)
 	match phase:
@@ -196,13 +199,14 @@ func _show_event() -> void:
 	if event.is_finished and event.current_text.strip_edges() == "":
 		GameFlow.finish_event()
 		return
-	_show_page(event.title if event.title != "" else Journal.text("event_title"), [event.current_text])
+	_clear_option_list()
+	var buttons : Array[Dictionary] = []
 	if event.is_finished:
-		_add_button(Journal.text("ui_continue"), GameFlow.finish_event)
-		return
-	for option in event.current_options:
-		var button : Button = _add_button(option.text, _on_event_option.bind(option))
-		button.disabled = not option.can_afford()
+		buttons.append({"text": Journal.text("ui_continue"), "callback": GameFlow.finish_event})
+	else:
+		for option in event.current_options:
+			buttons.append({"text": option.text, "disabled": not option.can_afford(), "callback": _on_event_option.bind(option)})
+	event_popup.open(event.title if event.title != "" else Journal.text("event_title"), event.current_text, buttons)
 
 
 func _on_event_option(option: EventOption) -> void:
@@ -243,6 +247,10 @@ func _show_page(title: String, paragraphs: Array) -> void:
 	title_label.text = title
 	body_text.text = "\n\n".join(paragraphs)
 	body_text.scroll_to_line(0)
+	_clear_option_list()
+
+
+func _clear_option_list() -> void:
 	for child in option_list.get_children():
 		option_list.remove_child(child)
 		child.queue_free()
@@ -274,6 +282,8 @@ func _refresh_sidebar() -> void:
 		day_lines.append(Journal.text("ui_next_airlock", {"day": Timeline.get_next_airlock_day()}))
 	day_label.text = "\n".join(day_lines)
 	resource_label.text = Journal.text("ui_resources", {"food": Inventory.food_count, "mouthwash": Inventory.bottle_of_mouthwash_count})
+	if EventManager.guest_aboard:
+		resource_label.text += "\n" + Journal.text("ui_guest_aboard")
 	for child in crew_list.get_children():
 		crew_list.remove_child(child)
 		child.queue_free()

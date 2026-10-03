@@ -149,6 +149,7 @@ func maintain(member_id: String) -> bool:
 	if not can_maintain(member_id):
 		return false
 	Inventory.spend(0, maintenance_cost)
+	get_member(member_id).last_mouthwash_day = Timeline.current_day
 	EffectSystem.reset_duration(member_id, get_injury_effect(member_id).effect_name)
 	crew_changed.emit()
 	return true
@@ -179,6 +180,14 @@ func treat(member_id: String) -> bool:
 	return true
 
 
+func heal(member_id: String) -> void:
+	if get_injury_effect(member_id) == null:
+		return
+	EffectSystem.remove_effect(member_id, injured_effect.effect_name)
+	EffectSystem.remove_effect(member_id, critical_effect.effect_name)
+	crew_changed.emit()
+
+
 func kill(member_id: String, cause: String) -> void:
 	var member : CrewMember = get_member(member_id)
 	if member == null or not member.is_on_board():
@@ -190,11 +199,12 @@ func kill(member_id: String, cause: String) -> void:
 	crew_changed.emit()
 
 
-func exile(member_id: String) -> void:
+func exile(member_id: String, cause: String = "airlock") -> void:
 	var member : CrewMember = get_member(member_id)
 	if member == null or not member.is_on_board():
 		return
 	member.status = CrewMember.Status.EXILED
+	member.exile_cause = cause
 	EffectSystem.clear_target(member_id)
 	member_exiled.emit(member)
 	crew_changed.emit()
@@ -212,6 +222,11 @@ func change_loyalty(delta: int) -> void:
 	crew_changed.emit()
 	if criminal.reached_max_loyalty and criminal.loyalty == 0:
 		mutiny.emit(criminal)
+
+
+func is_loyalty_full() -> bool:
+	var criminal : CrewMember = get_by_role(CrewMember.Role.CRIMINAL)
+	return criminal != null and criminal.is_on_board() and criminal.loyalty >= max_loyalty
 
 
 func can_intimidate() -> bool:
@@ -252,6 +267,7 @@ func end_day() -> void:
 			member.days_without_food = 0
 		else:
 			member.days_without_food += 1
+			member.hungry_day_count += 1
 		member.fed_today = false
 	for member in on_board():
 		if member.days_without_food >= starvation_limit:

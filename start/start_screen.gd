@@ -1,0 +1,60 @@
+extends Control
+
+const GAME_SCENE_PATH : String = "res://main.tscn"
+
+@export var fade_in_time : float = 1.2
+@export var fade_out_time : float = 0.8
+@export var breathe_scale : float = 1.04
+@export var breathe_time : float = 9.0
+
+@onready var background : TextureRect = $Background
+@onready var title_label : Label = $Menu/TitleLabel
+@onready var start_button : Button = $Menu/StartButton
+@onready var quit_button : Button = $Menu/QuitButton
+@onready var fade : ColorRect = $Fade
+
+var leaving : bool = false
+
+
+func _ready() -> void:
+	title_label.text = Journal.text("start_title")
+	start_button.text = Journal.text("ui_start_game")
+	quit_button.text = Journal.text("ui_quit")
+	start_button.pressed.connect(_on_start)
+	quit_button.pressed.connect(_on_quit)
+	quit_button.visible = not OS.has_feature("web")
+	resized.connect(_fit_background)
+	_fit_background()
+	_breathe()
+	fade.color.a = 1.0
+	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
+	start_button.grab_focus()
+	Music.play_playlist()
+
+
+func _fit_background() -> void:
+	var texture_size : Vector2 = background.texture.get_size()
+	var fit : float = maxf(size.x / texture_size.x, size.y / texture_size.y)
+	background.size = texture_size * fit
+	background.position = Vector2((size.x - background.size.x) * 0.5, 0.0)
+	background.pivot_offset = Vector2(background.size.x * 0.5, 0.0)
+
+
+func _breathe() -> void:
+	var tween : Tween = create_tween().set_loops()
+	tween.tween_property(background, "scale", Vector2.ONE * breathe_scale, breathe_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(background, "scale", Vector2.ONE, breathe_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_start() -> void:
+	if leaving:
+		return
+	leaving = true
+	fade.mouse_filter = Control.MOUSE_FILTER_STOP
+	var tween : Tween = create_tween()
+	tween.tween_property(fade, "color:a", 1.0, fade_out_time)
+	tween.tween_callback(get_tree().change_scene_to_file.bind(GAME_SCENE_PATH))
+
+
+func _on_quit() -> void:
+	get_tree().quit()

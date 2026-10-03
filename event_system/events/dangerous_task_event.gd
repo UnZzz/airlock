@@ -29,6 +29,8 @@ var worker_demand_text : String = ""
 var worker_demand_options : Array[EventOption] = []
 @export
 var outcome_flag : String = ""
+@export
+var abandon_injure_all : bool = false
 
 var excluded_ids : Array[String] = []
 var skip_promise_active : bool = false
@@ -40,6 +42,7 @@ func can_trigger() -> bool:
 
 
 func begin() -> void:
+	_load_story_text()
 	excluded_ids.clear()
 	pending_demand = {}
 	skip_promise_active = false
@@ -53,6 +56,17 @@ func begin() -> void:
 		elif worker.current_promise == CrewMember.Promise.SKIP_NEXT_TASK:
 			skip_promise_active = true
 	_show_assignment("\n\n".join(lines))
+
+
+func _load_story_text() -> void:
+	if not Journal.has_event_text(event_id):
+		return
+	title = Journal.event_text(event_id, "title")
+	description = Journal.event_text(event_id, "description")
+	abandon_option_text = Journal.event_text(event_id, "abandon_option")
+	var sends : Variant = Journal.event_value(event_id, "send_options")
+	if sends is Dictionary:
+		send_option_texts = sends
 
 
 func choose(option: EventOption) -> void:
@@ -221,7 +235,15 @@ func _complete_task(member: CrewMember, lines: Array[String] = []) -> void:
 func _abandon() -> void:
 	_set_outcome("nothing", "")
 	Inventory.apply_change(abandon_food_change, abandon_mouthwash_change)
-	_finish(abandon_text)
+	var lines : Array[String] = []
+	if abandon_text != "":
+		lines.append(abandon_text)
+	if abandon_injure_all:
+		for member in Crew.passengers_on_board():
+			Crew.injure(member.member_id)
+			var key : String = "task_injured" if member.is_on_board() else "task_died"
+			lines.append(Journal.text(key, {"name": member.display_name}))
+	_finish("\n\n".join(lines))
 
 
 func _set_outcome(outcome: String, member_id: String) -> void:

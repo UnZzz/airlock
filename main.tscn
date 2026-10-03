@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://e1pv4i2554jv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" path="res://character_system/CrewStage.tscn" id="2_stage"]
 [ext_resource type="PackedScene" path="res://dialogue_system/Dialogue.tscn" id="3_dialogue"]
+[ext_resource type="PackedScene" path="res://event_system/EventPopup.tscn" id="4_event_popup"]
 
 [node name="Main" type="Control" unique_id=1695913495]
 layout_mode = 3
@@ -100,4 +101,7 @@ offset_bottom = 60.0
 grow_horizontal = 0
 
 [node name="Dialogue" parent="." instance=ExtResource("3_dialogue")]
+layout_mode = 1
+
+[node name="EventPopup" parent="." instance=ExtResource("4_event_popup")]
 layout_mode = 1

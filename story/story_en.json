@@ -92,5 +92,89 @@
 			"allocation_text": "So, who gets stuck finishing off these awful leaves tonight?",
 			"event": "random"
 		}
+	},
+	"events": {
+		"sawdust_meal": {
+			"title": "Sawdust Supper",
+			"description": [
+				"Elias came up with a novel kind of food: sawdust! Why not? It grows out of the ground and gets watered by the rain like any other part of a plant, so why can't we eat it? He says that when the workers breaking ground in those remote star systems run out of food, they mix a little flour with the dust they saw off the scaffolding. Our miserable digestive systems can't process cellulose at all, so it would just move into our guts and stay there for a while. And if your stomach is always full, you never need to eat, right?",
+				"Dr. Voss pointed out that this is an utterly absurd idea. It's not only irresponsible to our health, it's a grave insult to her as a doctor of medicine. I won't write down her long list of evidence and case studies. Honestly, the real reason is that I didn't remember any of it. Anyway, she suggested using a chemical to break the sawdust down into smaller molecules the human body can digest. It won't turn into a perfectly healthy cookie, but it should at least lower the chance of getting sick.",
+				{
+					"if_on_board": "mason",
+					"text": "Mason swears he'd rather starve than chew on a tree"
+				},
+				"If you trust Elias, he'll add to your Food stores, but the crew may get sick. If you go with Dr. Voss, who knows far more about health, your Food stores will go up a little, with no risk of anyone getting sick."
+			],
+			"option_elias": "Elias Ward",
+			"option_voss": "Dr. Voss",
+			"option_nonsense": "This is ridiculous! (Mason would want you to do this)",
+			"complaint": "Elias doesn't get why, at a time like this, you're still going along with some other idiot's nonsense. He and his fellow workers got through hard times exactly this way, and he doesn't see any of them coming down with cancer or heart disease. If you're going to turn down the wisdom of the working class, the least you can do is give him the compensation he's owed.",
+			"complaint_food": "Food",
+			"complaint_mouthwash": "Mouthwash",
+			"complaint_give_in": "Damn it, let him have his way (go with Elias's plan)"
+		},
+		"thief": {
+			"title": "Thief!",
+			"description": "{name} stole a big portion of food and got caught red-handed trying to hide it. I don't think we can blame {ta_obj}. Anyone this hungry would do the same. But the one thing we can't accept is that {ta} refuses to hand the food over! Should we use our fists to persuade {ta_obj} to share it with everyone, trade {ta_obj} a bottle of mouthwash for it, or just let {ta_obj} have a good meal?",
+			"option_force": "Persuade by force (small chance someone gets hurt)",
+			"option_trade": "Trade mouthwash for it (lose Mouthwash)",
+			"option_release": "Let {ta_obj} go (lose Food)",
+			"option_mason": "Have Mason deal with it (nothing happens)"
+		},
+		"alcohol_distill": {
+			"title": "Distilled Alcohol",
+			"description": "Dr. Voss caught me trying to treat {name}'s wound. She \"tactfully\" pointed out that I hadn't separated the sugar out of the mouthwash, which will make the wound fester so it never fully heals. The only real fix is to admit she's the most educated person on this ship, and give her two bottles of mouthwash so she can distill alcohol pure enough for the job.",
+			"option_accept": "Fine, Dr. Voss, I admit you're much smarter than me (Mouthwash -2, back to Healthy)",
+			"option_refuse": "Forget it. The captain is always the smartest person on the ship. (nothing happens)",
+			"option_mason": "Tell Mason someone called his captain an idiot (Mouthwash -2, back to Healthy, and you don't have to admit anything to Dr. Voss)"
+		},
+		"mason_guard": {
+			"title": "Does He Count as a Guard?",
+			"description": "We're clearly a mess. Just last night, Mason found out that selfish {name} had been secretly keeping a portion of food the whole time, with no intention of sharing it. Nice work, Mason. I just hope next time he uses his fists a little less and his brain a little more."
+		},
+		"octopus": {
+			"title": "Our Squishy Roommate",
+			"description": "We heard strange noises coming from the air vent. When we pried the wire mesh open, we found a giant octopus! We need a brave soul to drive out this uninvited guest, or turn it into our dinner. The only problem is that this stretch of vent leads into cold storage, so if we don't want our crew electrocuted, maybe we should send someone who knows the ship.",
+			"send_options": {
+				"elias": "Elias Ward (small chance of injury)",
+				"mara": "Mara Quinn",
+				"helena": "Dr. Voss",
+				"mason": "Mason Reed (these three: high chance of injury, small chance of death)"
+			},
+			"abandon_option": "We'll be fine (everyone gets injured)"
+		},
+		"jason_knock": {
+			"title": "Someone Even Stranger Than These Four?",
+			"description": [
+				"Something is knocking on our airlock. Maybe we're just hearing things. Maybe it's the ghosts of the people we threw out the airlock, come back for us. Or maybe it's some supernatural creature that doesn't need oxygen and can move freely through the vacuum. Thank goodness, it can communicate, and it even speaks English! Later we figured out that he's just an ordinary human who happens not to need oxygen and can move freely through the vacuum. His name is Jason, and he desperately needs alcohol. He brought us a little food as a show of good faith and asked us to let him in.",
+				"Should we?"
+			],
+			"option_allow": "Let him in (Josan comes aboard, -1 Mouthwash every 2 days)",
+			"option_deny": "Turn him away (nothing happens)"
+		},
+		"jason_fed_up": {
+			"title": "We've Had Enough!",
+			"description": "All right, this is beyond ridiculous. In all the days Josan has been here, he hasn't lifted a finger. All he does is drink our mouthwash. Elias points out that this is naked exploitation and oppression. That hard-won batch of mouthwash cost us the whole crew's reputation, plus the compensation Firebreath is about to come after us for. Mara keeps worrying that he'll get drunk, open the airlock and throw us out one by one. In short, everyone agrees that letting Josan in was a complete and utterly absurd mistake. Do you want to send someone to ruthlessly kick him out and salvage what little reputation you have left, or let him keep wasting all our mouthwash?",
+			"option_elias": "Elias Ward",
+			"option_mara": "Mara Quinn",
+			"option_helena": "Dr. Voss",
+			"option_mason": "Mason Reed",
+			"option_nothing": "[TBD] Let him stay",
+			"result_evict": "[TBD] {name} threw Josan off the ship."
+		},
+		"debt_crisis": {
+			"title": "Debt Crisis",
+			"description": "I picked up a signal from another ship. They turned out to be Firebreath people. But those selfish bastards have no intention of rescuing us. They came to find out why that crate of mouthwash never arrived. I told them there had been a fire on board, our food had burned, and we were about to starve. All they kept asking was how we plan to pay for a crate of mouthwash worth less than a hundred dollars in total. We have nothing, and their solution is for us to send one crew member to work for them. They promise to send that crew member home once the debt is paid off. Who should we send to contribute a little muscle to our finances? Or do we grab our weapons and drive off these bastards who'd leave us to die?",
+			"option_elias": "Elias Ward",
+			"option_mara": "Mara Quinn",
+			"option_helena": "Dr. Voss",
+			"option_mason": "Mason Reed",
+			"option_fight": "[TBD] Grab our weapons and drive them off",
+			"leave_elias": "The truth is, I've always offered Elias extremely generous terms, [TBD]",
+			"leave_mara": "[TBD] Mara left with the Firebreath crew.",
+			"leave_helena": "[TBD] Dr. Voss left with the Firebreath crew.",
+			"leave_mason": "[TBD] Mason left with the Firebreath crew.",
+			"fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
+		}
 	}
 }
