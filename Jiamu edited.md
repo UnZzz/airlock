@@ -484,3 +484,29 @@
 
 **测试**
 - Godot 运行无新报错；录帧截图确认两个面板、Continue 按钮和胶带显示正常
+
+---
+
+## 生病状态（2026-10-03，效果是 Mumu 手调的）
+
+**新增文件**
+
+| 文件 | 作用 |
+|---|---|
+| `effect_system/effects/sick.tres` | 生病状态 `sick`，持续时间无限（没有倒计时，也不会变成别的状态） |
+| `character_system/SickParticles.tscn` | Mumu 在 `CrewStage.tscn` 里调的粒子，原样搬出来做成可复用场景，参数一个没改 |
+
+**修改的文件**
+
+| 文件 | 改了什么 |
+|---|---|
+| `character_system/crew.gd`、`Crew.tscn` | 新增 `sick_effect`、`is_sick()`、`make_sick()`、`cure_sickness()`。生病和受伤 / 重伤可以同时存在 |
+| `character_system/character_portrait.gd` | 每个角色自带一份粒子；生病时角色变绿（`sick_tint`，就是 Mumu 调的颜色）+ 粒子开始飘，好了就恢复。绿色用 `self_modulate`，只染角色本身，不会把粒子和头顶名字也染绿。粒子位置 `sick_particles_anchor` = (0.5, 0.35)，按角色框比例算，换大小也会跟着走 |
+| `character_system/CrewStage.tscn` | 删掉了 Mara 身上手调的绿色和那个单独的 GPUParticles2D 节点（已经搬进上面的脚本 / 场景，不删的话 Mara 会一直绿、粒子会一直飘） |
+
+**还没做（等决定）**
+- 什么情况会生病、怎么治好：现在没有任何地方调用 `make_sick`
+- 左侧面板还不显示"生病"
+
+**测试**
+- 让 Helena 和 Mara 生病：两人变绿、粒子在飘，Mason 不受影响；治好 Mara 后粒子停止。截图确认
