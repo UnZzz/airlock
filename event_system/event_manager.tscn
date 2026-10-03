@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://cif6natjfgl13"]
 
 [ext_resource type="Script" uid="uid://dmqjxmu1uvaej" path="res://event_system/event_manager.gd" id="1_q2u81"]
+[ext_resource type="Script" uid="uid://bnp15g1sas8vc" path="res://event_system/events/base_event.gd" id="2_base"]
+[ext_resource type="Resource" uid="uid://bxnxtbv5f7hxm" path="res://event_system/events/argument.tres" id="3_argument"]
+[ext_resource type="Resource" path="res://event_system/events/criminal_demand.tres" id="4_criminal"]
+[ext_resource type="Resource" path="res://event_system/events/doctor_demand.tres" id="5_doctor"]
+[ext_resource type="Resource" path="res://event_system/events/repair_leak.tres" id="6_repair"]
+[ext_resource type="Resource" path="res://event_system/events/salvage_cargo.tres" id="7_salvage"]
 
 [node name="EventManager" type="Node" unique_id=641408936]
 script = ExtResource("1_q2u81")
+events = Array[ExtResource("2_base")]([ExtResource("3_argument"), ExtResource("4_criminal"), ExtResource("5_doctor"), ExtResource("6_repair"), ExtResource("7_salvage")])
