@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3]
+[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3 uid="uid://bjly3osbv2ckw"]
 
-[ext_resource type="Script" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
+[ext_resource type="Script" uid="uid://lfhisf7uexku" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
+[ext_resource type="Script" uid="uid://y76jvjkqrx41" path="res://event_system/events/event_option.gd" id="1_s1aop"]
 
 [resource]
 script = ExtResource("1_danger")
+success_text = "[TBD] {name} fixed the pipe."
+abandon_text = "[TBD] Nobody fixed it. Some of the food has spoiled."
+abandon_food_change = -2
 event_id = "repair_leak"
 title = "[TBD] Burst Coolant Pipe"
 description = "[TBD] A coolant pipe in the storage bay has burst. If nobody fixes it, the remaining food will spoil faster. Someone needs to go deal with it."
 repeatable = true
-success_text = "[TBD] {name} fixed the pipe."
-abandon_text = "[TBD] Nobody fixed it. Some of the food has spoiled."
-abandon_food_change = -2

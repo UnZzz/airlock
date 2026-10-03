@@ -1,8 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c7mq0xmmgau1q"]
 
-[ext_resource type="Script" path="res://character_system/crew_stage.gd" id="1_stage"]
+[ext_resource type="Script" uid="uid://ccp4m4u5dp13t" path="res://character_system/character_portrait.gd" id="1_portrait"]
+[ext_resource type="Texture2D" uid="uid://ykbnvr371yf2" path="res://character/1_1.png" id="2_1_1"]
+[ext_resource type="Texture2D" uid="uid://cnwttvgq7dac4" path="res://character/1_2.png" id="3_1_2"]
+[ext_resource type="Texture2D" uid="uid://jfm0yogiy6id" path="res://character/1_3.png" id="4_1_3"]
+[ext_resource type="Texture2D" uid="uid://bijd46sigusdl" path="res://character/2_1.png" id="5_2_1"]
+[ext_resource type="Texture2D" uid="uid://c5goqfl80ixnu" path="res://character/2_2.png" id="6_2_2"]
+[ext_resource type="Texture2D" uid="uid://344axew5mvrf" path="res://character/2_3.png" id="7_2_3"]
+[ext_resource type="Texture2D" uid="uid://b3gasjinfn7oh" path="res://character/4_1.png" id="8_4_1"]
+[ext_resource type="Texture2D" uid="uid://6mw33i1vwmmp" path="res://character/4_2.png" id="9_4_2"]
+[ext_resource type="Texture2D" uid="uid://7q0pcr1ub7ed" path="res://character/4_3.png" id="10_4_3"]
+[ext_resource type="Texture2D" uid="uid://cm2i85fmvw6bj" path="res://character/3_1.png" id="11_3_1"]
+[ext_resource type="Texture2D" uid="uid://ridkb3y2frju" path="res://character/3_2.png" id="12_3_2"]
+[ext_resource type="Texture2D" uid="uid://smt8v8ns0iaq" path="res://character/3_3.png" id="13_3_3"]
 
-[node name="CrewStage" type="Control"]
+[node name="CrewStage" type="Control" unique_id=1213416732]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,16 +22,82 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_stage")
 
-[node name="Row" type="HBoxContainer" parent="."]
+[node name="Mason" type="TextureRect" parent="." unique_id=524163530]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = 24.0
+offset_top = -410.0
+offset_right = 396.0
+offset_bottom = -0.19506836
 grow_vertical = 0
 mouse_filter = 2
-alignment = 1
-theme_override_constants/separation = 0
+texture = ExtResource("4_1_3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_portrait")
+member_id = "mason"
+healthy_texture = ExtResource("4_1_3")
+injured_texture = ExtResource("3_1_2")
+critical_texture = ExtResource("2_1_1")
+
+[node name="Elias" type="TextureRect" parent="." unique_id=2061785764]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 355.0
+offset_top = -329.0
+offset_right = 663.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("7_2_3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_portrait")
+member_id = "elias"
+healthy_texture = ExtResource("7_2_3")
+injured_texture = ExtResource("6_2_2")
+critical_texture = ExtResource("5_2_1")
+
+[node name="Helena" type="TextureRect" parent="." unique_id=655036887]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 830.0
+offset_top = -366.0
+offset_right = 1113.0
+offset_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("10_4_3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_portrait")
+member_id = "helena"
+healthy_texture = ExtResource("10_4_3")
+injured_texture = ExtResource("9_4_2")
+critical_texture = ExtResource("8_4_1")
+
+[node name="Mara" type="TextureRect" parent="." unique_id=472517887]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 664.0
+offset_top = -331.0
+offset_right = 855.0
+offset_bottom = 4.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("13_3_3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_portrait")
+member_id = "mara"
+healthy_texture = ExtResource("13_3_3")
+injured_texture = ExtResource("12_3_2")
+critical_texture = ExtResource("11_3_1")

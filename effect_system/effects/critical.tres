@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BaseEffect" format=3]
+[gd_resource type="Resource" script_class="BaseEffect" format=3 uid="uid://bjkcfx2be80yf"]
 
 [ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://effect_system/effects/base_effect.gd" id="1_uquag"]
 [ext_resource type="Resource" uid="uid://dafm3kjalu2fa" path="res://effect_system/effects/dead.tres" id="2_dead"]

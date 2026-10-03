@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BaseEffect" format=3 uid="uid://b4d5pknlsu80y"]
 
 [ext_resource type="Script" uid="uid://coej6ak3esl1j" path="res://effect_system/effects/base_effect.gd" id="1_uquag"]
-[ext_resource type="Resource" path="res://effect_system/effects/critical.tres" id="2_crit"]
+[ext_resource type="Resource" uid="uid://bjkcfx2be80yf" path="res://effect_system/effects/critical.tres" id="2_crit"]
 
 [resource]
 script = ExtResource("1_uquag")

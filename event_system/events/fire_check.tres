@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3]
+[gd_resource type="Resource" script_class="DangerousTaskEvent" format=3 uid="uid://cw87v0qbyhwtb"]
 
-[ext_resource type="Script" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
-[ext_resource type="Script" path="res://event_system/events/event_option.gd" id="2_option"]
+[ext_resource type="Script" uid="uid://lfhisf7uexku" path="res://event_system/events/dangerous_task_event.gd" id="1_danger"]
+[ext_resource type="Script" uid="uid://y76jvjkqrx41" path="res://event_system/events/event_option.gd" id="2_option"]
 
 [sub_resource type="Resource" id="Resource_food"]
 script = ExtResource("2_option")
@@ -22,19 +22,19 @@ action = "abandon"
 
 [resource]
 script = ExtResource("1_danger")
-event_id = "fire_check"
-description = "Oh, and the fire in the cold storage might not be completely out. I'm worried it could do more damage to the ship's wiring, and from there to the life support. Maybe I should send someone to take a look? Elias normally handles the ship's routine maintenance, but I'm not sure he won't use his expertise to make some extra demands. And if I send someone who doesn't know the ship, they might get electrocuted."
-in_random_pool = false
 injury_chance = 0.0
 death_chance = 0.0
 worker_injury_chance = 0.0
 send_option_texts = {
 "elias": "Elias Ward",
-"mara": "Mara Quinn",
 "helena": "Dr. Voss",
+"mara": "Mara Quinn",
 "mason": "Mason Reed"
 }
 abandon_option_text = "We'll be fine (do nothing)"
 worker_demand_text = "I knew he'd ask for this. He was the one who kept saying \"we should just drink the stuff\" during the discussion. Should we humor him and let him have a whole bottle of mouthwash to himself, try bribing him with extra food instead, or do nothing and bet that the fire is already out?"
 worker_demand_options = Array[ExtResource("2_option")]([SubResource("Resource_food"), SubResource("Resource_mouthwash"), SubResource("Resource_refuse")])
 outcome_flag = "day2_fire"
+event_id = "fire_check"
+description = "Oh, and the fire in the cold storage might not be completely out. I'm worried it could do more damage to the ship's wiring, and from there to the life support. Maybe I should send someone to take a look? Elias normally handles the ship's routine maintenance, but I'm not sure he won't use his expertise to make some extra demands. And if I send someone who doesn't know the ship, they might get electrocuted."
+in_random_pool = false
