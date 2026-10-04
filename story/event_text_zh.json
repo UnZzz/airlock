@@ -10,41 +10,41 @@
 		]
 	},
 	"argument": {
-		"title": "[占位] 争执",
-		"description": "[占位] Mason Reed 和 Dr. Helena Voss 为了最后一块干粮吵了起来。",
+		"title": "争执",
+		"description": "Mason Reed 和 Dr. Helena Voss 为了最后一块干粮吵了起来。",
 		"options": [
-			{"text": "[占位] 站在 Mason 这边", "result_text": "[占位] Mason 冲你点了点头。"},
-			{"text": "[占位] 站在 Helena 这边", "result_text": "[占位] Mason 啐了一口，走开了。"},
-			{"text": "[占位] 把干粮分给 Mason", "result_text": "[占位] Mason 拿走了干粮。"}
+			{"text": "站在 Mason 这边", "result_text": "Mason 冲你点了点头。"},
+			{"text": "站在 Helena 这边", "result_text": "Mason 啐了一口，走开了。"},
+			{"text": "把干粮分给 Mason", "result_text": "Mason 拿走了干粮。"}
 		]
 	},
 	"criminal_demand": {
-		"title": "[占位] Mason 的要求",
-		"description": "[占位] Mason Reed 要求今晚多分他一份食物。",
+		"title": "Mason 的要求",
+		"description": "Mason Reed 要求今晚多分他一份食物。",
 		"options": [
-			{"text": "[占位] 满足他", "result_text": "[占位] Mason 满意地走开了。"},
-			{"text": "[占位] 拒绝他", "result_text": "[占位] Mason 记住了这件事。"},
-			{"text": "[占位] 把他关进储物间一晚", "result_text": "[占位] Mason 在储物间里砸了一整夜的门。"}
+			{"text": "满足他", "result_text": "Mason 满意地走开了。"},
+			{"text": "拒绝他", "result_text": "Mason 记住了这件事。"},
+			{"text": "把他关进储物间一晚", "result_text": "Mason 在储物间里砸了一整夜的门。"}
 		]
 	},
 	"doctor_demand": {
-		"title": "[占位] Helena 的条件",
-		"description": "[占位] Dr. Helena Voss 说，只要再给她 1 瓶漱口水，她就愿意去医疗舱翻一翻还能吃的营养剂。",
+		"title": "Helena 的条件",
+		"description": "Dr. Helena Voss 说，只要再给她 1 瓶漱口水，她就愿意去医疗舱翻一翻还能吃的营养剂。",
 		"options": [
-			{"text": "[占位] 给她 1 瓶漱口水", "result_text": "[占位] 她从医疗舱带回了 2 份营养剂。"},
-			{"text": "[占位] 算了", "result_text": "[占位] Helena 耸了耸肩。"}
+			{"text": "给她 1 瓶漱口水", "result_text": "她从医疗舱带回了 2 份营养剂。"},
+			{"text": "算了", "result_text": "Helena 耸了耸肩。"}
 		]
 	},
 	"repair_leak": {
-		"title": "[占位] 冷却管道破裂",
-		"description": "[占位] 储藏舱的冷却管道破了。不修的话，剩下的食物会更快变质。需要派一个人去处理。",
-		"success_text": "[占位] {name} 修好了管道。",
-		"abandon_text": "[占位] 没人去修。一部分食物变质了。"
+		"title": "冷却管道破裂",
+		"description": "储藏舱的冷却管道破了。不修的话，剩下的食物会更快变质。需要派一个人去处理。",
+		"success_text": "{name} 修好了管道。",
+		"abandon_text": "没人去修。一部分食物变质了。"
 	},
 	"salvage_cargo": {
-		"title": "[占位] 舱外补给箱",
-		"description": "[占位] 货舱外挂着一个没被烧毁的补给箱。需要有人穿上宇航服出去把它拖回来。",
-		"success_text": "[占位] {name} 把补给箱拖了回来，里面有 2 份食物。",
-		"abandon_text": "[占位] 补给箱慢慢飘远了。"
+		"title": "舱外补给箱",
+		"description": "货舱外挂着一个没被烧毁的补给箱。需要有人穿上宇航服出去把它拖回来。",
+		"success_text": "{name} 把补给箱拖了回来，里面有 2 份食物。",
+		"abandon_text": "补给箱慢慢飘远了。"
 	}
 }

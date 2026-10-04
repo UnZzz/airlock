@@ -15,6 +15,7 @@ func _ready() -> void:
 	Crew.member_exiled.connect(_on_member_exiled)
 	Crew.intimidate_unlocked.connect(_on_intimidate_unlocked)
 	Crew.mutiny.connect(_on_mutiny)
+	Crew.infighting.connect(_on_infighting)
 	Timeline.on_final_day.connect(_on_final_day)
 
 
@@ -97,6 +98,8 @@ func _end_day() -> void:
 		return
 	EventManager.end_day()
 	Crew.end_day()
+	if _check_ending():
+		return
 	EffectSystem.tick()
 	if _check_ending():
 		return
@@ -171,6 +174,10 @@ func _on_intimidate_unlocked(criminal: CrewMember) -> void:
 
 func _on_mutiny(_criminal: CrewMember) -> void:
 	_set_ending("mutiny")
+
+
+func _on_infighting() -> void:
+	_set_ending("infighting")
 
 
 func _on_final_day() -> void:

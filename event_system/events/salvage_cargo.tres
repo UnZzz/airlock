@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_danger")
-success_text = "[TBD] {name} hauled the crate back in. There are 2 Food inside."
-abandon_text = "[TBD] The crate slowly drifts away."
+success_text = "{name} hauled the crate back in. There are 2 Food inside."
+abandon_text = "The crate slowly drifts away."
 success_food_change = 2
 event_id = "salvage_cargo"
+title = "Supply Crate Outside"
+description = "An unburned supply crate is snagged on the outside of the cargo hold. Someone needs to suit up, go out, and haul it back in."
 in_random_pool = false
-title = "[TBD] Supply Crate Outside"
-description = "[TBD] An unburned supply crate is snagged on the outside of the cargo hold. Someone needs to suit up, go out, and haul it back in."
 repeatable = true

@@ -5,6 +5,7 @@ signal member_died(member: CrewMember, cause: String)
 signal member_exiled(member: CrewMember)
 signal intimidate_unlocked(criminal: CrewMember)
 signal mutiny(criminal: CrewMember)
+signal infighting
 
 @export
 var member_templates : Array[CrewMember] = []
@@ -297,7 +298,8 @@ func end_day() -> void:
 		member.fed_today = false
 	for member in on_board():
 		if member.days_without_food >= starvation_limit:
-			kill(member.member_id, "starvation")
+			infighting.emit()
+			break
 	crew_changed.emit()
 
 

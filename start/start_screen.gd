@@ -16,6 +16,8 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var hover_sfx: AudioStreamPlayer2D = $HoverSFX
 @onready var menu : Control = $Menu
 @onready var guide_panel : Control = $GuidePanel
+@onready var guide_title : Label = $GuidePanel/GuideBox/GuideTitle
+@onready var guide_text : RichTextLabel = $GuidePanel/GuideBox/GuideText
 @onready var back_button : Button = $GuidePanel/GuideBox/BackButton
 
 var leaving : bool = false
@@ -58,8 +60,8 @@ func _refresh_text() -> void:
 	guide_button.text = Journal.text("ui_guide")
 	language_button.text = Journal.text("ui_language")
 	quit_button.text = Journal.text("ui_quit")
-	$GuidePanel/GuideBox/GuideTitle.text = Journal.text("ui_guide")
-	$GuidePanel/GuideBox/GuideText.text = Journal.text("ui_guide_text")
+	guide_title.text = Journal.text("ui_guide")
+	guide_text.text = Journal.text("ui_guide_text")
 	back_button.text = Journal.text("ui_guide_back")
 
 func _on_language() -> void:
