@@ -14,6 +14,9 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var quit_button : Button = $Menu/QuitButton
 @onready var fade : ColorRect = $Fade
 @onready var hover_sfx: AudioStreamPlayer2D = $HoverSFX
+@onready var menu : Control = $Menu
+@onready var guide_panel : Control = $GuidePanel
+@onready var back_button : Button = $GuidePanel/BackButton
 
 var leaving : bool = false
 
@@ -23,6 +26,10 @@ func _ready() -> void:
 	start_button.pressed.connect(_on_start)
 	language_button.pressed.connect(_on_language)
 	quit_button.pressed.connect(_on_quit)
+	guide_panel.visible = false
+
+	back_button.pressed.connect(_on_guide_back)
+	back_button.mouse_entered.connect(_on_button_hover)
 	quit_button.visible = not OS.has_feature("web")
 	resized.connect(_fit_background)
 	_fit_background()
@@ -43,11 +50,9 @@ func _refresh_text() -> void:
 	language_button.text = Journal.text("ui_language")
 	quit_button.text = Journal.text("ui_quit")
 
-
 func _on_language() -> void:
 	Journal.set_language(Journal.next_language())
 	_refresh_text()
-
 
 func _fit_background() -> void:
 	var texture_size : Vector2 = background.texture.get_size()
@@ -65,6 +70,16 @@ func _on_start() -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(fade, "color:a", 1.0, fade_out_time)
 	tween.tween_callback(get_tree().change_scene_to_file.bind(GAME_SCENE_PATH))
+	
+func _on_guide() -> void:
+	menu.visible = false
+	guide_panel.visible = true
+	back_button.grab_focus()
+	
+func _on_guide_back() -> void:
+	guide_panel.visible = false
+	menu.visible = true
+	guide_button.grab_focus()
 
 func _on_button_hover() -> void:
 	hover_sfx.play()
