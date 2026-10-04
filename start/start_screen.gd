@@ -58,9 +58,6 @@ func _refresh_text() -> void:
 	guide_button.text = Journal.text("ui_guide")
 	language_button.text = Journal.text("ui_language")
 	quit_button.text = Journal.text("ui_quit")
-	$GuidePanel/GuideBox/GuideTitle.text = Journal.text("ui_guide")
-	$GuidePanel/GuideBox/GuideText.text = Journal.text("ui_guide_text")
-	back_button.text = Journal.text("ui_guide_back")
 
 func _on_language() -> void:
 	Journal.set_language(Journal.next_language())
