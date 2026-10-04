@@ -1,39 +1,286 @@
 [gd_scene format=3 uid="uid://ch42k5ht7va3x"]
 
-[ext_resource type="Script" uid="uid://2slikaf5330v" path="res://ending/ending.gd" id="1_ay4x8"]
-[ext_resource type="Texture2D" uid="uid://blwh8ogtfht77" path="res://ending/EndScreen.PNG" id="2_8v406"]
+[ext_resource type="Script" uid="uid://c6dxfgsafohd7" path="res://start/start_screen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b1nnkaueysvly" path="res://start/start.webp" id="2_bg"]
+[ext_resource type="AudioStream" uid="uid://ek4wyoed0y16" path="res://music_system/SFX/MouseHover.mp3" id="3_8v406"]
 
-[node name="Ending" type="Control" unique_id=369421107]
+[sub_resource type="Gradient" id="Gradient_star_glow"]
+offsets = PackedFloat32Array(0, 0.26732674, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.34653467, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_star"]
+gradient = SubResource("Gradient_star_glow")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_star_pulse"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_star_pulse"]
+curve = SubResource("Curve_star_pulse")
+
+[sub_resource type="Gradient" id="Gradient_star_color"]
+offsets = PackedFloat32Array(0.018604651, 0.7767442, 1)
+colors = PackedColorArray(0.83675414, 0.75165695, 0, 1, 1, 1, 1, 1, 0.7042504, 0.8908222, 0.9662325, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_star_color"]
+gradient = SubResource("Gradient_star_color")
+
+[sub_resource type="ParticleProcessMaterial" id="Mat_core"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(260, 170, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_max = 90.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.27
+scale_max = 1.07
+scale_curve = SubResource("CurveTexture_star_pulse")
+color_initial_ramp = SubResource("GradientTexture1D_star_color")
+alpha_curve = SubResource("CurveTexture_star_pulse")
+
+[node name="StartScreen" type="Control" unique_id=186464452]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ay4x8")
+script = ExtResource("1_script")
 
-[node name="EndingBackground" type="TextureRect" parent="." unique_id=658209479]
+[node name="Black" type="ColorRect" parent="." unique_id=887812071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background" type="TextureRect" parent="." unique_id=1436136728]
 texture_filter = 4
 layout_mode = 0
-offset_top = 3.0
-offset_right = 40.0
-offset_bottom = 43.0
-scale = Vector2(28.751608, 16.132153)
 mouse_filter = 2
-texture = ExtResource("2_8v406")
+texture = ExtResource("2_bg")
 expand_mode = 1
 
-[node name="Menu" type="VBoxContainer" parent="." unique_id=281073447]
+[node name="Sky" type="Node2D" parent="Background" unique_id=1265765263]
+
+[node name="CoreStars" type="GPUParticles2D" parent="Background/Sky" unique_id=1889242712]
+position = Vector2(983, 676)
+amount = 4
+texture = SubResource("GradientTexture2D_star")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("Mat_core")
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=942771523]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -340.0
+offset_right = -96.0
+offset_bottom = -96.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 18
+alignment = 2
+
+[node name="TitleLabel" type="Label" parent="Menu" unique_id=1179532303]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.93, 0.87, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Menu" unique_id=937469588]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Menu" unique_id=1013245531]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+
+[node name="GuideButton" type="Button" parent="Menu" unique_id=1655077945]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+
+[node name="LanguageButton" type="Button" parent="Menu" unique_id=1390797700]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+
+[node name="QuitButton" type="Button" parent="Menu" unique_id=1946504533]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+
+[node name="Fade" type="ColorRect" parent="." unique_id=825894367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=392358252]
+stream = ExtResource("3_8v406")
+volume_db = 5.117
+
+[node name="GuidePanel" type="VBoxContainer" parent="." unique_id=221990614]
 layout_mode = 0
-offset_left = 809.0
-offset_top = 459.0
-offset_right = 1089.0
-offset_bottom = 589.0
+offset_left = -2.0
+offset_right = 38.0
+offset_bottom = 40.0
+scale = Vector2(1.002491, 1)
 
-[node name="BackMenuButton" type="Button" parent="Menu" unique_id=1307324296]
+[node name="GuideTitle" type="Label" parent="GuidePanel" unique_id=767478733]
 layout_mode = 2
+text = "WEWEWEWEWEW"
 
-[node name="CreditButton" type="Button" parent="Menu" unique_id=2038867848]
+[node name="GuideText" type="RichTextLabel" parent="GuidePanel" unique_id=99720618]
 layout_mode = 2
+text = "# Main Mechanics
 
-[connection signal="pressed" from="Menu/BackMenuButton" to="." method="_on_replay_button_pressed"]
+## Food Rationing
+
+Food must be rationed carefully to keep the crew alive.
+
+- If a crew member goes **3 days without food**, they die.
+- If **any crew member dies from natural causes**, the game ends.
+  - You are the captain — it is your responsibility to keep your crew alive.
+
+---
+
+## Health System
+
+**Mouthwash** is the main medical resource used to treat sickness and injuries.
+
+### Injury Stages
+
+**Healthy → Injured → Critical → Death**
+
+- Injuries can worsen over time if they are not treated.
+- Mouthwash can stabilize a **Critical** crew member back to **Injured**.
+- Regular crew members cannot be fully healed with mouthwash alone.
+
+---
+
+## Eviction — Airlock Day
+
+Every **7 days**, an **Airlock Day** occurs.
+
+- On Airlock Day, you may choose to evict one crew member.
+- The chosen crew member must have been **sedated beforehand**.
+- Sedatives must be secretly added to that crew member's food on a previous day.
+- If they are not sedated, they cannot be safely evicted.
+
+---
+
+# Crew Members
+
+## Criminal
+
+### Loyalty
+
+The Criminal has a **Loyalty Value**.
+
+- Loyalty can increase or decrease depending on your decisions.
+- Arguments may occur between the Criminal and other crew members.
+- Taking the Criminal's side can increase loyalty.
+- Going against the Criminal can decrease loyalty.
+- Reaching maximum loyalty unlocks the Criminal's special ability.
+
+### Special Ability — Intimidate
+
+**Intimidate** allows the Criminal to force other crew members to complete tasks.
+
+- Forced tasks do not require their normal resource cost.
+- This can make difficult or expensive tasks easier to complete.
+
+### Mutiny Risk
+
+Once **Intimidate** has been unlocked, the Criminal becomes much more dangerous.
+
+If the Criminal's Loyalty ever reaches **0**:
+
+**GAME OVER — Mutiny Assassination**
+
+The Criminal assassinates the captain and takes control of the ship.
+
+---
+
+## Engineer
+
+The Engineer specializes in **repairs, technical problems, and exploration**.
+
+- Provides better results during events involving ship repairs or machinery.
+- May also be more effective when sent on exploration missions.
+
+### Negotiation
+
+The Engineer can provide stronger rewards or better outcomes when assigned to certain tasks.
+
+However:
+
+- The Engineer may request specific items or resources before agreeing to complete the task.
+- You must decide whether the potential reward is worth the cost.
+
+---
+
+## Doctor
+
+The Doctor specializes in treating injured crew members.
+
+### Medical Treatment
+
+- The Doctor can fully heal an **Injured** crew member for **2 Mouthwash**.
+- The healed crew member returns to **Healthy**.
+- Their previous injury will no longer worsen.
+- They can still become injured again from future events.
+
+---
+
+## Chef
+
+The Chef specializes in managing the crew's food supply.
+
+### Passive Ability — Food Efficiency
+
+- Reduces the ship's overall food consumption.
+- Makes food supplies last longer throughout the journey.
+
+### Airlock Ability — Sedated Meal
+
+Before an Airlock Day, the Chef can add **sedatives** to a crew member's food.
+
+- The sedated crew member becomes eligible for eviction on the next Airlock Day.
+- This allows the captain to remove dangerous or unwanted crew members."
+
+[node name="BackButton" type="Button" parent="GuidePanel" unique_id=1658550012]
+layout_mode = 2
