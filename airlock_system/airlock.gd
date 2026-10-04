@@ -28,6 +28,9 @@ func get_sedated() -> Array[CrewMember]:
 
 func get_intro_text() -> String:
 	var lines : Array[String] = []
+	var day_text : String = Journal.get_airlock_text(Timeline.current_day)
+	if day_text != "":
+		lines.append(day_text)
 	var chef : CrewMember = Crew.get_by_role(CrewMember.Role.CHEF)
 	if chef != null and chef.is_on_board():
 		var key : String = "airlock_intro_first" if airlock_count == 0 else "airlock_intro_chef"

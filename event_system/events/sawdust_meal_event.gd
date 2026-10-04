@@ -2,11 +2,11 @@ class_name SawdustMealEvent
 extends StoryEvent
 
 @export
-var elias_food_gain : int = 3
+var elias_food_gain : int = 5
 @export
 var elias_sick_chance : float = 0.3
 @export
-var voss_food_gain : int = 1
+var voss_food_gain : int = 3
 @export
 var compensation_food : int = 1
 @export

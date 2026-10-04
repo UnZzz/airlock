@@ -4,6 +4,8 @@ enum Phase { OPENING, JOURNAL, ALLOCATION, EVENT, AIRLOCK, ENDING }
 
 signal phase_changed(phase: Phase)
 
+const NATURAL_DEATHS : Array[String] = ["starvation", "injury"]
+
 var phase : Phase = Phase.OPENING
 var ending_id : String = ""
 
@@ -68,15 +70,16 @@ func finish_airlock() -> void:
 
 
 func get_ending_text() -> String:
-	if ending_id == "survived":
-		var names : Array[String] = []
-		for member in Crew.passengers_on_board():
-			names.append(member.display_name)
-		if names.is_empty():
-			return Journal.text("ending_survived_alone")
-		return Journal.text("ending_survived", {"names": Journal.text("list_separator").join(names)})
+	var has_survivors : bool = EventManager.guest_aboard or not Crew.passengers_on_board().is_empty()
+	Journal.set_flag("guest_aboard", "yes" if EventManager.guest_aboard else "no")
+	Journal.set_flag("survivors", "yes" if has_survivors else "no")
+	var paragraphs : Array[String] = []
+	var last_target : String = Journal.get_flag("last_airlock_target")
+	if ending_id == "survived" and Journal.get_flag("day%d_exile" % Timeline.total_days) == "yes" and last_target != "":
+		paragraphs.append(Journal.event_text("departure_" + ("doctor" if last_target == "helena" else last_target), "text"))
 	var criminal : CrewMember = Crew.get_by_role(CrewMember.Role.CRIMINAL)
-	return Journal.text("ending_" + ending_id, {"criminal": criminal.display_name if criminal != null else ""})
+	paragraphs.append_array(Journal.get_ending(ending_id, {"criminal": criminal.short_name if criminal != null else ""}))
+	return "\n\n".join(paragraphs)
 
 
 func _after_event() -> void:
@@ -119,6 +122,8 @@ func _set_phase(new_phase: Phase) -> void:
 	phase = new_phase
 	if phase == Phase.JOURNAL:
 		_check_day_story_effects()
+		if ending_id != "":
+			phase = Phase.ENDING
 	phase_changed.emit(phase)
 
 
@@ -148,6 +153,9 @@ func _next_day_entry(key: String, args: Dictionary) -> void:
 func _on_member_died(member: CrewMember, cause: String) -> void:
 	if member.role == CrewMember.Role.CAPTAIN:
 		_set_ending("captain_" + cause)
+		return
+	if NATURAL_DEATHS.has(cause):
+		_set_ending("uprising")
 		return
 	_next_day_entry("journal_died_" + cause, {"name": member.display_name})
 

@@ -128,6 +128,17 @@ func get_opening() -> Dictionary:
 	}
 
 
+func get_ending(ending_id: String, args: Dictionary = {}) -> Array[String]:
+	var result : Array[String] = []
+	for paragraph in _resolve_paragraphs(story.get("endings", {}).get(ending_id, [])):
+		result.append(paragraph.format(args))
+	return result
+
+
+func get_airlock_text(day: int) -> String:
+	return String(_day_data(day).get("airlock_text", ""))
+
+
 func get_day_page(day: int) -> Dictionary:
 	var data : Dictionary = _day_data(day)
 	var paragraphs : Array[String] = _resolve_paragraphs(data.get("journal", []))

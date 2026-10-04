@@ -8,6 +8,7 @@
 	  "And you.",
 	  "Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
 	  "Calm them. Feed them. Keep everyone steady.",
+      "Don't let any of the crew die in front of everyone.",
       "Necessary sacrifices will be accepted."
 	]
   },
@@ -130,19 +131,19 @@
 	  "journal": [
 		{
 		  "if": { "day7_exile": "yes", "last_airlock_target": "elias" },
-		  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
+		  "text": "Honestly, I always offered Elias extremely generous terms: his life. Tell me, in times like these, who but me would work so hard to help you, feed you, and put up with every one of your too-clever-by-half moods? Sadly, he never realized that. I hope that while he drifts through space, he comes to understand how much his captain was looking out for him."
 		},
 		{
 		  "if": { "day7_exile": "yes", "last_airlock_target": "mara" },
-		  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
+		  "text": "Though she's always been a kind, timid companion, as captain I understand all too well that the more timid someone is, the more unpredictable they become when they sense their life is in danger. I always tried to seem just as harmless and calm as she was. But I believe that after building this dark secret together, there's no way we could ever see each other as just an ordinary captain and a chef who only knows how to chop vegetables. If Mara would kill other people, she would kill me too. I hope that while she drifts, she happens upon a beef Wellington and gets her dying wish."
 		},
 		{
 		  "if": { "day7_exile": "yes", "last_airlock_target": "helena" },
-		  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
+		  "text": "I hope Helios taught you how to survive with no oxygen, in freezing cold, with no food, Doctor. I still remember everything you did for us, but if you'd studied a little more psychology, you'd understand that people will do anything when death is on the line. I hope that while you drift through space, you realize that when survival is at stake, all those diplomas are worthless."
 		},
 		{
 		  "if": { "day7_exile": "yes", "last_airlock_target": "mason" },
-		  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+		  "text": "How do we decide who counts as a criminal? My answer: anyone who tortures everyone with noise and tries to throw us all into space under cover of darkness definitely qualifies. I'm sorry we don't have enough food to support your life sentence, or an electric chair and a wet sponge to send you off with dignity. But who says a free, open-ended and ultimately fatal sightseeing tour of space isn't a merciful form of execution? Mason Reed is free. At least now he can drift wherever he likes. Not even gravity can hold him anymore."
 		},
 		{
 		  "if": { "day7_exile": "yes" },
@@ -328,19 +329,19 @@
 	  "journal": [
 		{
 		  "if": { "day14_exile": "yes", "last_airlock_target": "elias" },
-		  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
+		  "text": "Honestly, I always offered Elias extremely generous terms: his life. Tell me, in times like these, who but me would work so hard to help you, feed you, and put up with every one of your too-clever-by-half moods? Sadly, he never realized that. I hope that while he drifts through space, he comes to understand how much his captain was looking out for him."
 		},
 		{
 		  "if": { "day14_exile": "yes", "last_airlock_target": "mara" },
-		  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
+		  "text": "Though she's always been a kind, timid companion, as captain I understand all too well that the more timid someone is, the more unpredictable they become when they sense their life is in danger. I always tried to seem just as harmless and calm as she was. But I believe that after building this dark secret together, there's no way we could ever see each other as just an ordinary captain and a chef who only knows how to chop vegetables. If Mara would kill other people, she would kill me too. I hope that while she drifts, she happens upon a beef Wellington and gets her dying wish."
 		},
 		{
 		  "if": { "day14_exile": "yes", "last_airlock_target": "helena" },
-		  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
+		  "text": "I hope Helios taught you how to survive with no oxygen, in freezing cold, with no food, Doctor. I still remember everything you did for us, but if you'd studied a little more psychology, you'd understand that people will do anything when death is on the line. I hope that while you drift through space, you realize that when survival is at stake, all those diplomas are worthless."
 		},
 		{
 		  "if": { "day14_exile": "yes", "last_airlock_target": "mason" },
-		  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+		  "text": "How do we decide who counts as a criminal? My answer: anyone who tortures everyone with noise and tries to throw us all into space under cover of darkness definitely qualifies. I'm sorry we don't have enough food to support your life sentence, or an electric chair and a wet sponge to send you off with dignity. But who says a free, open-ended and ultimately fatal sightseeing tour of space isn't a merciful form of execution? Mason Reed is free. At least now he can drift wherever he likes. Not even gravity can hold him anymore."
 		},
 		{
 		  "if": { "day14_exile": "yes" },
@@ -595,6 +596,7 @@
 	  ],
 	  "allocation_title": "Supply Allocation",
 	  "allocation_text": "Prerequisite for all of this: nobody dies tonight.",
+	  "airlock_text": "Of course, you can still choose someone to exile. If you're really that far gone.",
 	  "event": "ending"
 	}
   },
@@ -612,7 +614,7 @@
 	  ],
 	  "option_elias": "Elias Ward",
 	  "option_voss": "Dr. Voss",
-	  "option_nonsense": "This is ridiculous! (Mason would want you to do this)",
+	  "option_nonsense": "This is ridiculous! (Mason would want you to do this) [Loyalty up]",
 	  "complaint": "Elias doesn't get why, at a time like this, you're still going along with some other idiot's nonsense. He and his fellow workers got through hard times exactly this way, and he doesn't see any of them coming down with cancer or heart disease. If you're going to turn down the wisdom of the working class, the least you can do is give him the compensation he's owed.",
 	  "complaint_food": "Food",
 	  "complaint_mouthwash": "Mouthwash",
@@ -664,8 +666,8 @@
 	  "option_mara": "Mara Quinn",
 	  "option_helena": "Dr. Voss",
 	  "option_mason": "Mason Reed",
-	  "option_nothing": "[TBD] Let him stay",
-	  "result_evict": "[TBD] {name} threw Josan off the ship."
+	  "option_nothing": "Let him stay (Mouthwash keeps dropping)",
+	  "result_evict": "{name} opened the airlock and showed Josan out. He waved at us from the other side, not bothered in the slightest."
 	},
 	"debt_crisis": {
 	  "title": "Debt Crisis",
@@ -674,12 +676,12 @@
 	  "option_mara": "Mara Quinn",
 	  "option_helena": "Dr. Voss",
 	  "option_mason": "Mason Reed",
-	  "option_fight": "[TBD] Grab our weapons and drive them off",
-	  "leave_elias": "The truth is, I've always offered Elias extremely generous terms, [TBD]",
-	  "leave_mara": "[TBD] Mara left with the Firebreath crew.",
-	  "leave_helena": "[TBD] Dr. Voss left with the Firebreath crew.",
-	  "leave_mason": "[TBD] Mason left with the Firebreath crew.",
-	  "fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
+	  "option_fight": "Grab our weapons and drive those bastards off (crew may get injured)",
+	  "leave_elias": "Before he left, Elias shoved a stack of bills into my hands, every hour he'd worked for us. I tucked it into Firebreath's cargo manifest. Now it's their problem.",
+	  "leave_mara": "Mara said at least Firebreath's ship should have a proper kitchen. She didn't look back.",
+	  "leave_helena": "Dr. Voss boarded the Firebreath ship with her medical kit, reminding them on her way in not to forget the \"Dr.\"",
+	  "leave_mason": "Mason boarded the Firebreath ship singing that damn song of his. My deepest sympathies to them.",
+	  "fight_result": "We charged out armed with wrenches, a frying pan and Dr. Voss's stethoscope. Firebreath clearly didn't expect a shipful of starving people to put up this much of a fight. They left."
 	},
 	"mason_rights": {
 		"title": "Inalienable Rights",
@@ -694,16 +696,75 @@
 		"option_silence": "Tell him to shut up (the Captain may get injured)"
 	},
 	"departure_elias": {
-	  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
+	  "text": "Honestly, I always offered Elias extremely generous terms: his life. Tell me, in times like these, who but me would work so hard to help you, feed you, and put up with every one of your too-clever-by-half moods? Sadly, he never realized that. I hope that while he drifts through space, he comes to understand how much his captain was looking out for him."
 	},
 	"departure_mara": {
-	  "text": "Though she's always been a kind, timid companion, as a captain I understand all too well that the more timid someone is, the more unpredictable their actions can become when they feel their life is threatened. I always tried to appear as harmless and calm as her in front of her. But I believe that after sharing this dark secret together, we can never go back to seeing each other as just a regular captain and a cook who only knows how to chop vegetables. If Mara would kill someone else, she'd kill me too. I hope that during her time drifting through space, she happens upon a beef Wellington —her dying wish fulfilled."
+	  "text": "Though she's always been a kind, timid companion, as captain I understand all too well that the more timid someone is, the more unpredictable they become when they sense their life is in danger. I always tried to seem just as harmless and calm as she was. But I believe that after building this dark secret together, there's no way we could ever see each other as just an ordinary captain and a chef who only knows how to chop vegetables. If Mara would kill other people, she would kill me too. I hope that while she drifts, she happens upon a beef Wellington and gets her dying wish."
 	},
 	"departure_doctor": {
-	  "text": "I hope Helios taught you how to survive in a low-oxygen, freezing environment with no food, Doctor."
+	  "text": "I hope Helios taught you how to survive with no oxygen, in freezing cold, with no food, Doctor. I still remember everything you did for us, but if you'd studied a little more psychology, you'd understand that people will do anything when death is on the line. I hope that while you drift through space, you realize that when survival is at stake, all those diplomas are worthless."
 	},
 	"departure_mason": {
-	  "text": "[TBD —source text was cut off; needs a line from whoever wrote the original]"
+	  "text": "How do we decide who counts as a criminal? My answer: anyone who tortures everyone with noise and tries to throw us all into space under cover of darkness definitely qualifies. I'm sorry we don't have enough food to support your life sentence, or an electric chair and a wet sponge to send you off with dignity. But who says a free, open-ended and ultimately fatal sightseeing tour of space isn't a merciful form of execution? Mason Reed is free. At least now he can drift wherever he likes. Not even gravity can hold him anymore."
 	}
+  },
+  "endings": {
+  	"survived": [
+  		"Tahiti! I can't think of a single word that lives up to how thrilled and relieved I am right now. We're lying on soft grass, staring up at the sky that nearly killed us. I already know what I'm doing next. Writing an autobiography, obviously, then giving a thousand interviews, then becoming one of those classic characters on the big screen. But what about everyone else?",
+  		{
+  			"if": {
+  				"survivors": "no"
+  			},
+  			"text": "I hope my success brings them some small comfort."
+  		},
+  		{
+  			"if": {
+  				"if_on_board": "mason"
+  			},
+  			"text": "Mason Reed will only stick around for a little while. He's worried someone will recognize him, so he needs to get going."
+  		},
+  		{
+  			"if": {
+  				"if_on_board": "helena"
+  			},
+  			"text": "Dr. Voss has forgiven me for the one time I left the \"Dr.\" off her name in my log, and she's looking forward to boarding the transport ship I put her in touch with."
+  		},
+  		{
+  			"if": {
+  				"if_on_board": "mara"
+  			},
+  			"text": "Mara Quinn invited us to eat at her restaurant. Maybe I will, after I finish those thousand interviews."
+  		},
+  		{
+  			"if": {
+  				"if_on_board": "elias"
+  			},
+  			"text": "Elias Ward showed me his bills, a stack as long as a snake. I told him I'd wire him the money within ten days. Never mind that I don't even know his account number."
+  		},
+  		{
+  			"if": {
+  				"guest_aboard": "yes"
+  			},
+  			"text": "Josan showed us one last time how he can move freely through the vacuum. He's saying goodbye, because he plans to go back to Earth and open a gaming club in a country called Canada."
+  		},
+  		{
+  			"if": {
+  				"survivors": "yes"
+  			},
+  			"text": "Anyway, we made it!"
+  		}
+  	],
+  	"uprising": [
+  		"You absolute idiot. Even if there wasn't enough food or medicine, you can't just let your people die right there in the cabin. Well, now you've done it. The others have lost what little faith they had left in you, and the uprising is on! Now you're like a discarded plastic bag, curled up in a ball, drifting alone through space. It won't be long before you die from lack of oxygen."
+  	],
+  	"captain_starvation": [
+  		"Was it a sacrifice, or just a tragedy born of not knowing your own physical limits?"
+  	],
+  	"captain_injury": [
+  		"In the end, the wound won. Mouthwash can fool bacteria for a while, but it can't fool death. The most brilliant captain this ship ever had never made it to Tahiti."
+  	],
+  	"mutiny": [
+  		"{criminal} has had enough. He used to be the one person on this ship who did whatever I said, which is exactly why he knows best what I've done. Tonight, he opened the airlock. Only this time, I was the one standing inside it."
+  	]
   }
 }

@@ -30,7 +30,7 @@ func to_next_day():
 
 
 func is_airlock_day(day: int) -> bool:
-	return day % airlock_interval == 0 and day < total_days
+	return day % airlock_interval == 0 and day <= total_days
 
 
 func get_next_airlock_day() -> int:
