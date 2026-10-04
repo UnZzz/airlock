@@ -16,31 +16,40 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var hover_sfx: AudioStreamPlayer2D = $HoverSFX
 @onready var menu : Control = $Menu
 @onready var guide_panel : Control = $GuidePanel
-@onready var back_button : Button = $GuidePanel/BackButton
+@onready var back_button : Button = $GuidePanel/GuideBox/BackButton
 
 var leaving : bool = false
 
 
 func _ready() -> void:
 	_refresh_text()
+
 	start_button.pressed.connect(_on_start)
+	guide_button.pressed.connect(_on_guide)
 	language_button.pressed.connect(_on_language)
 	quit_button.pressed.connect(_on_quit)
+
 	guide_panel.visible = false
 
 	back_button.pressed.connect(_on_guide_back)
-	back_button.mouse_entered.connect(_on_button_hover)
-	quit_button.visible = not OS.has_feature("web")
-	resized.connect(_fit_background)
-	_fit_background()
-	fade.color.a = 1.0
-	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
-	start_button.grab_focus()
-	Music.play_playlist()
+
 	start_button.mouse_entered.connect(_on_button_hover)
 	guide_button.mouse_entered.connect(_on_button_hover)
 	language_button.mouse_entered.connect(_on_button_hover)
 	quit_button.mouse_entered.connect(_on_button_hover)
+	back_button.mouse_entered.connect(_on_button_hover)
+
+	quit_button.visible = not OS.has_feature("web")
+
+	resized.connect(_fit_background)
+	_fit_background()
+
+	fade.color.a = 1.0
+	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
+
+	start_button.grab_focus()
+
+	Music.play_playlist()
 
 
 func _refresh_text() -> void:

@@ -138,6 +138,115 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
+[node name="GuidePanel" type="Control" parent="." unique_id=1367943976]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="GuidePanel" unique_id=1591408883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="GuideBox" type="VBoxContainer" parent="GuidePanel" unique_id=778799617]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -302.0
+offset_right = 355.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuideTitle" type="Label" parent="GuidePanel/GuideBox" unique_id=1500625777]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Guide"
+
+[node name="GuideText" type="RichTextLabel" parent="GuidePanel/GuideBox" unique_id=189956513]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Mechanics
+Food Rationing
+Food must be rationed carefully to keep the crew alive.
+If a crew member goes 3 days without food, they die.
+If any crew member dies from natural causes, the game ends.
+You are the captain — it is your responsibility to keep your crew alive.
+
+Health System
+Mouthwash is the main medical resource used to treat sickness and injuries.
+Injury Stages
+Healthy → Injured → Critical → Death
+Injuries can worsen over time if they are not treated.
+Mouthwash can stabilize a Critical crew member back to Injured.
+Regular crew members cannot be fully healed with mouthwash alone.
+
+Eviction — Airlock Day
+Every 7 days, an Airlock Day occurs.
+On Airlock Day, you may choose to evict one crew member.
+The chosen crew member must have been sedated beforehand.
+Sedatives must be secretly added to that crew member's food on a previous day.
+If they are not sedated, they cannot be safely evicted.
+
+Crew Members
+Criminal
+Loyalty
+The Criminal has a Loyalty Value.
+Loyalty can increase or decrease depending on your decisions.
+Arguments may occur between the Criminal and other crew members.
+Taking the Criminal's side can increase loyalty.
+Going against the Criminal can decrease loyalty.
+Reaching maximum loyalty unlocks the Criminal's special ability.
+Special Ability — Intimidate
+Intimidate allows the Criminal to force other crew members to complete tasks.
+Forced tasks do not require their normal resource cost.
+This can make difficult or expensive tasks easier to complete.
+
+Engineer
+The Engineer specializes in repairs, technical problems.
+Provides better results during events involving ship repairs or machinery.
+Negotiation
+The Engineer can provide stronger rewards or better outcomes when assigned to certain tasks.
+However:
+The Engineer may request specific items or resources before agreeing to complete the task.
+You must decide whether the potential reward is worth the cost.
+
+Doctor
+The Doctor specializes in treating injured crew members.
+Medical Treatment
+The Doctor can fully heal an Injured crew member for 2 Mouthwash.
+The healed crew member returns to Healthy.
+Their previous injury will no longer worsen.
+They can still become injured again from future events.
+
+Chef
+The Chef specializes in managing the crew's food supply.
+Passive Ability — Food Efficiency
+Reduces the ship's overall food consumption.
+Makes food supplies last longer throughout the journey.
+Airlock Ability — Sedated Meal
+Before an Airlock Day, the Chef can add sedatives to a crew member's food.
+The sedated crew member becomes eligible for eviction on the next Airlock Day.
+This allows the captain to remove dangerous or unwanted crew members.、
+"
+
+[node name="BackButton" type="Button" parent="GuidePanel/GuideBox" unique_id=498376862]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.88, 0.83, 1)
+text = "Back"
+
 [node name="Fade" type="ColorRect" parent="." unique_id=825894367]
 layout_mode = 1
 anchors_preset = 15
@@ -152,135 +261,4 @@ color = Color(0, 0, 0, 1)
 stream = ExtResource("3_8v406")
 volume_db = 5.117
 
-[node name="GuidePanel" type="VBoxContainer" parent="." unique_id=221990614]
-layout_mode = 0
-offset_left = -2.0
-offset_right = 38.0
-offset_bottom = 40.0
-scale = Vector2(1.002491, 1)
-
-[node name="GuideTitle" type="Label" parent="GuidePanel" unique_id=767478733]
-layout_mode = 2
-text = "WEWEWEWEWEW"
-
-[node name="GuideText" type="RichTextLabel" parent="GuidePanel" unique_id=99720618]
-layout_mode = 2
-text = "# Main Mechanics
-
-## Food Rationing
-
-Food must be rationed carefully to keep the crew alive.
-
-- If a crew member goes **3 days without food**, they die.
-- If **any crew member dies from natural causes**, the game ends.
-  - You are the captain — it is your responsibility to keep your crew alive.
-
----
-
-## Health System
-
-**Mouthwash** is the main medical resource used to treat sickness and injuries.
-
-### Injury Stages
-
-**Healthy → Injured → Critical → Death**
-
-- Injuries can worsen over time if they are not treated.
-- Mouthwash can stabilize a **Critical** crew member back to **Injured**.
-- Regular crew members cannot be fully healed with mouthwash alone.
-
----
-
-## Eviction — Airlock Day
-
-Every **7 days**, an **Airlock Day** occurs.
-
-- On Airlock Day, you may choose to evict one crew member.
-- The chosen crew member must have been **sedated beforehand**.
-- Sedatives must be secretly added to that crew member's food on a previous day.
-- If they are not sedated, they cannot be safely evicted.
-
----
-
-# Crew Members
-
-## Criminal
-
-### Loyalty
-
-The Criminal has a **Loyalty Value**.
-
-- Loyalty can increase or decrease depending on your decisions.
-- Arguments may occur between the Criminal and other crew members.
-- Taking the Criminal's side can increase loyalty.
-- Going against the Criminal can decrease loyalty.
-- Reaching maximum loyalty unlocks the Criminal's special ability.
-
-### Special Ability — Intimidate
-
-**Intimidate** allows the Criminal to force other crew members to complete tasks.
-
-- Forced tasks do not require their normal resource cost.
-- This can make difficult or expensive tasks easier to complete.
-
-### Mutiny Risk
-
-Once **Intimidate** has been unlocked, the Criminal becomes much more dangerous.
-
-If the Criminal's Loyalty ever reaches **0**:
-
-**GAME OVER — Mutiny Assassination**
-
-The Criminal assassinates the captain and takes control of the ship.
-
----
-
-## Engineer
-
-The Engineer specializes in **repairs, technical problems, and exploration**.
-
-- Provides better results during events involving ship repairs or machinery.
-- May also be more effective when sent on exploration missions.
-
-### Negotiation
-
-The Engineer can provide stronger rewards or better outcomes when assigned to certain tasks.
-
-However:
-
-- The Engineer may request specific items or resources before agreeing to complete the task.
-- You must decide whether the potential reward is worth the cost.
-
----
-
-## Doctor
-
-The Doctor specializes in treating injured crew members.
-
-### Medical Treatment
-
-- The Doctor can fully heal an **Injured** crew member for **2 Mouthwash**.
-- The healed crew member returns to **Healthy**.
-- Their previous injury will no longer worsen.
-- They can still become injured again from future events.
-
----
-
-## Chef
-
-The Chef specializes in managing the crew's food supply.
-
-### Passive Ability — Food Efficiency
-
-- Reduces the ship's overall food consumption.
-- Makes food supplies last longer throughout the journey.
-
-### Airlock Ability — Sedated Meal
-
-Before an Airlock Day, the Chef can add **sedatives** to a crew member's food.
-
-- The sedated crew member becomes eligible for eviction on the next Airlock Day.
-- This allows the captain to remove dangerous or unwanted crew members."
-
-[node name="BackButton" type="Button" parent="GuidePanel" unique_id=1658550012]
-layout_mode = 2
+[connection signal="pressed" from="Menu/GuideButton" to="." method="_on_guide_button_pressed"]
