@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ndowh3y8m5j5"]
+
+[ext_resource type="Texture2D" uid="uid://p4lkbep05hbk" path="res://scene_system/backgrounds/EndScreen.PNG" id="1_v6d4x"]
+
+[node name="TextureRect" type="TextureRect" unique_id=238943700]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_v6d4x")
+expand_mode = 1

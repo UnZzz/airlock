@@ -1,7 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ch42k5ht7va3x"]
 
-[ext_resource type="Script" path="res://start/start_screen.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://start/start.webp" id="2_bg"]
+[ext_resource type="Script" uid="uid://c6dxfgsafohd7" path="res://start/start_screen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b1nnkaueysvly" path="res://start/start.webp" id="2_bg"]
+[ext_resource type="AudioStream" uid="uid://ek4wyoed0y16" path="res://music_system/SFX/MouseHover.mp3" id="3_8v406"]
 
 [sub_resource type="Gradient" id="Gradient_star_glow"]
 offsets = PackedFloat32Array(0, 0.26732674, 1)
@@ -46,7 +47,7 @@ scale_curve = SubResource("CurveTexture_star_pulse")
 color_initial_ramp = SubResource("GradientTexture1D_star_color")
 alpha_curve = SubResource("CurveTexture_star_pulse")
 
-[node name="StartScreen" type="Control"]
+[node name="StartScreen" type="Control" unique_id=186464452]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Black" type="ColorRect" parent="."]
+[node name="Black" type="ColorRect" parent="." unique_id=887812071]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,16 +66,16 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1436136728]
+texture_filter = 4
 layout_mode = 0
 mouse_filter = 2
-texture_filter = 4
 texture = ExtResource("2_bg")
 expand_mode = 1
 
-[node name="Sky" type="Node2D" parent="Background"]
+[node name="Sky" type="Node2D" parent="Background" unique_id=1265765263]
 
-[node name="CoreStars" type="GPUParticles2D" parent="Background/Sky"]
+[node name="CoreStars" type="GPUParticles2D" parent="Background/Sky" unique_id=1889242712]
 position = Vector2(983, 676)
 amount = 4
 texture = SubResource("GradientTexture2D_star")
@@ -82,7 +83,7 @@ lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("Mat_core")
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="Menu" type="VBoxContainer" parent="." unique_id=942771523]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -98,7 +99,7 @@ grow_vertical = 0
 theme_override_constants/separation = 18
 alignment = 2
 
-[node name="TitleLabel" type="Label" parent="Menu"]
+[node name="TitleLabel" type="Label" parent="Menu" unique_id=1179532303]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.93, 0.87, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
@@ -107,29 +108,29 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_font_sizes/font_size = 96
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="Menu"]
+[node name="Spacer" type="Control" parent="Menu" unique_id=937469588]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="Menu"]
+[node name="StartButton" type="Button" parent="Menu" unique_id=1013245531]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
-[node name="LanguageButton" type="Button" parent="Menu"]
+[node name="LanguageButton" type="Button" parent="Menu" unique_id=1390797700]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
-[node name="QuitButton" type="Button" parent="Menu"]
+[node name="QuitButton" type="Button" parent="Menu" unique_id=1946504533]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
-[node name="Fade" type="ColorRect" parent="."]
+[node name="Fade" type="ColorRect" parent="." unique_id=825894367]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,3 +139,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="HoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=392358252]
+stream = ExtResource("3_8v406")
+volume_db = 5.117

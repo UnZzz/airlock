@@ -12,6 +12,7 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var language_button : Button = $Menu/LanguageButton
 @onready var quit_button : Button = $Menu/QuitButton
 @onready var fade : ColorRect = $Fade
+@onready var hover_sfx: AudioStreamPlayer2D = $HoverSFX
 
 var leaving : bool = false
 
@@ -28,6 +29,9 @@ func _ready() -> void:
 	create_tween().tween_property(fade, "color:a", 0.0, fade_in_time)
 	start_button.grab_focus()
 	Music.play_playlist()
+	start_button.mouse_entered.connect(_on_button_hover)
+	language_button.mouse_entered.connect(_on_button_hover)
+	quit_button.mouse_entered.connect(_on_button_hover)
 
 
 func _refresh_text() -> void:
@@ -59,6 +63,8 @@ func _on_start() -> void:
 	tween.tween_property(fade, "color:a", 1.0, fade_out_time)
 	tween.tween_callback(get_tree().change_scene_to_file.bind(GAME_SCENE_PATH))
 
+func _on_button_hover() -> void:
+	hover_sfx.play()
 
 func _on_quit() -> void:
 	get_tree().quit()
