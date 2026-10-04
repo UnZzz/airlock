@@ -83,7 +83,7 @@
     "airlock_nobody_sedated":  "今晚没有人吃晚餐，也就没有人睡过去。",
     "airlock_result_exile":  "气闸开了，又关上了。{name}不在船上了。",
     "airlock_result_nobody":  "今晚气闸没有打开。",
-    "ending_infighting": "饥饿耗尽了最后的理智，船员之间爆发了内斗。航行就此终结。",
+    "ui_credits": "制作人员",
     "event_sick":  "{name}生病了。",
     "journal_exiled_debt":  "{name}跟着Firebreath的飞船走了，去替我们还债。希望他们说话算话。",
     "ui_language":  "语言：中文",

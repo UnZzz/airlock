@@ -356,10 +356,7 @@ func _play_eviction_cut_scene() -> void:
 
 
 func _show_ending() -> void:
-	_show_page(Journal.text("ending_title"), [GameFlow.get_ending_text()])
-	if GameFlow.ending_id == "survived":
-		_add_button(Journal.text("ui_continue"), _open_end_screen)
-	_add_button(Journal.text("ui_restart"), GameFlow.start_game)
+	_open_end_screen()
 
 
 func _open_end_screen() -> void:
