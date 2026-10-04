@@ -1,6 +1,7 @@
 extends Control
 
 const START_SCENE_PATH : String = "res://start/StartScreen.tscn"
+const END_SCENE_PATH : String = "res://scene_system/EndScreen.tscn"
 
 const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
 const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
@@ -356,7 +357,15 @@ func _play_eviction_cut_scene() -> void:
 
 func _show_ending() -> void:
 	_show_page(Journal.text("ending_title"), [GameFlow.get_ending_text()])
+	if GameFlow.ending_id == "survived":
+		_add_button(Journal.text("ui_continue"), _open_end_screen)
 	_add_button(Journal.text("ui_restart"), GameFlow.start_game)
+
+
+func _open_end_screen() -> void:
+	var error : Error = get_tree().change_scene_to_file(END_SCENE_PATH)
+	if error != OK:
+		push_error("Could not open the end screen: %s" % error_string(error))
 
 
 func _show_page(title: String, paragraphs: Array) -> void:
