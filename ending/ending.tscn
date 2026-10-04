@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://ndowh3y8m5j5"]
+[gd_scene format=3 uid="uid://dn184i53xp6al"]
 
-[ext_resource type="Script" uid="uid://2slikaf5330v" path="res://ending/ending.gd" id="1_js603"]
-[ext_resource type="Texture2D" uid="uid://blwh8ogtfht77" path="res://ending/EndScreen.PNG" id="2_bpn4j"]
+[ext_resource type="Texture2D" uid="uid://blwh8ogtfht77" path="res://ending/EndScreen.PNG" id="1_lvm68"]
+[ext_resource type="Script" uid="uid://2slikaf5330v" path="res://ending/ending.gd" id="1_r7gcc"]
 
 [node name="Ending" type="Control" unique_id=369421107]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_js603")
+script = ExtResource("1_r7gcc")
 
 [node name="EndingBackground" type="TextureRect" parent="." unique_id=658209479]
 texture_filter = 4
@@ -20,7 +20,7 @@ offset_right = 40.0
 offset_bottom = 43.0
 scale = Vector2(28.751608, 16.132153)
 mouse_filter = 2
-texture = ExtResource("2_bpn4j")
+texture = ExtResource("1_lvm68")
 expand_mode = 1
 
 [node name="Menu" type="VBoxContainer" parent="." unique_id=281073447]
