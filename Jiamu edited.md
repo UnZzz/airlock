@@ -850,3 +850,41 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 - 结局分布（事件选项是乱选的，真人玩会更好）：存活 56–83%，坏结局 15–42%，船长伤重 0–5%。坏结局大多是乱选导致的伤重死亡
 - 5 种结局 + 只剩船长 + 第 28 天流放后的结局，中英文都单独渲染检查过
 - 第 28 天确认是气闸日，开头显示那句流放提示
+
+## 修复：有人饿死时结局页是空白（2026-10-04）
+
+**原因**：Un_Z 的 60b6016 把「有人饿到第 3 天」改成发 `Crew.infighting` 信号，走他新加的 `infighting` 结局（文字在系统文字 `ending_infighting`）。同一时间我把结局文字改成从 `story_*.json` 的 `endings` 读，合并后 `endings` 里没有 `infighting`，所以只要有人饿死，结局页就是空的。而且船长饿死也走这条路，编剧写的「船长饿死结局」永远出不来。
+
+| 文件 | 改动 |
+| --- | --- |
+| `game_flow/game_flow.gd` | `_on_infighting()`：饿死的是船长 → `captain_starvation`（编剧的船长饿死结局）；是乘客 → `uprising`（编剧的坏结局「你真是个蠢货……起义爆发了」）。Un_Z 的信号保留不动 |
+
+- `ending_infighting` 这条系统文字现在没地方用了，没删，留给 Un_Z 决定
+
+**测试**
+- Godot headless 自动打 800 局（中英文 × 少喂 / 多喂 × 流放 / 不流放），全部走到结局，结局文字都不是空的，没有 `{}` / TBD / 占位 / 原文缺失
+- 单独测：船长饿死 → 「这算是牺牲，还是……」；Mara 饿死 → 「你真是个蠢货……」，中英文都对
+
+## 结局剧情接进 EndScreen + 内斗结局保留（2026-10-04）
+
+**剧情**
+| 文件 | 改动 |
+| --- | --- |
+| `game_flow/game_flow.gd` | `_on_infighting()`：船长饿死 → `captain_starvation`；乘客饿死 → `infighting`（Un_Z 的内斗结局）。乘客伤重死亡仍是 `uprising`（编剧的坏结局） |
+| `story/story_zh.json` / `_en.json` | `endings` 加 `infighting`，文字是 Un_Z 写的原文，从系统文字挪过来 |
+| `story/system_text_zh.json` / `_en.json` | 删 `ending_infighting`（已挪到 `endings`）；加 `ui_credits`：「制作人员」/ "Credits" |
+
+**结局画面**
+| 文件 | 改动 |
+| --- | --- |
+| `main.gd` | `_show_ending()` 不再在主界面显示结局文字，所有结局都直接进 `EndScreen`（原来只有好结局有「继续」按钮能进） |
+| `scene_system/EndScreen.tscn` | 新增居中的 `StoryPanel`（标题「结局」+ 可滚动正文 + 「继续」按钮，深色半透明底）；新增全屏 `Dim` 遮罩；菜单加「重新开始」按钮；`Control` 四边边距都设成 64，面板居中 |
+| `scene_system/end_screen.gd` | 先显示结局剧情，点「继续」后面板淡出，再按 Henry 原来的节奏淡入菜单；按钮文字改成走 `Journal.text`，能切中英文；加「重新开始」（回 `main.tscn` 开新局）；立绘只显示还在船上的人（原来死掉的也会显示）；非好结局时不显示立绘、背景压暗（现在只有一张 Tahiti 草地背景，坏结局用它不合适） |
+
+**测试**
+- Godot 1152×648 窗口截图：中文 / 英文好结局（流放 Mara + Josan 在船）、中文起义、英文内斗、中文叛变。面板文字正确，好结局只显示在船上的人的立绘，坏结局背景压暗、无立绘；点「继续」后面板淡出、出现「重新开始 / 返回主菜单 / 制作人员」
+
+**补充：结局框样式改成游戏统一样式**
+- `scene_system/EndScreen.tscn`：去掉我自己加的深蓝圆角 `StyleBoxFlat`，`StoryPanel` 改用主题 `ui/theme.tres` 里的面板样式（手绘线框 + 胶带，和主界面 ContentPanel 一样）；标题字号 24、正文用主题默认字号，和主界面一致；面板不再固定 460 高
+- `scene_system/end_screen.gd`：正文高度跟着文字走，最多 `max_story_height`（380），超出就在框里滚动。高度在文字框 `resized` 时重新算，不依赖第一帧的排版
+- 测试：1152×648 窗口截图，英文好结局（最长）框高 501、正文 380 可滚动；中文好结局 481；起义 201；叛变 161。在 0.05 / 0.1 / 0.5 / 1 秒时读取尺寸都一致

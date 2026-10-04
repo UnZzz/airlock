@@ -766,6 +766,9 @@
   	"captain_injury": [
   		"In the end, the wound won. Mouthwash can fool bacteria for a while, but it can't fool death. The most brilliant captain this ship ever had never made it to Tahiti."
   	],
+  	"infighting": [
+  		"Hunger has worn away the last of the crew's restraint. Infighting breaks out, bringing the voyage to an end."
+  	],
   	"mutiny": [
   		"{criminal} has had enough. He used to be the one person on this ship who did whatever I said, which is exactly why he knows best what I've done. Tonight, he opened the airlock. Only this time, I was the one standing inside it."
   	]

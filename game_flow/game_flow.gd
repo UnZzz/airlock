@@ -173,7 +173,11 @@ func _on_mutiny(_criminal: CrewMember) -> void:
 
 
 func _on_infighting() -> void:
-	_set_ending("infighting")
+	var captain : CrewMember = Crew.get_by_role(CrewMember.Role.CAPTAIN)
+	if captain != null and captain.days_without_food >= Crew.starvation_limit:
+		_set_ending("captain_starvation")
+	else:
+		_set_ending("infighting")
 
 
 func _on_final_day() -> void:

@@ -16,7 +16,7 @@ offset_left = -3.0
 offset_top = -0.99999905
 offset_right = 37.0
 offset_bottom = 39.0
-scale = Vector2(28.849873, 26.087452)
+scale = Vector2(29.122147, 26.797127)
 texture = ExtResource("1_v6d4x")
 expand_mode = 1
 stretch_mode = 4
@@ -75,20 +75,57 @@ rotation = -0.18411663
 scale = Vector2(0.24103568, 0.28401428)
 texture = ExtResource("7_vfgwb")
 
+[node name="Dim" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.02, 0.08, 0.82)
+
 [node name="Control" type="MarginContainer" parent="." unique_id=511873463]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 script = ExtResource("1_x0sye")
+
+[node name="StoryPanel" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Box" type="VBoxContainer" parent="Control/StoryPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Control/StoryPanel/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Text" type="RichTextLabel" parent="Control/StoryPanel/Box"]
+layout_mode = 2
+scroll_active = true
+
+[node name="ContinueButton" type="Button" parent="Control/StoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="Menu" type="VBoxContainer" parent="Control" unique_id=1662619736]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+
+[node name="RestartButton" type="Button" parent="Control/Menu"]
+layout_mode = 2
 
 [node name="BackMenuButton" type="Button" parent="Control/Menu" unique_id=1010677028]
 layout_mode = 2

@@ -4,7 +4,7 @@
 >
 > **Status:** Early design. The core mechanics are defined, but the background and story are still to be decided.
 
-Airlock is a narrative survival-management game. You are one of five people stranded and drifting in space. There aren't enough supplies for everyone, so every seven days you have to decide who goes out the airlock. Your goal is to keep **your own character** alive until Day 30.
+Airlock is a narrative survival-management game. You are one of five people stranded and drifting in space. There aren't enough supplies for everyone, so every seven days you have to decide who goes out the airlock. Your goal is to keep **your own character** alive until Day 28.
 
 ---
 
@@ -12,12 +12,12 @@ Airlock is a narrative survival-management game. You are one of five people stra
 
 | | |
 |---|---|
-| **Survival period** | 30 days |
+| **Survival period** | 28 days |
 | **Cycle length** | 7 days per round |
-| **Decision rounds** | ~4–5 |
+| **Decision rounds** | 4 (Days 7, 14, 21, 28) |
 | **Characters** | 5 (including the player) |
-| **Ejections** | 4 (one per 7-day cycle) |
-| **Win goal** | The player character survives to Day 30 |
+| **Ejections** | Up to 4 (one per 7-day cycle) |
+| **Win goal** | The player character survives to Day 28 |
 
 **Core tension:** there are too few resources for everyone to live. In each cycle you hand out supplies, watch how each character is doing and how they get along, and then decide who to **eject from the ship**.
 
@@ -59,7 +59,7 @@ Each round covers 7 days:
 │                     │  relationship changes, special events triggered
 └─────────┬───────────┘
 		  ▼
-   Next round, until all 4 others are ejected or Day 30 is reached
+   Next round, until all 4 others are ejected or Day 28 is reached
 ```
 
 ## Win / Loss Conditions *(open for discussion)*

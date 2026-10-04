@@ -1,6 +1,7 @@
 extends Control
 
 const START_SCENE_PATH : String = "res://start/StartScreen.tscn"
+const END_SCENE_PATH : String = "res://scene_system/EndScreen.tscn"
 
 const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
 const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
@@ -86,7 +87,10 @@ func _cancel_return() -> void:
 		return
 	return_overlay.hide()
 	dialogue.set_process_unhandled_input(dialogue_input_enabled)
-	return_button.grab_focus()
+	if dialogue.is_open:
+		get_viewport().gui_release_focus()
+	else:
+		return_button.grab_focus()
 
 
 func _input(event: InputEvent) -> void:
@@ -355,8 +359,13 @@ func _play_eviction_cut_scene() -> void:
 
 
 func _show_ending() -> void:
-	_show_page(Journal.text("ending_title"), [GameFlow.get_ending_text()])
-	_add_button(Journal.text("ui_restart"), GameFlow.start_game)
+	_open_end_screen()
+
+
+func _open_end_screen() -> void:
+	var error : Error = get_tree().change_scene_to_file(END_SCENE_PATH)
+	if error != OK:
+		push_error("Could not open the end screen: %s" % error_string(error))
 
 
 func _show_page(title: String, paragraphs: Array) -> void:
@@ -364,6 +373,26 @@ func _show_page(title: String, paragraphs: Array) -> void:
 	body_text.text = "\n\n".join(paragraphs)
 	body_text.scroll_to_line(0)
 	_clear_option_list()
+	_focus_first_option.call_deferred()
+
+
+func _focus_first_option() -> void:
+	if leaving or event_popup.is_open or dialogue.is_open or return_overlay.visible:
+		return
+	var button : BaseButton = _find_enabled_button(option_list)
+	if button != null:
+		button.grab_focus()
+
+
+func _find_enabled_button(node: Node) -> BaseButton:
+	for child in node.get_children():
+		var button : BaseButton = child as BaseButton
+		if button != null and not button.disabled and button.is_visible_in_tree():
+			return button
+		var nested : BaseButton = _find_enabled_button(child)
+		if nested != null:
+			return nested
+	return null
 
 
 func _clear_option_list() -> void:

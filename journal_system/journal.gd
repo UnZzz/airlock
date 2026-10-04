@@ -278,7 +278,7 @@ func _fill_paragraph(item: Dictionary) -> String:
 		if not passengers.is_empty():
 			args["random_passenger"] = passengers.pick_random().display_name
 		else:
-			args["random_passenger"] = "Someone"
+			args["random_passenger"] = text("someone")
 			
 	if content.contains("{exiled_name}"):
 		var name : String = get_flag("last_airlock_target_name")

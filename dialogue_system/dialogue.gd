@@ -28,6 +28,7 @@ var _options : VBoxContainer = null
 var _typing : bool = false
 var _skip_typing : bool = false
 var _choosing : bool = false
+var _previous_focus : Control = null
 
 
 func _ready() -> void:
@@ -52,6 +53,8 @@ func talk(portrait: CharacterPortrait) -> void:
 	if data.is_empty() or not portrait.can_talk():
 		return
 	is_open = true
+	_previous_focus = get_viewport().gui_get_focus_owner()
+	get_viewport().gui_release_focus()
 	CharacterPortrait.interaction_enabled = false
 	CharacterPortrait.hide_names(get_tree())
 	CharacterPortrait.focus(get_tree(), portrait, background_dim)
@@ -86,6 +89,9 @@ func _close() -> void:
 	is_open = false
 	CharacterPortrait.interaction_enabled = true
 	CharacterPortrait.clear_focus(get_tree())
+	if is_instance_valid(_previous_focus) and _previous_focus.is_visible_in_tree():
+		_previous_focus.grab_focus()
+	_previous_focus = null
 	finished.emit()
 
 
@@ -111,7 +117,9 @@ func _pause_after(line: String, i: int) -> float:
 	var c : String = line[i]
 	if ".!?".contains(c) and line[i + 1] == " ":
 		return pause_long
-	if ",;:".contains(c):
+	if "。！？…".contains(c):
+		return pause_long
+	if ",;:，；：、".contains(c):
 		return pause_short
 	return 0.0
 
@@ -124,14 +132,17 @@ func _ask(labels: Array[String]) -> int:
 		button.text = "  " + labels[i]
 		button.flat = true
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.focus_mode = Control.FOCUS_NONE
 		button.add_theme_color_override("font_color", option_color)
 		button.add_theme_color_override("font_hover_color", option_lit_color)
 		button.add_theme_color_override("font_pressed_color", option_lit_color)
-		button.mouse_entered.connect(func(): button.text = "> " + labels[i])
-		button.mouse_exited.connect(func(): button.text = "  " + labels[i])
+		button.add_theme_color_override("font_focus_color", option_lit_color)
+		button.mouse_entered.connect(button.grab_focus)
+		button.focus_entered.connect(func(): button.text = "> " + labels[i])
+		button.focus_exited.connect(func(): button.text = "  " + labels[i])
 		button.pressed.connect(func(): _picked.emit(i))
 		_options.add_child(button)
+	if _options.get_child_count() > 0:
+		(_options.get_child(0) as Button).grab_focus()
 	var pick : int = await _picked
 	_choosing = false
 	_clear_options()
