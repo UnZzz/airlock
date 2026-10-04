@@ -40,6 +40,7 @@
 	"ui_promise_exile_target": "Promise: exile {name} on the next Airlock Day",
 	"ui_refuses_task": "Refuses the next task",
 	"ui_role_captain": "Captain",
+	"ui_member_header": "{name} · {role}",
 	"ui_role_criminal": "Criminal",
 	"ui_role_worker": "Worker",
 	"ui_role_doctor": "Doctor",

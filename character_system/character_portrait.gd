@@ -76,7 +76,7 @@ func get_member() -> CrewMember:
 
 func get_display_name() -> String:
 	if is_guest:
-		return guest_name
+		return Journal.member_name("josan", guest_name)
 	var member : CrewMember = get_member()
 	if member == null:
 		return ""
@@ -96,7 +96,7 @@ func _refresh() -> void:
 		modulate = Color.WHITE
 		self_modulate = Color.WHITE
 		texture = healthy_texture
-		_name_label.text = guest_name
+		_name_label.text = get_display_name()
 		return
 	var member : CrewMember = get_member()
 	if member == null or member.status == CrewMember.Status.EXILED:

@@ -51,6 +51,10 @@ func localize_member(member: CrewMember) -> void:
 	member.pronoun = String(system_text.get("member_pronoun_" + member.member_id, member.pronoun))
 
 
+func member_name(member_id: String, fallback: String) -> String:
+	return String(system_text.get("member_name_" + member_id, fallback))
+
+
 func localize_event(event: BaseEvent) -> void:
 	_apply_overrides(event, event_overrides.get(event.event_id, {}))
 

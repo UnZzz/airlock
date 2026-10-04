@@ -439,7 +439,7 @@ func _refresh_sidebar() -> void:
 
 func _describe_member(member: CrewMember) -> String:
 	var role_key : String = "ui_role_" + String(CrewMember.Role.keys()[member.role]).to_lower()
-	var lines : Array[String] = [member.display_name + " · " + Journal.text(role_key)]
+	var lines : Array[String] = [Journal.text("ui_member_header", {"name": member.display_name, "role": Journal.text(role_key)})]
 	match member.status:
 		CrewMember.Status.EXILED:
 			lines.append(Journal.text("ui_status_exiled"))

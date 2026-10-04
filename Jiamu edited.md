@@ -935,3 +935,25 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 **测试**
 - Godot 4.7.2 headless 自动打 600 局（中英文各半，只在快饿时喂饭、气闸日全喂并流放），全部走到结局，没有脚本错误；所有日志、事件、选项、气闸、结局文字里没有空文本、`{}` 或原始 key（只剩第 18 天那句有意保留的英文）
 - 1152×648 窗口实测：中英文指南排版正常可滚动；第 2 天火灾弹窗显示标题、默认聚焦第一个选项并有黄色描边；只用 Enter 能从开场一路走到派人 → 谈判 → 第 3 天；对话关闭后焦点回到原按钮
+
+## 中文版人名改成中文（2026-10-04）
+
+译名经用户确认：Mara Quinn → 玛拉·奎因（玛拉）、Mason Reed → 梅森·里德（梅森）、Elias Ward → 伊莱亚斯·沃德（伊莱亚斯）、Dr. Helena Voss → 海伦娜·沃斯博士（沃斯博士）、Josan → 乔森、Daniel Price → 丹尼尔·普莱斯（丹尼尔）。
+
+| 文件 | 改动 |
+| --- | --- |
+| `story/story_zh.json` / `dialogue_zh.json` / `event_text_zh.json` | 正文里的英文人名换成中文，只换名字；名字两边原来中英混排留的空格去掉。英文版不动 |
+| `story/system_text_zh.json` | 加 `member_name_*` / `member_short_*`（elias / helena / mara / mason / josan） |
+| `story/event_text_zh.json` | `fire_check` 加 `send_option_texts`，第 2 天冷库着火的派人按钮原来中文版也显示英文名 |
+| `journal_system/journal.gd` | 加 `member_name(member_id, fallback)` |
+| `character_system/character_portrait.gd` | Josan 立绘名牌走 `Journal.member_name("josan", guest_name)`，中文显示「乔森」 |
+| `story/glossary_en.md` | 加「中文版人名」表 |
+
+**补充（用户确认后）**
+- Voss 统一改成「沃斯博士」（全名「海伦娜·沃斯博士」），因为编剧原文是「博士的前缀」。拿头衔开玩笑的 4 句：「Prof. Voss」→「沃斯教授」，「别忘了加“Dr.”」→「别忘了加“博士”」，「Dr前缀」→「博士前缀」
+- Blaise Pascal → 布莱兹·帕斯卡，Teresa Panza → 特蕾莎·潘萨
+- `main.gd` `_describe_member()`：左侧状态栏标题改走系统文字 `ui_member_header`。中文「{name}（{role}）」（避免「梅森·里德 · 罪犯」两个点），英文保持「{name} · {role}」
+
+**测试**
+- Godot 中文 / 英文各开一局：船员全名、简称、立绘名牌（含乔森）中文正确，英文仍是原英文名；冷库着火派人按钮中英文都对，切换语言来回两次也对
+- 1152×648 截图检查日志正文和左侧状态栏

@@ -38,3 +38,18 @@
 | Tahiti（宜居星球） | Tahiti | |
 | 半人马座 | Centaurus | |
 | Josan（敲门的人） | Josan | Jason |
+
+## 中文版人名（固定）
+
+中文文案里的人名一律用下表的中文，不再写英文。
+
+| 英文 | 中文全名 | 中文简称 |
+|---|---|---|
+| Mara Quinn | 玛拉·奎因 | 玛拉 |
+| Mason Reed | 梅森·里德 | 梅森 |
+| Elias Ward | 伊莱亚斯·沃德 | 伊莱亚斯 |
+| Dr. Helena Voss | 海伦娜·沃斯博士 | 沃斯博士（单独出现时为「沃斯」/「海伦娜」）；Dr. → 博士，Prof. → 教授 |
+| Josan | 乔森 | 乔森 |
+| Daniel Price | 丹尼尔·普莱斯 | 丹尼尔 |
+| Blaise Pascal | 布莱兹·帕斯卡 | |
+| Teresa Panza | 特蕾莎·潘萨 | |
