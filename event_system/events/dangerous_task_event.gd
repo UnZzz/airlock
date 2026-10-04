@@ -150,8 +150,7 @@ func _start_negotiation(worker: CrewMember) -> void:
 	accept.food_change = pending_demand.get("food", 0)
 	accept.mouthwash_change = pending_demand.get("mouthwash", 0)
 	current_options = [accept, EventOption.create(Journal.text("ui_refuse_demand"), "refuse")]
-	if Crew.can_intimidate():
-		current_options.append(EventOption.create(Journal.text("ui_intimidate", {"text": Journal.text("ui_intimidate_demand", {"criminal": _criminal_name()})}), "intimidate"))
+	_append_mason_option()
 	current_options.append(EventOption.create(Journal.text("ui_abandon_task"), "abandon"))
 	is_finished = false
 
@@ -161,9 +160,13 @@ func _start_fixed_negotiation() -> void:
 	current_text = worker_demand_text
 	current_options = []
 	current_options.append_array(worker_demand_options)
-	if Crew.can_intimidate():
-		current_options.append(EventOption.create(Journal.text("ui_intimidate", {"text": Journal.text("ui_intimidate_demand", {"criminal": _criminal_name()})}), "intimidate"))
+	_append_mason_option()
 	is_finished = false
+
+
+func _append_mason_option() -> void:
+	if Crew.is_loyalty_full():
+		current_options.append(EventOption.create(Journal.text("ui_worker_mason", {"criminal": _criminal_short_name()}), "intimidate"))
 
 
 func _available_demands(worker: CrewMember) -> Array[Dictionary]:
@@ -271,3 +274,8 @@ func _worker() -> CrewMember:
 func _criminal_name() -> String:
 	var criminal : CrewMember = Crew.get_by_role(CrewMember.Role.CRIMINAL)
 	return criminal.display_name if criminal != null else ""
+
+
+func _criminal_short_name() -> String:
+	var criminal : CrewMember = Crew.get_by_role(CrewMember.Role.CRIMINAL)
+	return criminal.short_name if criminal != null else ""

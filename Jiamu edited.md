@@ -684,7 +684,6 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 ---
 
-<<<<<<< Updated upstream
 ## Josan 微醺粒子（2026-10-03）
 
 **新增文件**
@@ -758,7 +757,6 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **测试**
 - Godot 1152×648 窗口：让一名角色受伤 + 生病、另一名受伤后进入分配阶段截图，面板不再超出屏幕，多出的「漱口水治病」按钮换行显示
-<<<<<<< HEAD
 
 ## 漱口水维持按钮：倒计时满时显示「明天可用」
 
@@ -773,8 +771,6 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **测试**
 - Godot 1152×648 窗口：一人刚转重伤（2/2）且生病，另一人受伤已过一天（2/3）。前者按钮显示「漱口水维持（明天可用）」并且是灰的，后者显示「漱口水维持（-1）」可以点
-=======
-=======
 ## 修复：Mara 厨师食物减免机制（2026-10-04）
 
 **问题原因**
@@ -788,6 +784,26 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
   - `meal_cost()` 计算公式改为 `max(min_chef_meal_cost, count - chef_food_reduction)`。
   - 效果：5 人吃 4 份、4 人吃 3 份、3 人吃 2 份、2 人吃 1 份、1 人吃 1 份、0 人吃 0 份。
 
+## 新事件：天赋人权 / 事后追偿 + 工人谈判「叫 Mason 去处理吧」（2026-10-04）
 
->>>>>>> Stashed changes
->>>>>>> 4bebba0259b0267bbaedb59b3bff8c3b8d9bcdaf
+文案来源：编剧《Airlock文案 (4).pdf》事件 9、事件 10，中文逐字照搬，「xxx」换成 `{name}`、「ta」换成 `{ta}`（随机挑一个在船上的非 Mason 乘客）。英文是我按术语表翻的。
+
+| 文件 | 改动 |
+| --- | --- |
+| `event_system/events/mason_rights_event.gd` + `mason_rights.tres` | 新事件「天赋人权」：Mason 在船上且还有别的乘客时进随机池。绑起来 → Mason 流放（原因 `tied`）；再忍忍 → Mason 忠诚 +1 |
+| `event_system/events/mason_redress_event.gd` + `mason_redress.tres` | 新事件「事后追偿」：Mason 在船上时进随机池。郑重道歉 → 漱口水 -1、忠诚 +1；叫他闭嘴 → 船长 50% 受伤 |
+| `event_system/event_manager.tscn` | 两个事件加入事件列表 |
+| `event_system/events/dangerous_task_event.gd` | 工人谈判（第 2 天查火 + 随机谈判）里原来的【威慑】换成「叫 Mason 去处理吧」，只有 Mason 忠诚满（3/3）才出现。效果和原来的威慑一样：Elias 直接去干活，不花资源，不扣忠诚。医生条件那里的威慑没动 |
+| `story/story_zh.json` / `story_en.json` | `events` 里加 `mason_rights`、`mason_redress` |
+| `story/system_text_zh.json` / `_en.json` | 加 `ui_worker_mason`（「叫{criminal}去处理吧」，沿用小偷事件的说法）；加 `journal_exiled_tied`（[占位] Mason 被绑起来后第二天的日志） |
+| `story/system_text_zh.json` | 补回 10 个缺失的 key：`member_name_captain`、`member_short_captain`、4 个 `member_pronoun_*`、4 个 `effect_name_*`。HenryY842 的 db22f1a 把这个文件挪进了 `music_system/tracks/`，Un_Z 的 8e5dfbe 重新加回 `story/` 时少了这几个，导致中文模式下代词显示 he / she、船长显示 Captain。值从 `music_system/tracks/system_text_zh.json` 里抄的，那个文件没动 |
+| `Jiamu edited.md` | 删掉合并时留下的冲突标记（`<<<<<<<` / `=======` / `>>>>>>>`），两边内容都保留 |
+
+**数值（文案没写，先自己定的）**
+- 「叫他闭嘴」船长受伤概率 50%（`silence_injury_chance`）
+- 两个事件的忠诚 +1、道歉扣 1 瓶漱口水（文案写的是「一瓶」）
+- 两个事件都不可重复
+
+**测试**
+- Godot headless，中英文各跑一遍：两个事件能触发、文字无残留 `{}`、代词正确（中文显示「她」）；忍 → 忠诚 +1；绑 → Mason 流放，之后两个事件都不再触发；道歉 → 漱口水 -1、忠诚 +1；闭嘴 200 次船长受伤 95 / 104 次
+- 工人谈判：忠诚 1、或满过之后掉到 2，都不出现 Mason 选项；忠诚 3 时第 2 天查火和章鱼的谈判都出现「叫Mason去处理吧」，选了以后任务完成、不扣资源、忠诚仍是 3

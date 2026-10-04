@@ -681,6 +681,18 @@
 	  "leave_mason": "[TBD] Mason left with the Firebreath crew.",
 	  "fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
 	},
+	"mason_rights": {
+		"title": "Inalienable Rights",
+		"description": "{name} insists on tying Mason up, claiming that if we don't, the whole ship is going to pay for it. Sure, everyone has seen how badly Mason has behaved, but for a long time we've more or less gone along with his status as a \"free man.\" Besides, he really has given us plenty of entertainment lately, even if most of it was trouble. Should we settle this once and for all and hand him a new life sentence with a length of rope, or respect his personal freedom at the risk of the whole crew getting thrown off the ship?",
+		"option_tie": "Tie him up! (Mason is exiled)",
+		"option_endure": "Put up with him a little longer (Mason's Loyalty goes up)"
+	},
+	"mason_redress": {
+		"title": "Seeking Redress",
+		"description": "Mason has come up with a new way to make trouble for us. He claims our dutiful Daniel was an absolute monster who spent ages subjecting him to brutal physical restraint and psychological humiliation. This is the collapse of the justice system of the entire universe, an utter contempt for human rights and justice! Luckily, Mason is a reasonable, law-abiding citizen. As long as I, the Captain and Daniel's superior, formally apologize to him, with a bottle of mouthwash as a token of regret, he is more than willing to forgive my negligent supervision.",
+		"option_apology": "Formally apologize (lose Mouthwash, Loyalty goes up)",
+		"option_silence": "Tell him to shut up (the Captain may get injured)"
+	},
 	"departure_elias": {
 	  "text": "Honestly, I always offered Elias an extremely generous condition: his life. Who else, in times like these, would work so tirelessly to help you, feed you, and tolerate every one of your self-righteous mood swings? Sadly, he never seemed to appreciate that. I hope he comes to understand his captain's good intentions while he's drifting through space."
 	},
