@@ -57,11 +57,12 @@ grow_vertical = 2
 script = ExtResource("1_script")
 
 [node name="Black" type="ColorRect" parent="." unique_id=887812071]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -138,7 +139,6 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 
 [node name="Fade" type="ColorRect" parent="." unique_id=825894367]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
