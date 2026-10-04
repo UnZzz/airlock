@@ -90,5 +90,8 @@
     "ending_mutiny":  "[占位] {criminal} 发动了叛变。",
     "event_sick":  "[占位] {name} 生病了。",
     "journal_exiled_debt":  "[占位] {name} 搭乘 Firebreath 的飞船离开，去替我们打工还债。",
-    "ui_language":  "语言：中文"
+    "ui_language":  "语言：中文",
+    "ui_return_menu": "返回主菜单",
+    "ui_return_menu_confirm": "返回主菜单后，本局进度不会保存。确定返回吗？",
+    "ui_cancel": "取消"
 }

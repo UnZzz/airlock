@@ -89,19 +89,95 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PanelToggleButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -144.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 60.0
-grow_horizontal = 0
-
 [node name="Dialogue" parent="." instance=ExtResource("3_dialogue")]
 layout_mode = 1
 
 [node name="EventPopup" parent="." instance=ExtResource("4_event_popup")]
 layout_mode = 1
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="TopActions" type="HBoxContainer" parent="MenuLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 60.0
+grow_horizontal = 0
+alignment = 2
+theme_override_constants/separation = 12
+
+[node name="ReturnButton" type="Button" parent="MenuLayer/TopActions"]
+layout_mode = 2
+
+[node name="PanelToggleButton" type="Button" parent="MenuLayer/TopActions"]
+layout_mode = 2
+
+[node name="ReturnOverlay" type="Control" parent="MenuLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="MenuLayer/ReturnOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Margin" type="MarginContainer" parent="MenuLayer/ReturnOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Center" type="CenterContainer" parent="MenuLayer/ReturnOverlay/Margin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="MenuLayer/ReturnOverlay/Margin/Center"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+
+[node name="Message" type="Label" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel/Content"]
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel/Content"]
+layout_mode = 2
+alignment = 2
+theme_override_constants/separation = 12
+
+[node name="Cancel" type="Button" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Buttons"]
+layout_mode = 2
+
+[node name="Confirm" type="Button" parent="MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Buttons"]
+layout_mode = 2
+
+[node name="Fade" type="ColorRect" parent="MenuLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)

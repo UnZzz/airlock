@@ -1,5 +1,7 @@
 extends Control
 
+const START_SCENE_PATH : String = "res://start/StartScreen.tscn"
+
 const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
 const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
 const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn")
@@ -8,7 +10,7 @@ const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn"
 
 @onready var background : Control = $Background
 @onready var panels : MarginContainer = $Margin
-@onready var panel_toggle_button : Button = $PanelToggleButton
+@onready var panel_toggle_button : Button = $MenuLayer/TopActions/PanelToggleButton
 @onready var day_label : Label = $Margin/Layout/SidebarPanel/Sidebar/DayLabel
 @onready var resource_label : Label = $Margin/Layout/SidebarPanel/Sidebar/ResourceLabel
 @onready var crew_list : VBoxContainer = $Margin/Layout/SidebarPanel/Sidebar/CrewScroll/CrewList
@@ -18,6 +20,18 @@ const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn"
 @onready var dialogue : Control = $Dialogue
 @onready var event_popup : EventPopup = $EventPopup
 
+@onready var return_button : Button = $MenuLayer/TopActions/ReturnButton
+@onready var return_overlay : Control = $MenuLayer/ReturnOverlay
+@onready var return_panel : PanelContainer = $MenuLayer/ReturnOverlay/Margin/Center/Panel
+@onready var return_title : Label = $MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Title
+@onready var return_message : Label = $MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Message
+@onready var cancel_return_button : Button = $MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Buttons/Cancel
+@onready var confirm_return_button : Button = $MenuLayer/ReturnOverlay/Margin/Center/Panel/Content/Buttons/Confirm
+@onready var menu_fade : ColorRect = $MenuLayer/Fade
+
+var leaving : bool = false
+var dialogue_input_enabled : bool = false
+
 var current_scene : PackedScene = null
 var fed_selection : Dictionary = {}
 var cost_label : Label = null
@@ -25,6 +39,21 @@ var confirm_button : Button = null
 
 
 func _ready() -> void:
+	return_button.pressed.connect(_show_return_confirmation)
+	cancel_return_button.pressed.connect(_cancel_return)
+	confirm_return_button.pressed.connect(_confirm_return)
+	return_button.text = Journal.text("ui_return_menu")
+	return_title.text = Journal.text("ui_return_menu")
+	return_message.text = Journal.text("ui_return_menu_confirm")
+	cancel_return_button.text = Journal.text("ui_cancel")
+	confirm_return_button.text = Journal.text("ui_return_menu")
+	for button in [cancel_return_button, confirm_return_button]:
+		var other : Button = confirm_return_button if button == cancel_return_button else cancel_return_button
+		for direction in ["focus_neighbor_left", "focus_neighbor_right", "focus_neighbor_top", "focus_neighbor_bottom", "focus_next", "focus_previous"]:
+			button.set(direction, button.get_path_to(other))
+	resized.connect(_fit_return_panel)
+	_fit_return_panel()
+	CharacterPortrait.interaction_enabled = true
 	panel_toggle_button.pressed.connect(_toggle_panels)
 	for portrait in get_tree().get_nodes_in_group(&"character_portrait"):
 		portrait.clicked.connect(func(_member_id): dialogue.talk(portrait))
@@ -36,6 +65,56 @@ func _ready() -> void:
 	EffectSystem.effect_removed.connect(func(_target_id, _effect): _refresh_sidebar())
 	Music.play_playlist()
 	GameFlow.start_game()
+
+
+func _fit_return_panel() -> void:
+	return_panel.custom_minimum_size.x = minf(560.0, maxf(0.0, size.x - 48.0))
+
+
+func _show_return_confirmation() -> void:
+	if leaving or return_overlay.visible:
+		return
+	dialogue_input_enabled = dialogue.is_processing_unhandled_input()
+	dialogue.set_process_unhandled_input(false)
+	return_overlay.show()
+	cancel_return_button.grab_focus()
+
+
+func _cancel_return() -> void:
+	if leaving:
+		return
+	return_overlay.hide()
+	dialogue.set_process_unhandled_input(dialogue_input_enabled)
+	return_button.grab_focus()
+
+
+func _input(event: InputEvent) -> void:
+	if leaving:
+		get_viewport().set_input_as_handled()
+	elif return_overlay.visible and event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		_cancel_return()
+
+
+func _confirm_return() -> void:
+	if leaving:
+		return
+	leaving = true
+	cancel_return_button.disabled = true
+	confirm_return_button.disabled = true
+	menu_fade.show()
+	var tween : Tween = create_tween()
+	tween.tween_property(menu_fade, "color:a", 1.0, 0.8)
+	await tween.finished
+	var error : Error = get_tree().change_scene_to_file(START_SCENE_PATH)
+	if error != OK:
+		push_error("Could not return to the main menu: %s" % error_string(error))
+		menu_fade.hide()
+		menu_fade.color.a = 0.0
+		leaving = false
+		cancel_return_button.disabled = false
+		confirm_return_button.disabled = false
+		cancel_return_button.grab_focus()
 
 
 func _toggle_panels() -> void:
