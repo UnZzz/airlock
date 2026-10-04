@@ -152,11 +152,17 @@ func injure(member_id: String) -> void:
 	crew_changed.emit()
 
 
-func can_maintain(member_id: String) -> bool:
+func is_injury_countdown_full(member_id: String) -> bool:
 	var effect : BaseEffect = get_injury_effect(member_id)
 	if effect == null:
 		return false
-	if EffectSystem.get_remaining(member_id, effect.effect_name) >= effect.duration:
+	return EffectSystem.get_remaining(member_id, effect.effect_name) >= effect.duration
+
+
+func can_maintain(member_id: String) -> bool:
+	if get_injury_effect(member_id) == null:
+		return false
+	if is_injury_countdown_full(member_id):
 		return false
 	return Inventory.can_afford(0, maintenance_cost)
 

@@ -721,8 +721,6 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **注意**
 - 默认英文；按钮显示的是当前语言
-- `story_zh.json` 只有第 1–4 天，缺第 5–28 天和 4 个 `departure_*` 事件，中文模式下这些会显示英文
-- 事件 `.tres` 里的 `[TBD]` 文字是写死的英文，没有做切换
 
 **测试**
 - Godot headless：切 zh / en，开始界面按钮、系统文字、船长名、代词、状态名、第 1 天 / 第 10 天日志标题都正确；切换结果写入 settings.cfg
@@ -731,6 +729,23 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 - 新增 `story/dialogue_zh.json`：五个角色（Mason / Elias / Dr. Voss / Mara / Josan）的对话按英文版翻成中文，结构和英文版一一对应。用词按 `glossary_en.md` 和 `story_zh.json`（Food、干粮、冷库、舱门、堆肥箱、漱口水；人名不翻）
 - `story/dialogue_en.json`：去掉所有 `[TBD]` 前缀，内容没改
 - 测试：Godot headless 下 zh / en 各加载一次对话，读到的是对应语言
+
+**补充：事件中文版**
+- 原因：`fire_check`（第 2 天查火）和 5 个随机事件（`argument` / `criminal_demand` / `doctor_demand` / `repair_leak` / `salvage_cargo`）的文字写死在 `.tres` 里，只有英文。其他剧情事件读 `story_zh.json`，本来就能切
+- 新增 `story/event_text_zh.json`：按 event_id 存这 6 个事件的中文，内容是 git 历史（527c989）里这些 `.tres` 的中文原文，没改字，`[占位]` 保留
+- `journal_system/journal.gd`：新增 `localize_event()`，中文时用 `event_text_zh.json` 覆盖事件和选项上的文字字段，切回英文时恢复 `.tres` 原文
+- `event_system/event_manager.gd`：`start_event()` 里先 `Journal.localize_event(event)` 再 `begin()`
+- 英文仍以 `.tres` 为准，改英文直接改 `.tres`；改中文改 `event_text_zh.json`
+- 测试：Godot headless 下 zh → en → zh 切换，6 个事件的标题、描述、选项、结果文字都对应正确语言
+
+**补充：中文日志第 05–28 天 + 离船台词**
+- `story/story_zh.json` 加入第 05–28 天。文字取自编剧的《Airlock文案 (3).pdf》（2026-10-03 18:28 版），逐字照搬；条件分支（`if` / `member`）和 `story_en.json` 一一对应
+- 只做了这些处理：去掉 PDF 里给程序看的标注（【Elias轻度受伤】【所有角色有概率受伤】【食物增加】「如果 Mara 已死就换其他人」等）；修了 PDF 里方向错乱的引号（第 6 天「一吓到就尖叫」「友谊」，第 23 天美食家那句）；第 8、9 天两句缺句号的补了句号；原文的错字没改（第 25 天「总是就是」）
+- 第 22 天流放分支原文写的是「ta」，改成 `{ta}`，按被流放的人显示他 / 她（`member: last_airlock_target`）；英文版那句没用代词，不受影响
+- 第 6 天英文多一句 "Her only condition: don't pick her."，PDF 中文没有，中文按 PDF；第 20 天「总不能让那个人空着肚子上路吧」在 PDF 里是两种情况共用的结尾，英文版放进了 Mara 不在船上的分支，中文跟着英文结构放
+- 4 个离船事件 `departure_*`（第 8、15 天流放分支里也用同样的话）：PDF 里只有 Elias 开头一句（后半是拼音占位），其余是空的。中文是我照英文版翻的，Elias 那句开头用了 PDF 原文；Mason 那条英文本身是 `[TBD]`，中文对应写 `[占位] 原文缺失，需要原作者补一句`
+- 第 02–04 天原来没有 `allocation_title`，切成中文后会回退成英文「Supply Allocation」，补成「物资分配」（和第 01 天一样）
+- 测试：Godot headless 中文模式，模拟第 7 天流放 Mara、第 21 天流放，翻完第 1–28 天：每天都有内容，标题是中文，没有残留 `{}`，`{exiled_name}` / `{name}` / `{ta}` 都正确替换
 
 ## 修复：受伤 + 生病时物资分配面板被撑宽
 
@@ -742,3 +757,17 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 
 **测试**
 - Godot 1152×648 窗口：让一名角色受伤 + 生病、另一名受伤后进入分配阶段截图，面板不再超出屏幕，多出的「漱口水治病」按钮换行显示
+
+## 漱口水维持按钮：倒计时满时显示「明天可用」
+
+**背景**：规则是倒计时满的时候不能用漱口水维持。重伤第 1 天倒计时是 2/2，按钮是灰的，看起来像漱口水对重伤没用（刚受伤第 1 天也一样）。规则不变，只改提示。
+
+| 文件 | 改动 |
+| --- | --- |
+| `character_system/crew.gd` | 新增 `is_injury_countdown_full()`；`can_maintain()` 改用它，判断结果不变 |
+| `main.gd` | 倒计时满时，维持按钮文字用 `ui_maintain_full` |
+| `story/system_text_zh.json` | 加 `ui_maintain_full`：「漱口水维持（明天可用）」 |
+| `story/system_text_en.json` | 加 `ui_maintain_full`：「Mouthwash upkeep (available tomorrow)」 |
+
+**测试**
+- Godot 1152×648 窗口：一人刚转重伤（2/2）且生病，另一人受伤已过一天（2/3）。前者按钮显示「漱口水维持（明天可用）」并且是灰的，后者显示「漱口水维持（-1）」可以点

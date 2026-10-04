@@ -23,6 +23,7 @@
 	"ui_hunger": "{days} day(s) without food",
 	"ui_refuses_food": "{name}: refuses to eat tonight's dinner",
 	"ui_maintain": "Mouthwash upkeep (-{cost})",
+	"ui_maintain_full": "Mouthwash upkeep (available tomorrow)",
 	"ui_treat": "Doctor's treatment (-{cost})",
 	"ui_cure_sickness": "Mouthwash cure (-{cost})",
 	"ui_injury_countdown": "{state}, worsens in {days} day(s)",

@@ -79,6 +79,7 @@ func pick_event_for_day(day: int) -> BaseEvent:
 
 func start_event(event: BaseEvent) -> void:
 	current_event = event
+	Journal.localize_event(event)
 	event.begin()
 	event_started.emit(event)
 

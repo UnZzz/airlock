@@ -5,6 +5,8 @@ signal language_changed(language: String)
 
 const STORY_PATH : String = "res://story/story_%s.json"
 const SYSTEM_TEXT_PATH : String = "res://story/system_text_%s.json"
+const EVENT_TEXT_PATH : String = "res://story/event_text_%s.json"
+const OPTION_LISTS : Array[String] = ["options", "worker_demand_options"]
 const SETTINGS_PATH : String = "user://settings.cfg"
 const LANGUAGES : Array[String] = ["en", "zh"]
 const NO_EVENT : String = "none"
@@ -12,6 +14,7 @@ const RANDOM_EVENT : String = "random"
 
 var story : Dictionary = {}
 var system_text : Dictionary = {}
+var event_overrides : Dictionary = {}
 var pending_entries : Dictionary = {}
 var flags : Dictionary = {}
 var language : String = "en"
@@ -48,6 +51,10 @@ func localize_member(member: CrewMember) -> void:
 	member.pronoun = String(system_text.get("member_pronoun_" + member.member_id, member.pronoun))
 
 
+func localize_event(event: BaseEvent) -> void:
+	_apply_overrides(event, event_overrides.get(event.event_id, {}))
+
+
 func effect_name(effect: BaseEffect) -> String:
 	return String(system_text.get("effect_name_" + effect.effect_name, effect.display_name))
 
@@ -55,6 +62,30 @@ func effect_name(effect: BaseEffect) -> String:
 func _load_texts() -> void:
 	story = _load_localized(STORY_PATH)
 	system_text = _load_localized(SYSTEM_TEXT_PATH)
+	event_overrides = {}
+	if FileAccess.file_exists(EVENT_TEXT_PATH % language):
+		event_overrides = _load_json(EVENT_TEXT_PATH % language)
+
+
+func _apply_overrides(target: Object, overrides: Dictionary) -> void:
+	var defaults : Dictionary = target.get_meta("text_defaults", {})
+	for key in defaults:
+		target.set(key, defaults[key])
+	for key in overrides:
+		if overrides[key] is Array:
+			continue
+		if not defaults.has(key):
+			defaults[key] = target.get(key)
+		target.set(key, overrides[key])
+	target.set_meta("text_defaults", defaults)
+	for key in OPTION_LISTS:
+		if not key in target:
+			continue
+		var items : Array = target.get(key)
+		var item_overrides : Array = overrides.get(key, [])
+		for i in items.size():
+			var item_override : Variant = item_overrides[i] if i < item_overrides.size() else {}
+			_apply_overrides(items[i], item_override if item_override is Dictionary else {})
 
 
 func _load_localized(path: String) -> Dictionary:

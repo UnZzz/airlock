@@ -141,7 +141,8 @@ func _build_allocation_row(member: CrewMember) -> HFlowContainer:
 	row.add_child(box)
 	var effect : BaseEffect = Crew.get_injury_effect(member.member_id)
 	if effect != null:
-		var maintain : Button = _make_button(Journal.text("ui_maintain", {"cost": Crew.maintenance_cost}), _on_maintain.bind(member.member_id))
+		var maintain_key : String = "ui_maintain_full" if Crew.is_injury_countdown_full(member.member_id) else "ui_maintain"
+		var maintain : Button = _make_button(Journal.text(maintain_key, {"cost": Crew.maintenance_cost}), _on_maintain.bind(member.member_id))
 		maintain.disabled = not Crew.can_maintain(member.member_id)
 		row.add_child(maintain)
 		if Crew.doctor_available():

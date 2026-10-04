@@ -23,6 +23,7 @@
 	"ui_hunger": "已 {days} 天未进食",
 	"ui_refuses_food": "{name}：拒绝吃今天的晚餐",
 	"ui_maintain": "漱口水维持（-{cost}）",
+	"ui_maintain_full": "漱口水维持（明天可用）",
 	"ui_treat": "医生治疗（-{cost}）",
 	"ui_cure_sickness": "漱口水治病（-{cost}）",
 	"ui_injury_countdown": "{state}，{days} 天后恶化",

@@ -1,0 +1,50 @@
+{
+	"fire_check": {
+		"description": "对了，冷库的火似乎还没有完全熄灭，我担心这是否会进一步破坏飞船的电路系统，进一步影响维生设备。也许我应该派一个人去看看？Elias在平时是负责飞船的日常维护的，但我并不确定他是否会借着自己的专业能力提出一些额外的要求。如果我让其他不熟悉飞船的人去可能会让他们触电。",
+		"abandon_option_text": "我们会没事的（不做处理）",
+		"worker_demand_text": "我就知道他会提这个要求。讨论的时候就是他一直在反复说“我们应该把它们当酒喝”的。我们应该顺着他，让他独占一整瓶的漱口水，还是试试能不能用额外的食物求他帮个忙，亦或者什么都不做，赌那场火其实已经灭了？",
+		"worker_demand_options": [
+			{"text": "食物"},
+			{"text": "漱口水"},
+			{"text": "该死，随他去吧（Elias不会帮你）"}
+		]
+	},
+	"argument": {
+		"title": "[占位] 争执",
+		"description": "[占位] Mason Reed 和 Dr. Helena Voss 为了最后一块干粮吵了起来。",
+		"options": [
+			{"text": "[占位] 站在 Mason 这边", "result_text": "[占位] Mason 冲你点了点头。"},
+			{"text": "[占位] 站在 Helena 这边", "result_text": "[占位] Mason 啐了一口，走开了。"},
+			{"text": "[占位] 把干粮分给 Mason", "result_text": "[占位] Mason 拿走了干粮。"}
+		]
+	},
+	"criminal_demand": {
+		"title": "[占位] Mason 的要求",
+		"description": "[占位] Mason Reed 要求今晚多分他一份食物。",
+		"options": [
+			{"text": "[占位] 满足他", "result_text": "[占位] Mason 满意地走开了。"},
+			{"text": "[占位] 拒绝他", "result_text": "[占位] Mason 记住了这件事。"},
+			{"text": "[占位] 把他关进储物间一晚", "result_text": "[占位] Mason 在储物间里砸了一整夜的门。"}
+		]
+	},
+	"doctor_demand": {
+		"title": "[占位] Helena 的条件",
+		"description": "[占位] Dr. Helena Voss 说，只要再给她 1 瓶漱口水，她就愿意去医疗舱翻一翻还能吃的营养剂。",
+		"options": [
+			{"text": "[占位] 给她 1 瓶漱口水", "result_text": "[占位] 她从医疗舱带回了 2 份营养剂。"},
+			{"text": "[占位] 算了", "result_text": "[占位] Helena 耸了耸肩。"}
+		]
+	},
+	"repair_leak": {
+		"title": "[占位] 冷却管道破裂",
+		"description": "[占位] 储藏舱的冷却管道破了。不修的话，剩下的食物会更快变质。需要派一个人去处理。",
+		"success_text": "[占位] {name} 修好了管道。",
+		"abandon_text": "[占位] 没人去修。一部分食物变质了。"
+	},
+	"salvage_cargo": {
+		"title": "[占位] 舱外补给箱",
+		"description": "[占位] 货舱外挂着一个没被烧毁的补给箱。需要有人穿上宇航服出去把它拖回来。",
+		"success_text": "[占位] {name} 把补给箱拖了回来，里面有 2 份食物。",
+		"abandon_text": "[占位] 补给箱慢慢飘远了。"
+	}
+}
