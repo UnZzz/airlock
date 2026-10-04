@@ -5,6 +5,7 @@ const START_SCENE_PATH : String = "res://start/StartScreen.tscn"
 const DAY_SCENE : PackedScene = preload("res://scene_system/CabinDay.tscn")
 const AIRLOCK_SCENE : PackedScene = preload("res://scene_system/CabinAirlock.tscn")
 const EXILE_SCENE : PackedScene = preload("res://scene_system/AirlockExile.tscn")
+const EVICT_CUT_SCENE : PackedScene = preload("res://scene_system/evict_cut_scene.tscn")
 
 @export var scene_fade_time : float = 0.6
 
@@ -324,7 +325,33 @@ func _on_airlock_choice(target_id: String) -> void:
 	GameFlow.resolve_airlock(target_id)
 	if was_on_board and target.status == CrewMember.Status.EXILED:
 		_set_scene(EXILE_SCENE)
+		await _play_eviction_cut_scene()
 	_show_airlock()
+
+
+func _play_eviction_cut_scene() -> void:
+	_clear_option_list()
+	var panels_were_visible : bool = panels.visible
+	var crew_stage : Control = $CrewStage
+	var crew_was_visible : bool = crew_stage.visible
+	panels.hide()
+	crew_stage.hide()
+	panel_toggle_button.hide()
+	var cut_scene : Node2D = EVICT_CUT_SCENE.instantiate()
+	# Keep the main viewport in place when embedding the standalone cut scene.
+	var camera : Camera2D = cut_scene.get_node("Camera2D")
+	camera.enabled = false
+	var exile_background : Control = background.get_child(background.get_child_count() - 1)
+	exile_background.add_child(cut_scene)
+	var sprite : Sprite2D = cut_scene.get_node("Sprite2D")
+	sprite.position = exile_background.size / 2.0
+	var player : AnimationPlayer = cut_scene.get_node("AnimationPlayer")
+	player.play(&"spin")
+	await player.animation_finished
+	cut_scene.queue_free()
+	panels.visible = panels_were_visible
+	crew_stage.visible = crew_was_visible
+	panel_toggle_button.show()
 
 
 func _show_ending() -> void:

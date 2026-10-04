@@ -260,5 +260,3 @@ color = Color(0, 0, 0, 1)
 [node name="HoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=392358252]
 stream = ExtResource("3_8v406")
 volume_db = 5.117
-
-[connection signal="pressed" from="Menu/GuideButton" to="." method="_on_guide_button_pressed"]
