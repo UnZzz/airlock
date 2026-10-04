@@ -21,6 +21,10 @@ var starvation_limit : int = 3
 @export
 var chef_food_multiplier : float = 0.75
 @export
+var chef_food_reduction : int = 1
+@export
+var min_chef_meal_cost : int = 1
+@export
 var maintenance_cost : int = 1
 @export
 var treatment_cost : int = 2
@@ -260,7 +264,7 @@ func meal_cost(count: int) -> int:
 	if count <= 0:
 		return 0
 	if is_role_on_board(CrewMember.Role.CHEF):
-		return ceili(count * chef_food_multiplier)
+		return max(min_chef_meal_cost, count - chef_food_reduction)
 	return count
 
 
