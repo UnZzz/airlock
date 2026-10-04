@@ -888,3 +888,50 @@ Josan 节点和"有 Josan 时的站位"是 Mumu 在 `CrewStage.tscn` 里摆的�
 - `scene_system/EndScreen.tscn`：去掉我自己加的深蓝圆角 `StyleBoxFlat`，`StoryPanel` 改用主题 `ui/theme.tres` 里的面板样式（手绘线框 + 胶带，和主界面 ContentPanel 一样）；标题字号 24、正文用主题默认字号，和主界面一致；面板不再固定 460 高
 - `scene_system/end_screen.gd`：正文高度跟着文字走，最多 `max_story_height`（380），超出就在框里滚动。高度在文字框 `resized` 时重新算，不依赖第一帧的排版
 - 测试：1152×648 窗口截图，英文好结局（最长）框高 501、正文 380 可滚动；中文好结局 481；起义 201；叛变 161。在 0.05 / 0.1 / 0.5 / 1 秒时读取尺寸都一致
+
+## 全面检查后的补漏：指南、翻译、键盘操作（2026-10-04）
+
+结局相关（内斗结局、EndScreen、船长饿死结局、叛变结局）由另一个对话负责，这里没有碰。
+
+**指南文案**（`ui_guide_text`，中英文重写，按实际机制和术语表）
+| 原来写的 | 改成（实际机制） |
+| --- | --- |
+| 3 天没吃会死 | 任何人连续 3 天没吃，航行结束 |
+| 漱口水能把重伤稳定回受伤 | 漱口水养护只重置当前阶段的倒计时，不治伤；写明受伤 3 天、重伤 2 天 |
+| 镇静剂要在前一天下 | 气闸日当晚吃了晚饭的人才被麻醉；当天没喂的人不能流放 |
+| 镇静餐是厨师能力 | 厨师在就由厨师下药，不在就船长自己下 |
+| 罪犯会和人争执（`argument` 事件不在事件池） | 改成「有些选择站他那边 / 和他作对」；补上解锁后忠诚降到 0 会背叛 |
+| Engineer / Eviction / evict；工程师 / 威吓 / 濒危 / 驱逐 | Worker / Airlock Day / exile；工人 / 威慑 / 重伤 / 流放，和界面一致 |
+| — | 补上：生病要用 1 瓶漱口水治、医生治疗对重伤也有效（医生本人不能是重伤）、工人知道真相后会在气闸日拒绝吃饭 |
+
+`start/StartScreen.tscn` 里 GuideText 的旧英文只是编辑器占位，运行时会被覆盖，没改。
+
+**翻译 / 文本**
+| 文件 | 改动 |
+| --- | --- |
+| `story/system_text_zh.json` | 去掉多余空格：「今天是气闸日」「知道气闸的真相」「承诺：下次气闸日流放 {name}」以及气闸日提示 |
+| `story/system_text_en.json` | 两条承诺里的 "the next Airlock" → "the next Airlock Day"（术语表） |
+| `story/system_text_*.json` | 新增 `someone`：Someone / 某个人 |
+| `journal_system/journal.gd` | `{random_passenger}` 的兜底不再写死英文 "Someone"，改走 `Journal.text("someone")` |
+| `event_system/events/fire_check.tres` / `story/event_text_zh.json` | 第 2 天火灾事件补标题：Fire in the Cold Storage / 冷库的余火（原来弹窗只显示通用的「事件」） |
+| `dialogue_system/dialogue.gd` | 打字机停顿识别中文标点（。！？… 长停，，；：、 短停），原来中文对话一口气打完 |
+
+核对后保留原样：英文第 3 天并没有缺句（Dr. Voss 那句旁白并在上一段末尾）；中文第 18 天那句英文是编剧原稿就有的，和上面的 Pascal 英文引言呼应。中文里人名用英文也是原稿写法。
+
+**键盘 / 手柄操作**（原来进游戏后只能用鼠标）
+| 文件 | 改动 |
+| --- | --- |
+| `main.gd` | 每次换页后自动聚焦第一个可用按钮（弹窗、对话、返回确认框打开时不抢焦点）；对话中取消返回菜单时不再把焦点给「返回主菜单」，避免 Enter 又打开确认框 |
+| `event_system/event_popup.gd` | 事件按钮可以获得焦点，打开时聚焦第一个可用选项 |
+| `dialogue_system/dialogue.gd` | 对话打开时暂时释放焦点（防止 Enter 同时按到底下的按钮），关闭后还原；对话选项可用方向键选择，`>` 标记跟随焦点，鼠标悬停也会移动焦点 |
+| `ui/theme.tres` | Button 的 focus 样式从空白改成一圈暖黄色手绘描边（SketchBox，线宽 3），并加了 `font_focus_color`，否则看不出焦点在哪 |
+
+**其他**
+- `README.md`：30 天 → 28 天，决策轮数写成 4（第 7/14/21/28 天）
+
+**没动的**
+- 5 个不在事件池里的事件 `.tres`（argument、criminal_demand、doctor_demand、repair_leak、salvage_cargo）和 `music_system/tracks/system_text_zh.json` 旧副本：没删，前者留给策划决定，后者属于 music_system
+
+**测试**
+- Godot 4.7.2 headless 自动打 600 局（中英文各半，只在快饿时喂饭、气闸日全喂并流放），全部走到结局，没有脚本错误；所有日志、事件、选项、气闸、结局文字里没有空文本、`{}` 或原始 key（只剩第 18 天那句有意保留的英文）
+- 1152×648 窗口实测：中英文指南排版正常可滚动；第 2 天火灾弹窗显示标题、默认聚焦第一个选项并有黄色描边；只用 Enter 能从开场一路走到派人 → 谈判 → 第 3 天；对话关闭后焦点回到原按钮
