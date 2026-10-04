@@ -6,6 +6,7 @@ const GAME_SCENE_PATH: String = "res://main.tscn"
 @export var fade_in_time: float = 1.2
 @export var fade_out_time: float = 0.8
 @export var menu_delay: float = 2.0
+@export var max_story_height: float = 380.0
 
 @onready var menu = $Menu
 @onready var back_menu_button = $Menu/BackMenuButton
@@ -51,6 +52,14 @@ func _ready() -> void:
 	menu.modulate.a = 0.0
 	menu.hide()
 	continue_button.grab_focus()
+	story_text.resized.connect(_fit_story)
+	_fit_story()
+
+
+func _fit_story() -> void:
+	var height: float = minf(story_text.get_content_height(), max_story_height)
+	if not is_equal_approx(story_text.custom_minimum_size.y, height):
+		story_text.custom_minimum_size.y = height
 
 
 func _on_continue() -> void:

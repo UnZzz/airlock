@@ -36,5 +36,6 @@ worker_demand_text = "I knew he'd ask for this. He was the one who kept saying \
 worker_demand_options = Array[ExtResource("2_option")]([SubResource("Resource_food"), SubResource("Resource_mouthwash"), SubResource("Resource_refuse")])
 outcome_flag = "day2_fire"
 event_id = "fire_check"
+title = "Fire in the Cold Storage"
 description = "Oh, and the fire in the cold storage might not be completely out. I'm worried it could do more damage to the ship's wiring, and from there to the life support. Maybe I should send someone to take a look? Elias normally handles the ship's routine maintenance, but I'm not sure he won't use his expertise to make some extra demands. And if I send someone who doesn't know the ship, they might get electrocuted."
 in_random_pool = false

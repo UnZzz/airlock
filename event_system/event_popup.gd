@@ -40,7 +40,6 @@ func open(title: String, text: String, buttons: Array[Dictionary]) -> void:
 		button.text = String(data.get("text", ""))
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.disabled = bool(data.get("disabled", false))
-		button.focus_mode = Control.FOCUS_NONE
 		var callback : Callable = data.get("callback", Callable())
 		if callback.is_valid():
 			button.pressed.connect(callback)
@@ -53,6 +52,15 @@ func open(title: String, text: String, buttons: Array[Dictionary]) -> void:
 		CharacterPortrait.clear_focus(get_tree())
 		_fade_to(1.0)
 	_fit.call_deferred()
+	_focus_first_option.call_deferred()
+
+
+func _focus_first_option() -> void:
+	for child in _options.get_children():
+		var button : Button = child as Button
+		if button != null and not button.disabled:
+			button.grab_focus()
+			return
 
 
 func close() -> void:

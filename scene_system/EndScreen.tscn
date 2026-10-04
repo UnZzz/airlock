@@ -9,17 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cwl4th6fc05uu" path="res://character/josan.png" id="6_phtlq"]
 [ext_resource type="Texture2D" uid="uid://ddufq4ytsguqp" path="res://character/2_4.png" id="7_vfgwb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_story"]
-content_margin_left = 32.0
-content_margin_top = 24.0
-content_margin_right = 32.0
-content_margin_bottom = 24.0
-bg_color = Color(0.04, 0.04, 0.1, 0.86)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [node name="Node" type="Node" unique_id=638350251]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1563639077]
@@ -109,27 +98,21 @@ theme_override_constants/margin_bottom = 64
 script = ExtResource("1_x0sye")
 
 [node name="StoryPanel" type="PanelContainer" parent="Control"]
-custom_minimum_size = Vector2(760, 460)
+custom_minimum_size = Vector2(760, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_story")
 
 [node name="Box" type="VBoxContainer" parent="Control/StoryPanel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="Control/StoryPanel/Box"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.93, 0.87, 1)
-theme_override_font_sizes/font_size = 28
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
 
 [node name="Text" type="RichTextLabel" parent="Control/StoryPanel/Box"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.95, 0.93, 0.87, 1)
-theme_override_font_sizes/normal_font_size = 20
 scroll_active = true
 
 [node name="ContinueButton" type="Button" parent="Control/StoryPanel/Box"]
