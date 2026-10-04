@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ndowh3y8m5j5"]
+
+[ext_resource type="Texture2D" uid="uid://p4lkbep05hbk" path="res://scene_system/backgrounds/EndScreen.PNG" id="1_v6d4x"]
+[ext_resource type="Texture2D" uid="uid://de3bl0wxb0roy" path="res://character/1_4.png" id="2_js603"]
+[ext_resource type="Texture2D" uid="uid://dquc1fsa5obaf" path="res://character/5-1.png" id="3_bpn4j"]
+[ext_resource type="Texture2D" uid="uid://sh20pp3uyjgr" path="res://character/3_4.png" id="4_nw0d4"]
+[ext_resource type="Texture2D" uid="uid://dsguwal1m11we" path="res://character/4_4.png" id="5_iu7he"]
+[ext_resource type="Texture2D" uid="uid://cwl4th6fc05uu" path="res://character/josan.png" id="6_phtlq"]
+[ext_resource type="Texture2D" uid="uid://ddufq4ytsguqp" path="res://character/2_4.png" id="7_vfgwb"]
+
+[node name="Node" type="Node" unique_id=638350251]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1563639077]
+offset_left = -3.0
+offset_top = -0.99999905
+offset_right = 37.0
+offset_bottom = 39.0
+scale = Vector2(28.849873, 26.200447)
+texture = ExtResource("1_v6d4x")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1342372363]
+offset_left = 537.0
+offset_top = 285.0
+offset_right = 577.0
+offset_bottom = 325.0
+scale = Vector2(9.060328, 6.792561)
+texture = ExtResource("2_js603")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1046149136]
+offset_left = -1.9999999
+offset_top = 192.0
+offset_right = 38.0
+offset_bottom = 232.0
+scale = Vector2(2.545525, 8.221853)
+texture = ExtResource("3_bpn4j")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=1838391608]
+offset_left = 298.0
+offset_top = 501.37485
+offset_right = 338.0
+offset_bottom = 541.3749
+rotation = -0.100011736
+scale = Vector2(9.831857, 7.9376564)
+texture = ExtResource("4_nw0d4")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=412791455]
+offset_left = 745.00006
+offset_top = 523.00006
+offset_right = 785.00006
+offset_bottom = 563.00006
+scale = Vector2(10.250745, 6.333299)
+texture = ExtResource("5_iu7he")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=931753247]
+offset_left = 911.0
+offset_top = 350.0
+offset_right = 1950.0
+offset_bottom = 1309.0
+scale = Vector2(0.2226322, 0.25673047)
+texture = ExtResource("6_phtlq")
+
+[node name="TextureRect7" type="TextureRect" parent="." unique_id=493672618]
+offset_left = -42.0
+offset_top = 406.37494
+offset_right = 2006.0
+offset_bottom = 1942.375
+rotation = -0.18411663
+scale = Vector2(0.24103568, 0.28401428)
+texture = ExtResource("7_vfgwb")

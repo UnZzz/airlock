@@ -1,4 +1,4 @@
-# Airlock
+ Airlock
 
 > Working title: **"Adrift"**
 >
@@ -58,7 +58,7 @@ Each round covers 7 days:
 │ 4. Resolution       │  Show the round's results: remaining supplies,
 │                     │  relationship changes, special events triggered
 └─────────┬───────────┘
-          ▼
+		  ▼
    Next round, until all 4 others are ejected or Day 30 is reached
 ```
 

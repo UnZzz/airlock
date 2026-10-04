@@ -7,7 +7,7 @@
 		"options": [
 			{
 				"text": "Keep it down. People are trying to sleep.",
-				"reply": ["Sleep? On this wreck? Nobody's sleeping, Captain. They're just lying still and counting the Food."]
+				"reply": ["Sleep? On this wreck? Nobody's sleeping, Captain. They're just lying still and counting the food."]
 			},
 			{
 				"text": "What were you locked up for?",
@@ -15,7 +15,7 @@
 			},
 			{
 				"text": "Never mind.",
-				"reply": ["Suit yourself. The half-song's the best one anyway."]
+				"reply": ["Suit yourself. The half song the best one anyway."]
 			}
 		]
 	},

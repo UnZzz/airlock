@@ -4,7 +4,7 @@
 	"paragraphs": [
 	  "Time to wake up, Captain.",
 	  "The fire destroyed most of our food stores, along with most of the passengers' faith.",
-	  "All we have left is the little food the galley had stocked, a crate of mouthwash Firebreath Ltd. hired us to deliver, and four passengers who don't trust one another.",
+	  "All we have left is the little food the galley had stocked, a crate of mouthwash which 'Firebreath Ltd'. hired us to deliver, and the remaining four passengers who don't trust one another.",
 	  "And you.",
 	  "Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
 	  "Calm them. Feed them. Keep everyone steady.",
@@ -61,7 +61,7 @@
 		  "if": { "day2_fire": "nothing" },
 		  "text": "Better to risk the oxygen system failing and everyone suffocating than let any crew member get hurt. What a merciful captain I am, aren't I?"
 		},
-		"Mara really wants some French T55 flour, a few P茅rigord black truffles, and a big cut of Nagasaki A5 fillet to show off her beef Wellington. Elias and Mason kept asking what wine would pair with it. They'd never heard of any of those names before, but the mere idea of them representing the pinnacle of alcohol got them excited anyway.",
+		"Mara really wants some French T55 flour, a few perigord black truffles, and a big cut of Nagasaki A5 fillet to show off her beef Wellington. Elias and Mason kept asking what wine would pair with it. They'd never heard of any of those names before, but the mere idea of them representing the pinnacle of alcohol got them excited anyway.",
 		"\"Lucky for us we can't get any of these ingredients, or we'd all develop 'atherosclerosis' from all that butter and drop dead.\" —Dr. Voss, chewing on an artichoke leaf.",
 		"\"Elias and Mason probably wouldn't. They'd just do something stupid while drunk and die in some way normal people wouldn't expect.\"",
         "\"Maybe we'll all die, but at least we'll be free!\" Mason held up a bottle of mouthwash triumphantly."
@@ -75,7 +75,7 @@
 	  "journal": [
 		"Good news: navigation shows the nearest habitable planet, Tahiti, is only 26 days away!",
 		"Second piece of good news: our fuel is more than enough to get there!",
-		"Bad news: we're running out of food. Before we reach that mysterious utopia, we'll have turned into five very confident skeletons first.",
+		"Bad news: we're running out of food. Before we reach that mysterious utopia, we'll have turned into five very confident skeletons.",
 		"Third piece of good news: at least they can identify the bodies by the clothes we're wearing.",
 		"Mason is explaining why he should be classified as a \"law-abiding citizen.\" Even though his criminal record shows multiple poaching incidents of a giant snail on a nature reserve planet in Centaurus, plus repeated contact with a suspected smuggler. He insists it was all \"in self-defense.\"",
 		"\"A snail the size of a mountain —the smallest tooth on its radula could cut you in half!\"",
@@ -89,7 +89,7 @@
 	"5": {
 	  "journal_title": "Wreck Log: Day 05",
 	  "journal": [
-		"No! We really don't have enough food. I have no idea what twisted mood I was in yesterday writing all that \"good news.\" God, I hate myself —every word from yesterday reads like it's mocking me now.",
+		"We really don't have enough food. I have no idea what twisted mood I was in yesterday writing all that \"good news.\" God, I hate myself —every word from yesterday reads like it's mocking me now.",
 		"Mason tried to seize more resources by force. Luckily there are four of us, so he lost —for now.",
 		"Elias says if I can't guarantee he gets home alive, he'll rewire the oxygen supply so we all suffocate together, just like the people in Mars Colony 215.",
 		"Dr. Voss keeps repeating, over and over, how little food we have left, as if she thinks I won't believe her unless she recalculates it in front of me each time. Every time I try to say \"I know, now be quiet,\" she pulls out that damn diploma again.",
