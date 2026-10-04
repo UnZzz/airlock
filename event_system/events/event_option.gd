@@ -25,7 +25,11 @@ var is_intimidation : bool = false
 
 
 func is_visible() -> bool:
-	return required_member == "" or Crew.is_on_board(required_member)
+	if required_member != "" and not Crew.is_on_board(required_member):
+		return false
+	if target_id != "" and not Crew.is_on_board(target_id):
+		return false
+	return injure_member == "" or Crew.is_on_board(injure_member)
 
 
 func can_afford() -> bool:

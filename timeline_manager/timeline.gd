@@ -1,11 +1,11 @@
 extends Node
 
 @export
-var total_days = 28
+var total_days = 30
 @export
 var airlock_interval = 7
 var current_day = 1
-var remaining_days = 28
+var remaining_days = 30
 var is_time_to_kick_out = false
 
 signal on_next_day
@@ -24,6 +24,9 @@ func to_next_day():
 		return
 	current_day += 1
 	_refresh()
+	if current_day >= total_days:
+		on_final_day.emit()
+		return
 	on_next_day.emit()
 	if is_time_to_kick_out:
 		on_airlock_day.emit()

@@ -19,8 +19,8 @@ func story_text(key: String, args: Dictionary = {}) -> String:
 
 func _show(text: String, options_to_show: Array[EventOption]) -> void:
 	current_text = text
-	current_options = options_to_show
-	is_finished = options_to_show.is_empty()
+	current_options = build_options(options_to_show)
+	is_finished = current_options.is_empty()
 
 
 func _finish(text: String) -> void:

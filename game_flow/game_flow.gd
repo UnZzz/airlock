@@ -4,10 +4,11 @@ enum Phase { OPENING, JOURNAL, ALLOCATION, EVENT, AIRLOCK, ENDING }
 
 signal phase_changed(phase: Phase)
 
-const NATURAL_DEATHS : Array[String] = ["starvation", "injury"]
 
 var phase : Phase = Phase.OPENING
 var ending_id : String = ""
+var loss_reason_key : String = ""
+var loss_reason_args : Dictionary = {}
 
 
 func _ready() -> void:
@@ -21,6 +22,8 @@ func _ready() -> void:
 
 func start_game() -> void:
 	ending_id = ""
+	loss_reason_key = ""
+	loss_reason_args = {}
 	Inventory.reset()
 	EffectSystem.clear_all()
 	Crew.reset()
@@ -68,6 +71,19 @@ func resolve_airlock(target_id: String) -> void:
 
 func finish_airlock() -> void:
 	_end_day()
+
+
+func get_loss_reason() -> String:
+	if loss_reason_key != "":
+		return Journal.text(loss_reason_key, loss_reason_args)
+	match ending_id:
+		"captain_starvation":
+			return Journal.text("loss_captain_starvation")
+		"mutiny":
+			return Journal.text("loss_mutiny")
+		"infighting":
+			return Journal.text("loss_infighting")
+	return Journal.text("loss_uprising")
 
 
 func get_ending_text() -> String:
@@ -154,13 +170,13 @@ func _next_day_entry(key: String, args: Dictionary) -> void:
 
 
 func _on_member_died(member: CrewMember, cause: String) -> void:
-	if member.role == CrewMember.Role.CAPTAIN:
-		_set_ending("captain_" + cause)
+	if ending_id == "":
+		loss_reason_key = "loss_death_" + cause if cause in ["starvation", "injury", "task"] else "loss_death"
+		loss_reason_args = {"name": member.display_name}
+	if member.role == CrewMember.Role.CAPTAIN and cause == "starvation":
+		_set_ending("captain_starvation")
 		return
-	if NATURAL_DEATHS.has(cause):
-		_set_ending("uprising")
-		return
-	_next_day_entry("journal_died_" + cause, {"name": member.display_name})
+	_set_ending("uprising")
 
 
 func _on_member_exiled(member: CrewMember) -> void:
