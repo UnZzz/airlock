@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MasonRightsEvent" format=3]
+
+[ext_resource type="Script" path="res://event_system/events/mason_rights_event.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+event_id = "mason_rights"
+required_members = Array[String](["mason"])
