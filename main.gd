@@ -359,7 +359,23 @@ func _play_eviction_cut_scene() -> void:
 
 
 func _show_ending() -> void:
+	if GameFlow.ending_id != "survived" and Timeline.current_day < Timeline.total_days:
+		_clear_option_list()
+		dialogue.set_process_unhandled_input(false)
+		var buttons : Array[Dictionary] = [{"text": Journal.text("ui_restart"), "callback": _restart_after_loss}]
+		event_popup.open(Journal.text("ui_game_over"), GameFlow.get_loss_reason(), buttons)
+		return
 	_open_end_screen()
+
+
+func _restart_after_loss() -> void:
+	if leaving:
+		return
+	leaving = true
+	var error : Error = get_tree().reload_current_scene()
+	if error != OK:
+		leaving = false
+		push_error("Could not restart the game: %s" % error_string(error))
 
 
 func _open_end_screen() -> void:
