@@ -75,7 +75,7 @@ rotation = -0.18411663
 scale = Vector2(0.24103568, 0.28401428)
 texture = ExtResource("7_vfgwb")
 
-[node name="Dim" type="ColorRect" parent="."]
+[node name="Dim" type="ColorRect" parent="." unique_id=1512553762]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,34 +97,12 @@ theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 script = ExtResource("1_x0sye")
 
-[node name="StoryPanel" type="PanelContainer" parent="Control"]
-custom_minimum_size = Vector2(760, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Box" type="VBoxContainer" parent="Control/StoryPanel"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Title" type="Label" parent="Control/StoryPanel/Box"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-
-[node name="Text" type="RichTextLabel" parent="Control/StoryPanel/Box"]
-layout_mode = 2
-scroll_active = true
-
-[node name="ContinueButton" type="Button" parent="Control/StoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 8
-
 [node name="Menu" type="VBoxContainer" parent="Control" unique_id=1662619736]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="RestartButton" type="Button" parent="Control/Menu"]
+[node name="RestartButton" type="Button" parent="Control/Menu" unique_id=1803652307]
 layout_mode = 2
 
 [node name="BackMenuButton" type="Button" parent="Control/Menu" unique_id=1010677028]
@@ -132,3 +110,34 @@ layout_mode = 2
 
 [node name="CreditButton" type="Button" parent="Control/Menu" unique_id=703541891]
 layout_mode = 2
+
+[node name="CreditsPanel" type="PanelContainer" parent="Control" unique_id=1626447082]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Box" type="VBoxContainer" parent="Control/CreditsPanel" unique_id=1985871164]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Control/CreditsPanel/Box" unique_id=541160819]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="Control/CreditsPanel/Box" unique_id=75722991]
+layout_mode = 2
+text = "An nguyen - play test, coding
+Bella Xiao - art, play test, coding
+Yzchen Yang - video game writer
+Juhzhe Wu - play test, coding
+Aaron ShangGuan - music, art, coding
+Henry Yuan - coding, art, play test"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Control/CreditsPanel/Box" unique_id=8942672]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"

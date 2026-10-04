@@ -20,9 +20,9 @@ var pending_plan : String = ""
 func _start() -> void:
 	pending_plan = ""
 	_show(story_text("description"), [
-		_option("option_elias", "elias"),
-		_option("option_voss", "voss"),
-		_option("option_nonsense", "nonsense"),
+		_option("option_elias", "elias", "elias"),
+		_option("option_voss", "voss", "helena"),
+		_option("option_nonsense", "nonsense", "mason"),
 	])
 
 
@@ -43,7 +43,7 @@ func _show_complaint() -> void:
 	food.food_change = -compensation_food
 	var mouthwash : EventOption = _option("complaint_mouthwash", "pay")
 	mouthwash.mouthwash_change = -compensation_mouthwash
-	_show(story_text("complaint"), [food, mouthwash, _option("complaint_give_in", "elias")])
+	_show(story_text("complaint"), [food, mouthwash, _option("complaint_give_in", "elias", "elias")])
 
 
 func _elias_plan() -> void:

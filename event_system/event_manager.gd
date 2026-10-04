@@ -62,6 +62,8 @@ func pick_event_for_day(day: int) -> BaseEvent:
 		if fixed == null:
 			push_error("Missing fixed event: " + fixed_id)
 			return null
+		if not fixed.can_trigger():
+			return null
 		return fixed.duplicate() as BaseEvent
 	if randf() >= event_chance:
 		return null
@@ -86,6 +88,8 @@ func start_event(event: BaseEvent) -> void:
 
 func choose(option: EventOption) -> void:
 	if current_event == null or current_event.is_finished:
+		return
+	if not current_event.current_options.has(option) or not option.is_visible():
 		return
 	current_event.choose(option)
 

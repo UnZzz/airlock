@@ -88,6 +88,7 @@
 	"event_sick": "{name} got sick.",
 	"journal_exiled_debt": "{name} left on the Firebreath ship to work off our debt. Let's hope they keep their word.",
 	"ui_language": "Language: English",
+	"ui_credits": "Credits",
 	"ui_return_menu": "Return to Main Menu",
 	"ui_return_menu_confirm": "Your progress in this run will not be saved when you return to the main menu. Return now?",
 	"ui_cancel": "Cancel",
