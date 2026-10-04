@@ -296,6 +296,10 @@ func end_day() -> void:
 			member.days_without_food += 1
 			member.hungry_day_count += 1
 		member.fed_today = false
+	var captain : CrewMember = get_by_role(CrewMember.Role.CAPTAIN)
+	if captain != null and captain.is_on_board() and captain.days_without_food >= starvation_limit:
+		kill(captain.member_id, "starvation")
+		return
 	for member in on_board():
 		if member.days_without_food >= starvation_limit:
 			infighting.emit()

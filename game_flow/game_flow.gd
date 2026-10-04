@@ -4,7 +4,6 @@ enum Phase { OPENING, JOURNAL, ALLOCATION, EVENT, AIRLOCK, ENDING }
 
 signal phase_changed(phase: Phase)
 
-const NATURAL_DEATHS : Array[String] = ["starvation", "injury"]
 
 var phase : Phase = Phase.OPENING
 var ending_id : String = ""
@@ -154,13 +153,10 @@ func _next_day_entry(key: String, args: Dictionary) -> void:
 
 
 func _on_member_died(member: CrewMember, cause: String) -> void:
-	if member.role == CrewMember.Role.CAPTAIN:
-		_set_ending("captain_" + cause)
+	if member.role == CrewMember.Role.CAPTAIN and cause == "starvation":
+		_set_ending("captain_starvation")
 		return
-	if NATURAL_DEATHS.has(cause):
-		_set_ending("uprising")
-		return
-	_next_day_entry("journal_died_" + cause, {"name": member.display_name})
+	_set_ending("uprising")
 
 
 func _on_member_exiled(member: CrewMember) -> void:

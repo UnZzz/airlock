@@ -8,7 +8,7 @@
 	  "And you.",
 	  "Let's hope this disaster hasn't robbed you of your brilliant judgment and superb piloting skills.",
 	  "Calm them. Feed them. Keep everyone steady.",
-      "Don't let any of the crew die in front of everyone.",
+	  "Don't let any of the crew die in front of everyone.",
       "Necessary sacrifices will be accepted."
 	]
   },
@@ -709,6 +709,9 @@
 	}
   },
   "endings": {
+	"infighting": [
+      "You absolute idiot. Even if there wasn't enough food or medicine, you can't just let your people die right there in the cabin. Well, now you've done it. The others have lost what little faith they had left in you, and the uprising is on! Now you're like a discarded plastic bag, curled up in a ball, drifting alone through space. It won't be long before you die from lack of oxygen."
+	],
   	"survived": [
   		"Tahiti! I can't think of a single word that lives up to how thrilled and relieved I am right now. We're lying on soft grass, staring up at the sky that nearly killed us. I already know what I'm doing next. Writing an autobiography, obviously, then giving a thousand interviews, then becoming one of those classic characters on the big screen. But what about everyone else?",
   		{
