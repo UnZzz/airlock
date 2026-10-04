@@ -1,6 +1,7 @@
 {
 	"start_title": "Airlock",
 	"ui_start_game": "开始游戏",
+	"ui_guide": "指导",
 	"ui_quit": "退出",
 	"ui_hide_panels": "隐藏面板",
 	"ui_show_panels": "显示面板",

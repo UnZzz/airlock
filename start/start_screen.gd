@@ -9,6 +9,7 @@ const GAME_SCENE_PATH : String = "res://main.tscn"
 @onready var sky : Node2D = $Background/Sky
 @onready var title_label : Label = $Menu/TitleLabel
 @onready var start_button : Button = $Menu/StartButton
+@onready var guide_button : Button = $Menu/GuideButton
 @onready var language_button : Button = $Menu/LanguageButton
 @onready var quit_button : Button = $Menu/QuitButton
 @onready var fade : ColorRect = $Fade
@@ -30,6 +31,7 @@ func _ready() -> void:
 	start_button.grab_focus()
 	Music.play_playlist()
 	start_button.mouse_entered.connect(_on_button_hover)
+	guide_button.mouse_entered.connect(_on_button_hover)
 	language_button.mouse_entered.connect(_on_button_hover)
 	quit_button.mouse_entered.connect(_on_button_hover)
 
@@ -37,6 +39,7 @@ func _ready() -> void:
 func _refresh_text() -> void:
 	title_label.text = Journal.text("start_title")
 	start_button.text = Journal.text("ui_start_game")
+	guide_button.text = Journal.text("ui_guide")
 	language_button.text = Journal.text("ui_language")
 	quit_button.text = Journal.text("ui_quit")
 
