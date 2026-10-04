@@ -664,8 +664,8 @@
 	  "option_mara": "Mara Quinn",
 	  "option_helena": "Dr. Voss",
 	  "option_mason": "Mason Reed",
-	  "option_nothing": "[TBD] Let him stay",
-	  "result_evict": "[TBD] {name} threw Josan off the ship."
+	  "option_nothing": "Let him stay",
+	  "result_evict": "{name} threw Josan off the ship."
 	},
 	"debt_crisis": {
 	  "title": "Debt Crisis",
@@ -674,12 +674,12 @@
 	  "option_mara": "Mara Quinn",
 	  "option_helena": "Dr. Voss",
 	  "option_mason": "Mason Reed",
-	  "option_fight": "[TBD] Grab our weapons and drive them off",
-	  "leave_elias": "The truth is, I've always offered Elias extremely generous terms, [TBD]",
-	  "leave_mara": "[TBD] Mara left with the Firebreath crew.",
-	  "leave_helena": "[TBD] Dr. Voss left with the Firebreath crew.",
-	  "leave_mason": "[TBD] Mason left with the Firebreath crew.",
-	  "fight_result": "[TBD] We grabbed our weapons and drove the Firebreath crew off."
+	  "option_fight": "Grab our weapons and drive them off",
+	  "leave_elias": "The truth is, I've always offered Elias extremely generous terms, ",
+	  "leave_mara": "Mara left with the Firebreath crew.",
+	  "leave_helena": "Dr. Voss left with the Firebreath crew.",
+	  "leave_mason": "Mason left with the Firebreath crew.",
+	  "fight_result": "We grabbed our weapons and drove the Firebreath crew off."
 	},
 	"mason_rights": {
 		"title": "Inalienable Rights",

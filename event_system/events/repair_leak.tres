@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_danger")
-success_text = "[TBD] {name} fixed the pipe."
-abandon_text = "[TBD] Nobody fixed it. Some of the food has spoiled."
+success_text = "{name} fixed the pipe."
+abandon_text = "Nobody fixed it. Some of the food has spoiled."
 abandon_food_change = -2
 event_id = "repair_leak"
 in_random_pool = false
-title = "[TBD] Burst Coolant Pipe"
-description = "[TBD] A coolant pipe in the storage bay has burst. If nobody fixes it, the remaining food will spoil faster. Someone needs to go deal with it."
+title = "Burst Coolant Pipe"
+description = "A coolant pipe in the storage bay has burst. If nobody fixes it, the remaining food will spoil faster. Someone needs to go deal with it."
 repeatable = true

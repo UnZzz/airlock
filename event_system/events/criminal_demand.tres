@@ -5,28 +5,28 @@
 
 [sub_resource type="Resource" id="Resource_opt1"]
 script = ExtResource("2_option")
-text = "[TBD] Give him what he wants"
-result_text = "[TBD] Mason walks off, satisfied."
+text = "Give him what he wants"
+result_text = "Mason walks off, satisfied."
 food_change = -1
 loyalty_change = 1
 
 [sub_resource type="Resource" id="Resource_opt2"]
 script = ExtResource("2_option")
-text = "[TBD] Refuse him"
-result_text = "[TBD] Mason won't forget this."
+text = "Refuse him"
+result_text = "Mason won't forget this."
 loyalty_change = -1
 
 [sub_resource type="Resource" id="Resource_opt3"]
 script = ExtResource("2_option")
-text = "[TBD] Lock him in the storage airlock for the night"
-result_text = "[TBD] Mason pounds on the airlock all night long."
+text = "Lock him in the storage airlock for the night"
+result_text = "Mason pounds on the airlock all night long."
 loyalty_change = -1
 
 [resource]
 script = ExtResource("1_icjht")
 event_id = "criminal_demand"
-title = "[TBD] Mason's Demand"
-description = "[TBD] Mason Reed demands an extra portion of food tonight."
+title = "Mason's Demand"
+description = "Mason Reed demands an extra portion of food tonight."
 options = Array[ExtResource("2_option")]([SubResource("Resource_opt1"), SubResource("Resource_opt2"), SubResource("Resource_opt3")])
 required_members = Array[String](["mason"])
 in_random_pool = false

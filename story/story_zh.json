@@ -163,7 +163,7 @@
 						"day7_exile": "yes",
 						"last_airlock_target": "mason"
 					},
-					"text": "[占位] 原文缺失，需要原作者补一句"
+					"text": "原文缺失，需要原作者补一句"
 				},
 				{
 					"if": {
@@ -441,7 +441,7 @@
 						"day14_exile": "yes",
 						"last_airlock_target": "mason"
 					},
-					"text": "[占位] 原文缺失，需要原作者补一句"
+					"text": "原文缺失，需要原作者补一句"
 				},
 				{
 					"if": {
@@ -830,8 +830,8 @@
 			"option_mara": "Mara Quinn",
 			"option_helena": "Dr. Voss",
 			"option_mason": "Mason Reed",
-			"option_nothing": "[占位] 随他去吧",
-			"result_evict": "[占位] {name}把Josan赶出了飞船。"
+			"option_nothing": "随他去吧",
+			"result_evict": "{name}把Josan赶出了飞船。"
 		},
 		"debt_crisis": {
 			"title": "债务危机",
@@ -840,12 +840,12 @@
 			"option_mara": "Mara Quinn",
 			"option_helena": "Dr. Voss",
 			"option_mason": "Mason Reed",
-			"option_fight": "[占位] 抄起武器，赶走他们",
-			"leave_elias": "其实我一直都给Elias提供了极为丰厚的条件，[占位]",
-			"leave_mara": "[占位] Mara跟着Firebreath的人走了。",
-			"leave_helena": "[占位] Dr. Voss跟着Firebreath的人走了。",
-			"leave_mason": "[占位] Mason跟着Firebreath的人走了。",
-			"fight_result": "[占位] 我们抄起武器，把Firebreath的人赶走了。"
+			"option_fight": "抄起武器，赶走他们",
+			"leave_elias": "其实我一直都给Elias提供了极为丰厚的条件，",
+			"leave_mara": "Mara跟着Firebreath的人走了。",
+			"leave_helena": "Dr. Voss跟着Firebreath的人走了。",
+			"leave_mason": "Mason跟着Firebreath的人走了。",
+			"fight_result": "我们抄起武器，把Firebreath的人赶走了。"
 		},
 		"mason_rights": {
 			"title": "天赋人权",
@@ -869,7 +869,7 @@
 			"text": "希望Helios教过你，怎么在没有食物、缺氧又冰冷的环境里活下去，博士。"
 		},
 		"departure_mason": {
-			"text": "[占位] 原文缺失，需要原作者补一句"
+			"text": "原文缺失，需要原作者补一句"
 		}
 	}
 }
